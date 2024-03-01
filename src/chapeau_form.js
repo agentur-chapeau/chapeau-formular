@@ -1,4 +1,4 @@
-import { MSF } from "advanced-webflow-forms/src/awf.ts";
+import * as AWF from "advanced-webflow-forms/dist/awf.js";
 import { AsyncForm } from "./async_form.js";
 import { FileUpload } from "./fileupload.js";
 
@@ -28,7 +28,7 @@ function createChapeauFormular() {
 	moveCmsSlidesToSlider($slider, $slideList);
 
 	// Create MultiStepForm
-	const msf = new MSF({
+	const msf = new AWF.MSF({
 		hiddeButtonsOnSubmit: false, // Buttons will be manually hidden
 		scrollTopOnStepChange: false,
 		formSelector: formSelector,
