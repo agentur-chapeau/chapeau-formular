@@ -1,6 +1,6 @@
 import * as FilePond from "filepond";
-import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import FilePondPluginFileValidateSize from "filepond-plugin-file-validate-size";
+import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import "filepond/dist/filepond.min.css";
 import "../styles/fileupload.css";
 
@@ -50,46 +50,8 @@ export class FileUpload {
 				fetch: null,
 			},
 			credits: false,
-			labelIdle: `
-			<div>
-				<span>Dateien hierher ziehen oder <span class="filepond--label-action">auswählen</span></span>
-			</div>
-			`,
-			labelInvalidField: "Feld enthält ungültige Dateien",
-			labelFileWaitingForSize: "Auf Größe warten",
-			labelFileSizeNotAvailable: "Größe nicht verfügbar",
-			labelFileLoading: "Laden",
-			labelFileLoadError: "Fehler beim Laden",
-			labelFileProcessing: "Hochladen",
-			labelFileProcessingComplete: "Hochgeladen",
-			labelFileProcessingAborted: "Hochladen abgebrochen",
-			labelFileProcessingError: "Fehler beim Hochladen",
-			labelFileProcessingRevertError: "Fehler beim Entfernen",
-			labelFileRemoveError: "Fehler beim Löschen",
-			labelTapToCancel: "Tippen zum Abbrechen ",
-			labelTapToRetry: "Tippen zum Wiederholen",
-			labelTapToUndo: "Tippen zum Entfernen",
-			labelButtonRemoveItem: "Entfernen",
-			labelButtonAbortItemLoad: "Abbrechen",
-			labelButtonRetryItemLoad: "Wiederholen",
-			labelButtonAbortItemProcessing: "Abbrechen",
-			labelButtonUndoItemProcessing: "Entfernen",
-			labelButtonRetryItemProcessing: "Wiederholen",
-			labelButtonProcessItem: "Hochladen",
-			labelMaxFileSizeExceeded: "Datei ist zu groß",
-			labelMaxFileSize: "Maximale Dateigröße beträgt {filesize}",
-			labelMaxTotalFileSizeExceeded: "Maximale Gesamtgröße überschritten",
-			labelMaxTotalFileSize: "Maximale Gesamtgröße beträgt {filesize}",
-			labelFileTypeNotAllowed: "Ungültiger Dateityp",
-			fileValidateTypeLabelExpectedTypes: "Gültige Dateitypen: {allButLastType} und {lastType}",
-			fileValidateTypeLabelExpectedTypesMap: {
-				"image/*": "Bilddateien",
-				"image/png": ".png",
-				"image/jpg": ".jpg",
-				"image/jpeg": ".jpeg",
-				"application/pdf": ".pdf",
-				"application/vnd.openxmlformats-officedocument.wordprocessingml.document": ".docx",
-			},
+			...defaultLabels,
+			...window.c_fileupload_options,
 		};
 
 		for (const input of this.inputs) {
@@ -162,3 +124,42 @@ FileUpload.refs = {};
 document.addEventListener("DOMContentLoaded", () => {
 	Array.from(document.querySelectorAll("[c-file-upload]")).forEach((el) => new FileUpload(el));
 });
+
+const defaultLabels = {
+	labelIdle: `Dateien hierher ziehen oder <span class="filepond--label-action">auswählen</span>`,
+	labelInvalidField: "Feld enthält ungültige Dateien",
+	labelFileWaitingForSize: "Auf Größe warten",
+	labelFileSizeNotAvailable: "Größe nicht verfügbar",
+	labelFileLoading: "Laden",
+	labelFileLoadError: "Fehler beim Laden",
+	labelFileProcessing: "Hochladen",
+	labelFileProcessingComplete: "Hochgeladen",
+	labelFileProcessingAborted: "Hochladen abgebrochen",
+	labelFileProcessingError: "Fehler beim Hochladen",
+	labelFileProcessingRevertError: "Fehler beim Entfernen",
+	labelFileRemoveError: "Fehler beim Löschen",
+	labelTapToCancel: "Tippen zum Abbrechen ",
+	labelTapToRetry: "Tippen zum Wiederholen",
+	labelTapToUndo: "Tippen zum Entfernen",
+	labelButtonRemoveItem: "Entfernen",
+	labelButtonAbortItemLoad: "Abbrechen",
+	labelButtonRetryItemLoad: "Wiederholen",
+	labelButtonAbortItemProcessing: "Abbrechen",
+	labelButtonUndoItemProcessing: "Entfernen",
+	labelButtonRetryItemProcessing: "Wiederholen",
+	labelButtonProcessItem: "Hochladen",
+	labelMaxFileSizeExceeded: "Datei ist zu groß",
+	labelMaxFileSize: "Maximale Dateigröße beträgt {filesize}",
+	labelMaxTotalFileSizeExceeded: "Maximale Gesamtgröße überschritten",
+	labelMaxTotalFileSize: "Maximale Gesamtgröße beträgt {filesize}",
+	labelFileTypeNotAllowed: "Ungültiger Dateityp",
+	fileValidateTypeLabelExpectedTypes: "Gültige Dateitypen: {allButLastType} und {lastType}",
+	fileValidateTypeLabelExpectedTypesMap: {
+		"image/*": "Bilddateien",
+		"image/png": ".png",
+		"image/jpg": ".jpg",
+		"image/jpeg": ".jpeg",
+		"application/pdf": ".pdf",
+		"application/vnd.openxmlformats-officedocument.wordprocessingml.document": ".docx",
+	},
+};
