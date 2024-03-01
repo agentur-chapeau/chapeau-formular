@@ -6,7 +6,9 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"version": "npm run build && git add -A dist",
+		"postversion": "git push && git push --tags"
 	},
 	"devDependencies": {
 		"rollup-plugin-esbuild": "^6.1.1",
