@@ -10,5 +10,11 @@
   },
   "devDependencies": {
     "vite": "^5.1.4"
+  },
+  "dependencies": {
+    "advanced-webflow-forms": "github:brotame/advanced-webflow-forms#6fb263d",
+    "filepond": "^4.30.6",
+    "filepond-plugin-file-validate-size": "^2.2.8",
+    "filepond-plugin-file-validate-type": "^1.2.9"
   }
 }
