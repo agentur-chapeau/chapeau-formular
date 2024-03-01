@@ -2257,11 +2257,51 @@ if (un()) {
   }), Pi(r)), hn());
 }
 /*!
-* FilePondPluginFileValidateType 1.2.9
+* FilePondPluginFileValidateSize 2.2.8
 * Licensed under MIT, https://opensource.org/licenses/MIT/
 * Please visit https://pqina.nl/filepond/ for details.
 */
 const oo = ({ addFilter: e, utils: t }) => {
+  const { Type: r, replaceInString: n, toNaturalFileSize: o } = t;
+  return e("ALLOW_HOPPER_ITEM", (s, { query: i }) => {
+    if (!i("GET_ALLOW_FILE_SIZE_VALIDATION"))
+      return !0;
+    const a = i("GET_MAX_FILE_SIZE");
+    if (a !== null && s.size > a)
+      return !1;
+    const l = i("GET_MIN_FILE_SIZE");
+    return !(l !== null && s.size < l);
+  }), e("LOAD_FILE", (s, { query: i }) => new Promise((a, l) => {
+    if (!i("GET_ALLOW_FILE_SIZE_VALIDATION"))
+      return a(s);
+    const d = i("GET_FILE_VALIDATE_SIZE_FILTER");
+    if (d && !d(s))
+      return a(s);
+    const p = i("GET_MAX_FILE_SIZE");
+    if (p !== null && s.size > p) {
+      l({ status: { main: i("GET_LABEL_MAX_FILE_SIZE_EXCEEDED"), sub: n(i("GET_LABEL_MAX_FILE_SIZE"), { filesize: o(p, ".", i("GET_FILE_SIZE_BASE"), i("GET_FILE_SIZE_LABELS", i)) }) } });
+      return;
+    }
+    const m = i("GET_MIN_FILE_SIZE");
+    if (m !== null && s.size < m) {
+      l({ status: { main: i("GET_LABEL_MIN_FILE_SIZE_EXCEEDED"), sub: n(i("GET_LABEL_MIN_FILE_SIZE"), { filesize: o(m, ".", i("GET_FILE_SIZE_BASE"), i("GET_FILE_SIZE_LABELS", i)) }) } });
+      return;
+    }
+    const h = i("GET_MAX_TOTAL_FILE_SIZE");
+    if (h !== null && i("GET_ACTIVE_ITEMS").reduce((T, E) => T + E.fileSize, 0) > h) {
+      l({ status: { main: i("GET_LABEL_MAX_TOTAL_FILE_SIZE_EXCEEDED"), sub: n(i("GET_LABEL_MAX_TOTAL_FILE_SIZE"), { filesize: o(h, ".", i("GET_FILE_SIZE_BASE"), i("GET_FILE_SIZE_LABELS", i)) }) } });
+      return;
+    }
+    a(s);
+  })), { options: { allowFileSizeValidation: [!0, r.BOOLEAN], maxFileSize: [null, r.INT], minFileSize: [null, r.INT], maxTotalFileSize: [null, r.INT], fileValidateSizeFilter: [null, r.FUNCTION], labelMinFileSizeExceeded: ["File is too small", r.STRING], labelMinFileSize: ["Minimum file size is {filesize}", r.STRING], labelMaxFileSizeExceeded: ["File is too large", r.STRING], labelMaxFileSize: ["Maximum file size is {filesize}", r.STRING], labelMaxTotalFileSizeExceeded: ["Maximum total size exceeded", r.STRING], labelMaxTotalFileSize: ["Maximum total file size is {filesize}", r.STRING] } };
+}, Vl = typeof window < "u" && typeof window.document < "u";
+Vl && document.dispatchEvent(new CustomEvent("FilePond:pluginloaded", { detail: oo }));
+/*!
+* FilePondPluginFileValidateType 1.2.9
+* Licensed under MIT, https://opensource.org/licenses/MIT/
+* Please visit https://pqina.nl/filepond/ for details.
+*/
+const io = ({ addFilter: e, utils: t }) => {
   const { Type: r, isString: n, replaceInString: o, guesstimateMimeType: s, getExtensionFromFilename: i, getFilenameFromURL: a } = t, l = (T, E) => {
     const I = (/^[^/]+/.exec(T) || []).pop(), b = E.slice(0, -2);
     return I === b;
@@ -2298,46 +2338,6 @@ const oo = ({ addFilter: e, utils: t }) => {
       I(T);
     }).catch(N);
   })), { options: { allowFileTypeValidation: [!0, r.BOOLEAN], acceptedFileTypes: [[], r.ARRAY], labelFileTypeNotAllowed: ["File is of invalid type", r.STRING], fileValidateTypeLabelExpectedTypes: ["Expects {allButLastType} or {lastType}", r.STRING], fileValidateTypeLabelExpectedTypesMap: [{}, r.OBJECT], fileValidateTypeDetectType: [null, r.FUNCTION] } };
-}, Vl = typeof window < "u" && typeof window.document < "u";
-Vl && document.dispatchEvent(new CustomEvent("FilePond:pluginloaded", { detail: oo }));
-/*!
-* FilePondPluginFileValidateSize 2.2.8
-* Licensed under MIT, https://opensource.org/licenses/MIT/
-* Please visit https://pqina.nl/filepond/ for details.
-*/
-const io = ({ addFilter: e, utils: t }) => {
-  const { Type: r, replaceInString: n, toNaturalFileSize: o } = t;
-  return e("ALLOW_HOPPER_ITEM", (s, { query: i }) => {
-    if (!i("GET_ALLOW_FILE_SIZE_VALIDATION"))
-      return !0;
-    const a = i("GET_MAX_FILE_SIZE");
-    if (a !== null && s.size > a)
-      return !1;
-    const l = i("GET_MIN_FILE_SIZE");
-    return !(l !== null && s.size < l);
-  }), e("LOAD_FILE", (s, { query: i }) => new Promise((a, l) => {
-    if (!i("GET_ALLOW_FILE_SIZE_VALIDATION"))
-      return a(s);
-    const d = i("GET_FILE_VALIDATE_SIZE_FILTER");
-    if (d && !d(s))
-      return a(s);
-    const p = i("GET_MAX_FILE_SIZE");
-    if (p !== null && s.size > p) {
-      l({ status: { main: i("GET_LABEL_MAX_FILE_SIZE_EXCEEDED"), sub: n(i("GET_LABEL_MAX_FILE_SIZE"), { filesize: o(p, ".", i("GET_FILE_SIZE_BASE"), i("GET_FILE_SIZE_LABELS", i)) }) } });
-      return;
-    }
-    const m = i("GET_MIN_FILE_SIZE");
-    if (m !== null && s.size < m) {
-      l({ status: { main: i("GET_LABEL_MIN_FILE_SIZE_EXCEEDED"), sub: n(i("GET_LABEL_MIN_FILE_SIZE"), { filesize: o(m, ".", i("GET_FILE_SIZE_BASE"), i("GET_FILE_SIZE_LABELS", i)) }) } });
-      return;
-    }
-    const h = i("GET_MAX_TOTAL_FILE_SIZE");
-    if (h !== null && i("GET_ACTIVE_ITEMS").reduce((T, E) => T + E.fileSize, 0) > h) {
-      l({ status: { main: i("GET_LABEL_MAX_TOTAL_FILE_SIZE_EXCEEDED"), sub: n(i("GET_LABEL_MAX_TOTAL_FILE_SIZE"), { filesize: o(h, ".", i("GET_FILE_SIZE_BASE"), i("GET_FILE_SIZE_LABELS", i)) }) } });
-      return;
-    }
-    a(s);
-  })), { options: { allowFileSizeValidation: [!0, r.BOOLEAN], maxFileSize: [null, r.INT], minFileSize: [null, r.INT], maxTotalFileSize: [null, r.INT], fileValidateSizeFilter: [null, r.FUNCTION], labelMinFileSizeExceeded: ["File is too small", r.STRING], labelMinFileSize: ["Minimum file size is {filesize}", r.STRING], labelMaxFileSizeExceeded: ["File is too large", r.STRING], labelMaxFileSize: ["Maximum file size is {filesize}", r.STRING], labelMaxTotalFileSizeExceeded: ["Maximum total size exceeded", r.STRING], labelMaxTotalFileSize: ["Maximum total file size is {filesize}", r.STRING] } };
 }, Yl = typeof window < "u" && typeof window.document < "u";
 Yl && document.dispatchEvent(new CustomEvent("FilePond:pluginloaded", { detail: io }));
 class et {
@@ -2349,12 +2349,8 @@ class et {
     r.onBeforeSubmit = () => this.beforeSubmit(), r.onPayload = (n) => this.onPayload(n), r.onInput = async (n, o) => await this.inputHandler(n, o);
   }
   onload() {
-    bt(oo), bt(io);
-    const t = { server: { url: "https://formupload.agentur-chapeau.de/", process: { url: "process", headers: this.headers }, revert: { url: "revert", headers: this.headers }, restore: null, load: null, fetch: null }, credits: !1, labelIdle: `
-			<div>
-				<span>Dateien hierher ziehen oder <span class="filepond--label-action">auswählen</span></span>
-			</div>
-			`, labelInvalidField: "Feld enthält ungültige Dateien", labelFileWaitingForSize: "Auf Größe warten", labelFileSizeNotAvailable: "Größe nicht verfügbar", labelFileLoading: "Laden", labelFileLoadError: "Fehler beim Laden", labelFileProcessing: "Hochladen", labelFileProcessingComplete: "Hochgeladen", labelFileProcessingAborted: "Hochladen abgebrochen", labelFileProcessingError: "Fehler beim Hochladen", labelFileProcessingRevertError: "Fehler beim Entfernen", labelFileRemoveError: "Fehler beim Löschen", labelTapToCancel: "Tippen zum Abbrechen ", labelTapToRetry: "Tippen zum Wiederholen", labelTapToUndo: "Tippen zum Entfernen", labelButtonRemoveItem: "Entfernen", labelButtonAbortItemLoad: "Abbrechen", labelButtonRetryItemLoad: "Wiederholen", labelButtonAbortItemProcessing: "Abbrechen", labelButtonUndoItemProcessing: "Entfernen", labelButtonRetryItemProcessing: "Wiederholen", labelButtonProcessItem: "Hochladen", labelMaxFileSizeExceeded: "Datei ist zu groß", labelMaxFileSize: "Maximale Dateigröße beträgt {filesize}", labelMaxTotalFileSizeExceeded: "Maximale Gesamtgröße überschritten", labelMaxTotalFileSize: "Maximale Gesamtgröße beträgt {filesize}", labelFileTypeNotAllowed: "Ungültiger Dateityp", fileValidateTypeLabelExpectedTypes: "Gültige Dateitypen: {allButLastType} und {lastType}", fileValidateTypeLabelExpectedTypesMap: { "image/*": "Bilddateien", "image/png": ".png", "image/jpg": ".jpg", "image/jpeg": ".jpeg", "application/pdf": ".pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document": ".docx" } };
+    bt(io), bt(oo);
+    const t = { server: { url: "https://formupload.agentur-chapeau.de/", process: { url: "process", headers: this.headers }, revert: { url: "revert", headers: this.headers }, restore: null, load: null, fetch: null }, credits: !1, ...Hl, ...window.c_fileupload_options };
     for (const r of this.inputs)
       this.fileponds[r.name] = yt(r, { ...t, maxFiles: r.dataset.maxFiles || null, maxFileSize: r.dataset.maxFileSize || null, maxTotalFileSize: r.dataset.maxTotalFileSize || null });
   }
@@ -2383,7 +2379,9 @@ class et {
 }
 et.refs = {}, document.addEventListener("DOMContentLoaded", () => {
   Array.from(document.querySelectorAll("[c-file-upload]")).forEach((e) => new et(e));
-}), document.addEventListener("DOMContentLoaded", () => {
+});
+const Hl = { labelIdle: 'Dateien hierher ziehen oder <span class="filepond--label-action">auswählen</span>', labelInvalidField: "Feld enthält ungültige Dateien", labelFileWaitingForSize: "Auf Größe warten", labelFileSizeNotAvailable: "Größe nicht verfügbar", labelFileLoading: "Laden", labelFileLoadError: "Fehler beim Laden", labelFileProcessing: "Hochladen", labelFileProcessingComplete: "Hochgeladen", labelFileProcessingAborted: "Hochladen abgebrochen", labelFileProcessingError: "Fehler beim Hochladen", labelFileProcessingRevertError: "Fehler beim Entfernen", labelFileRemoveError: "Fehler beim Löschen", labelTapToCancel: "Tippen zum Abbrechen ", labelTapToRetry: "Tippen zum Wiederholen", labelTapToUndo: "Tippen zum Entfernen", labelButtonRemoveItem: "Entfernen", labelButtonAbortItemLoad: "Abbrechen", labelButtonRetryItemLoad: "Wiederholen", labelButtonAbortItemProcessing: "Abbrechen", labelButtonUndoItemProcessing: "Entfernen", labelButtonRetryItemProcessing: "Wiederholen", labelButtonProcessItem: "Hochladen", labelMaxFileSizeExceeded: "Datei ist zu groß", labelMaxFileSize: "Maximale Dateigröße beträgt {filesize}", labelMaxTotalFileSizeExceeded: "Maximale Gesamtgröße überschritten", labelMaxTotalFileSize: "Maximale Gesamtgröße beträgt {filesize}", labelFileTypeNotAllowed: "Ungültiger Dateityp", fileValidateTypeLabelExpectedTypes: "Gültige Dateitypen: {allButLastType} und {lastType}", fileValidateTypeLabelExpectedTypesMap: { "image/*": "Bilddateien", "image/png": ".png", "image/jpg": ".jpg", "image/jpeg": ".jpeg", "application/pdf": ".pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document": ".docx" } };
+document.addEventListener("DOMContentLoaded", () => {
   if (window.location.search) {
     const r = new URLSearchParams(window.location.search), n = r.get("gclid");
     n && window.localStorage.setItem("gclid", n);
@@ -3207,32 +3205,32 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
     ot = { MSF: No.default, Logic: Go.default }, e.exports = ot;
   })();
 })(so);
-var Hl = so.exports, Ne = window.Webflow || [];
+var zl = so.exports, Ne = window.Webflow || [];
 Ne.push(() => {
-  zl();
+  Wl();
 });
-function zl() {
+function Wl() {
   const e = document.querySelector('[c-chapeau-form="main"]'), t = e.querySelector('[c-chapeau-form="nav"]'), r = e.querySelector('[c-chapeau-form="total-steps"]'), n = e.querySelector('[c-chapeau-form="progress"]'), o = e.querySelector('[c-chapeau-form="slider"]'), s = e.querySelector('[c-chapeau-form="slides"]'), i = e.querySelector('[c-chapeau-form="not-qualified-message"]'), a = e.querySelector('[c-chapeau-form="buttons"]'), l = '[c-chapeau-form="form"]', d = '[c-chapeau-form="next"]', p = '[c-chapeau-form="back"]', m = '[c-chapeau-form="current-step"]';
-  Wl(o, s);
-  const h = new Hl.MSF({ hiddeButtonsOnSubmit: !1, scrollTopOnStepChange: !1, formSelector: l, nextSelector: d, backSelector: p, currentStepSelector: m });
-  jl(h), Xl(h, n), Zl(h), $l(h, i, t, a), Ql(h), Kl(h, e);
+  Xl(o, s);
+  const h = new zl.MSF({ hiddeButtonsOnSubmit: !1, scrollTopOnStepChange: !1, formSelector: l, nextSelector: d, backSelector: p, currentStepSelector: m });
+  Zl(h), $l(h, n), Ql(h), jl(h, i, t, a), Kl(h), Jl(h, e);
   const T = h.view.steps.length;
   r.textContent = T, window.msf = h, e.removeAttribute("c-cloak"), h.view.setMaskHeight(0);
 }
-function Wl(e, t) {
+function Xl(e, t) {
   const r = e.querySelector(":scope > .w-slider-mask"), n = Array.from(t.querySelectorAll(":scope > .w-dyn-items > .w-dyn-item"));
   Array.from(r.querySelectorAll(".w-slide")).forEach((o) => o.remove()), n.forEach((o) => {
     o.classList.add("w-slide"), r.appendChild(o);
   }), t.remove(), Ne.destroy(), Ne.ready(), Ne.require("ix2").init(), Ne.require("slider").redraw(), Ne.require("slider").ready();
 }
-function Xl({ view: e, controller: t }, r) {
+function $l({ view: e, controller: t }, r) {
   e.next.addEventListener("click", n), e.back.addEventListener("click", n), n();
   function n() {
     const o = t.currentStep + 1, s = e.steps.length, i = Math.min(o / s * 100, 100);
     r.style.width = `${i}%`;
   }
 }
-function $l({ view: e, controller: t }, r, n, o) {
+function jl({ view: e, controller: t }, r, n, o) {
   e.form.addEventListener("change", s);
   function s() {
     var h;
@@ -3254,14 +3252,14 @@ function $l({ view: e, controller: t }, r, n, o) {
     e.showElement(n), e.showElement(o);
   }
 }
-function jl({ view: e }) {
+function Zl({ view: e }) {
   e.enableElement(e.back), e.disableElement = (t) => {
     t && t.classList.add("disabled");
   }, e.enableElement = (t) => {
     t && t.classList.remove("disabled");
   }, e.disableElement(e.back);
 }
-function Zl(e) {
+function Ql(e) {
   e.view;
   const t = e.controller, r = t.checkRequiredInputs.bind(t);
   function n() {
@@ -3274,7 +3272,7 @@ function Zl(e) {
   }
   t.checkRequiredInputs = n.bind(t);
 }
-function Ql(e) {
+function Kl(e) {
   const t = e.view, r = e.controller, n = t.form.closest("[c-async-form]"), o = t.back, s = t.next, i = new ze(n);
   i.onState = (a) => {
     a === "success" && (t.hideElement(o), t.hideElement(s));
@@ -3282,7 +3280,7 @@ function Ql(e) {
     r.currentStep = Math.min(r.currentStep, t.steps.length - 1);
   };
 }
-function Kl(e, t) {
+function Jl(e, t) {
   new et(t);
   const r = e.view, n = e.controller;
   r.form.addEventListener("FilePond:updatefiles", () => {
