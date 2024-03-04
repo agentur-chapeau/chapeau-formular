@@ -13,4 +13,7 @@ export default defineConfig({
 			plugins: [minify()], // Vite doesn't minify when using "es"-format
 		},
 	},
+	server: {
+		port: 5173,
+	},
 });
