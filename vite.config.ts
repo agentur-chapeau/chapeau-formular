@@ -10,7 +10,7 @@ export default defineConfig({
 			formats: ["es"],
 		},
 		rollupOptions: {
-			plugins: [minify()], // Vite doesn't minify when using "es"-format
+			// plugins: [minify()], // Vite doesn't minify when using "es"-format
 		},
 	},
 	server: {

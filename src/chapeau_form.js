@@ -1,6 +1,6 @@
 import * as AWF from "advanced-webflow-forms/dist/awf.js";
-import { AsyncForm } from "./async_form.js";
-import { FileUpload } from "./fileupload.js";
+import { AsyncForm } from "chapeaujs";
+import { FileUpload } from "chapeaujs/fileupload";
 import "../styles/chapeau_formular.css";
 
 var Webflow = window.Webflow || [];
