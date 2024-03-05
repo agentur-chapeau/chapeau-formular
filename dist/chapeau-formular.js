@@ -487,7 +487,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       return d && d.slice(0, be(d) + 1).replace(Gt, "");
     }
     var $ = fe.Symbol, Pe = Object.prototype, Me = Pe.hasOwnProperty, le = Pe.toString, ke = $ ? $.toStringTag : void 0;
-    function ao(d) {
+    function lo(d) {
       var c = Me.call(d, ke), f = d[ke];
       try {
         d[ke] = void 0;
@@ -497,26 +497,26 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       var S = le.call(d);
       return _ && (c ? d[ke] = f : delete d[ke]), S;
     }
-    var lo = Object.prototype, co = lo.toString;
-    function uo(d) {
-      return co.call(d);
+    var co = Object.prototype, uo = co.toString;
+    function po(d) {
+      return uo.call(d);
     }
-    var po = "[object Null]", fo = "[object Undefined]", dr = $ ? $.toStringTag : void 0;
-    function Eo(d) {
-      return d == null ? d === void 0 ? fo : po : dr && dr in Object(d) ? ao(d) : uo(d);
-    }
+    var fo = "[object Null]", Eo = "[object Undefined]", dr = $ ? $.toStringTag : void 0;
     function ho(d) {
+      return d == null ? d === void 0 ? Eo : fo : dr && dr in Object(d) ? lo(d) : po(d);
+    }
+    function mo(d) {
       return d != null && typeof d == "object";
     }
-    var mo = "[object Symbol]";
-    function To(d) {
-      return typeof d == "symbol" || ho(d) && Eo(d) == mo;
+    var To = "[object Symbol]";
+    function _o(d) {
+      return typeof d == "symbol" || mo(d) && ho(d) == To;
     }
-    var pr = NaN, _o = /^[-+]0x[0-9a-f]+$/i, Io = /^0b[01]+$/i, go = /^0o[0-7]+$/i, yo = parseInt;
+    var pr = NaN, Io = /^[-+]0x[0-9a-f]+$/i, go = /^0b[01]+$/i, yo = /^0o[0-7]+$/i, So = parseInt;
     function fr(d) {
       if (typeof d == "number")
         return d;
-      if (To(d))
+      if (_o(d))
         return pr;
       if (M(d)) {
         var c = typeof d.valueOf == "function" ? d.valueOf() : d;
@@ -525,14 +525,14 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       if (typeof d != "string")
         return d === 0 ? d : +d;
       d = H(d);
-      var f = Io.test(d);
-      return f || go.test(d) ? yo(d.slice(2), f ? 2 : 8) : _o.test(d) ? pr : +d;
+      var f = go.test(d);
+      return f || yo.test(d) ? So(d.slice(2), f ? 2 : 8) : Io.test(d) ? pr : +d;
     }
-    var So = "Expected a function", Ro = Math.max, bo = Math.min;
-    function vo(d, c, f) {
+    var Ro = "Expected a function", bo = Math.max, vo = Math.min;
+    function Oo(d, c, f) {
       var _, S, k, Y, B, G, te = 0, X = !1, ae = !1, j = !0;
       if (typeof d != "function")
-        throw new TypeError(So);
+        throw new TypeError(Ro);
       function he(ce) {
         var ge = _, Ae = S;
         return _ = S = void 0, te = ce, Y = d.apply(Ae, ge);
@@ -547,7 +547,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
           return it(ce);
         B = setTimeout(ve, function(ge) {
           var Ae = c - (ge - G);
-          return ae ? bo(Ae, k - (ge - te)) : Ae;
+          return ae ? vo(Ae, k - (ge - te)) : Ae;
         }(ce));
       }
       function it(ce) {
@@ -565,13 +565,13 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         }
         return B === void 0 && (B = setTimeout(ve, c)), Y;
       }
-      return c = fr(c) || 0, M(f) && (X = !!f.leading, k = (ae = "maxWait" in f) ? Ro(fr(f.maxWait) || 0, c) : k, j = "trailing" in f ? !!f.trailing : j), st.cancel = function() {
+      return c = fr(c) || 0, M(f) && (X = !!f.leading, k = (ae = "maxWait" in f) ? bo(fr(f.maxWait) || 0, c) : k, j = "trailing" in f ? !!f.trailing : j), st.cancel = function() {
         B !== void 0 && clearTimeout(B), te = 0, _ = G = S = B = void 0;
       }, st.flush = function() {
         return B === void 0 ? Y : it(xe());
       }, st;
     }
-    R.default = vo;
+    R.default = Oo;
     var Oe = {};
     Object.defineProperty(Oe, "__esModule", { value: !0 });
     var rt = ($e = void 0, De = Oe.isFormElement = $e, pt = Oe.throwError = De, Oe.isVisible = pt);
@@ -600,10 +600,10 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
       return typeof d == "string" ? d : typeof d == "number" ? d.toString() : d ? "true" : "false";
     }, Oe.convertToString = rt;
     var nt = {};
-    function Oo(d, c) {
+    function Do(d, c) {
       var f;
       if (typeof Symbol > "u" || d[Symbol.iterator] == null) {
-        if (Array.isArray(d) || (f = Do(d)) || c && d && typeof d.length == "number") {
+        if (Array.isArray(d) || (f = Ao(d)) || c && d && typeof d.length == "number") {
           f && (d = f);
           var _ = 0, S = function() {
           };
@@ -633,7 +633,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         }
       } };
     }
-    function Do(d, c) {
+    function Ao(d, c) {
       if (d) {
         if (typeof d == "string")
           return Er(d, c);
@@ -647,7 +647,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         _[f] = d[f];
       return _;
     }
-    function Ao(d, c) {
+    function Lo(d, c) {
       if (!(d instanceof c))
         throw new TypeError("Cannot call a class as a function");
     }
@@ -657,18 +657,18 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
         _.enumerable = _.enumerable || !1, _.configurable = !0, "value" in _ && (_.writable = !0), Object.defineProperty(d, _.key, _);
       }
     }
-    function Lo(d, c, f) {
+    function wo(d, c, f) {
       return c && hr(d.prototype, c), f && hr(d, f), d;
     }
-    var wo = nt && nt.__importDefault || function(d) {
+    var Po = nt && nt.__importDefault || function(d) {
       return d && d.__esModule ? d : { default: d };
     };
     Object.defineProperty(nt, "__esModule", { value: !0 });
-    var Po = wo(R), Mo = function() {
+    var Mo = Po(R), Co = function() {
       function d(c) {
-        Ao(this, d), this.logicList = [], this.submitHiddenInputs = !1, this.checkConditionsOnLoad = !0, Object.assign(this, c), this.store = [], this.init();
+        Lo(this, d), this.logicList = [], this.submitHiddenInputs = !1, this.checkConditionsOnLoad = !0, Object.assign(this, c), this.store = [], this.init();
       }
-      return Lo(d, [{ key: "init", value: function() {
+      return wo(d, [{ key: "init", value: function() {
         var c = this;
         this.logicList.forEach(function(f) {
           c.addEvents(f), f.actions.forEach(function(_) {
@@ -682,7 +682,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
           if ($e(S)) {
             var k = S.type === "radio" ? Array.from(document.querySelectorAll('input[name="'.concat(S.name, '"]'))) : [S];
             f.checkConditionsOnLoad && f.checkConditions(c);
-            var Y = Po.default(f.checkConditions.bind(f), 200), B = ["email", "number", "password", "search", "tel", "text", "textarea", "url"];
+            var Y = Mo.default(f.checkConditions.bind(f), 200), B = ["email", "number", "password", "search", "tel", "text", "textarea", "url"];
             k.forEach(function(G) {
               G.addEventListener("input", function() {
                 B.includes(S.type) ? Y(c) : f.checkConditions(c);
@@ -703,7 +703,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
           }) : De(c, "wrong-selector");
         }
       } }, { key: "checkConditions", value: function(c) {
-        var f, _ = this, S = c.conditions, k = c.operator, Y = k === void 0 ? "and" : k, B = c.actions, G = !1, te = Oo(S);
+        var f, _ = this, S = c.conditions, k = c.operator, Y = k === void 0 ? "and" : k, B = c.actions, G = !1, te = Do(S);
         try {
           for (te.s(); !(f = te.n()).done; ) {
             var X = f.value, ae = document.querySelector(X.selector);
@@ -831,17 +831,20 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
           return f.element === c;
         });
       } }]), d;
-    }(), Co = Mo;
-    nt.default = Co;
+    }(), No = Co;
+    nt.default = No;
     var ot = {}, mr = ot && ot.__importDefault || function(d) {
       return d && d.__esModule ? d : { default: d };
     };
     Object.defineProperty(ot, "__esModule", { value: !0 });
-    var No = mr(P), Go = mr(nt);
-    ot = { MSF: No.default, Logic: Go.default }, e.exports = ot;
+    var Go = mr(P), Fo = mr(nt);
+    ot = { MSF: Go.default, Logic: Fo.default }, e.exports = ot;
   })();
 })(Tn);
-var Fo = Tn.exports;
+var xo = Tn.exports;
+function _n(e) {
+  document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", e) : e();
+}
 class Ge {
   constructor(t) {
     if (t.dataset.refAsyncForm)
@@ -914,7 +917,7 @@ class Ge {
     return Array.from(this.form.elements);
   }
 }
-Ge.refs = {}, window.AsyncForm = Ge, document.addEventListener("DOMContentLoaded", () => {
+Ge.refs = {}, window.AsyncForm = Ge, _n(() => {
   Array.from(document.querySelectorAll("[c-async-form]")).forEach((e) => new Ge(e));
 });
 /*!
@@ -922,7 +925,7 @@ Ge.refs = {}, window.AsyncForm = Ge, document.addEventListener("DOMContentLoaded
 * Licensed under MIT, https://opensource.org/licenses/MIT/
 * Please visit https://pqina.nl/filepond/ for details.
 */
-const xo = (e) => e instanceof HTMLElement, ko = (e, t = [], r = []) => {
+const ko = (e) => e instanceof HTMLElement, qo = (e, t = [], r = []) => {
   const n = { ...e }, o = [], s = [], i = () => ({ ...n }), a = () => {
     const E = [...o];
     return o.length = 0, E;
@@ -946,7 +949,7 @@ const xo = (e) => e instanceof HTMLElement, ko = (e, t = [], r = []) => {
   return r.forEach((E) => {
     T = { ...E(u, p, n), ...T };
   }), m;
-}, qo = (e, t, r) => {
+}, Bo = (e, t, r) => {
   if (typeof r == "function") {
     e[t] = r;
     return;
@@ -958,21 +961,21 @@ const xo = (e) => e instanceof HTMLElement, ko = (e, t = [], r = []) => {
 }, Fe = (e) => {
   const t = {};
   return K(e, (r) => {
-    qo(t, r, e[r]);
+    Bo(t, r, e[r]);
   }), t;
 }, ne = (e, t, r = null) => {
   if (r === null)
     return e.getAttribute(t) || e.hasAttribute(t);
   e.setAttribute(t, r);
-}, Bo = "http://www.w3.org/2000/svg", Uo = ["svg", "path"], Or = (e) => Uo.includes(e), St = (e, t, r = {}) => {
+}, Uo = "http://www.w3.org/2000/svg", Vo = ["svg", "path"], Or = (e) => Vo.includes(e), St = (e, t, r = {}) => {
   typeof t == "object" && (r = t, t = null);
-  const n = Or(e) ? document.createElementNS(Bo, e) : document.createElement(e);
+  const n = Or(e) ? document.createElementNS(Uo, e) : document.createElement(e);
   return t && (Or(e) ? ne(n, "class", t) : n.className = t), K(r, (o, s) => {
     ne(n, o, s);
   }), n;
-}, Vo = (e) => (t, r) => {
+}, Ho = (e) => (t, r) => {
   typeof r < "u" && e.children[r] ? e.insertBefore(t, e.children[r]) : e.appendChild(t);
-}, Ho = (e, t) => (r, n) => (typeof n < "u" ? t.splice(n, 0, r) : t.push(r), r), Yo = (e, t) => (r) => (t.splice(t.indexOf(r), 1), r.element.parentNode && e.removeChild(r.element), r), zo = typeof window < "u" && typeof window.document < "u", _n = () => zo, Wo = _n() ? St("svg") : {}, Xo = "children" in Wo ? (e) => e.children.length : (e) => e.childNodes.length, In = (e, t, r, n) => {
+}, Yo = (e, t) => (r, n) => (typeof n < "u" ? t.splice(n, 0, r) : t.push(r), r), zo = (e, t) => (r) => (t.splice(t.indexOf(r), 1), r.element.parentNode && e.removeChild(r.element), r), Wo = typeof window < "u" && typeof window.document < "u", In = () => Wo, Xo = In() ? St("svg") : {}, jo = "children" in Xo ? (e) => e.children.length : (e) => e.childNodes.length, gn = (e, t, r, n) => {
   const o = r[0] || e.left, s = r[1] || e.top, i = o + e.width, a = s + e.height * (n[1] || 1), l = { element: { ...e }, inner: { left: e.left, top: e.top, right: e.right, bottom: e.bottom }, outer: { left: o, top: s, right: i, bottom: a } };
   return t.filter((u) => !u.isRectIgnored()).map((u) => u.rect).forEach((u) => {
     Dr(l.inner, { ...u.inner }), Dr(l.outer, { ...u.outer });
@@ -981,7 +984,7 @@ const xo = (e) => e instanceof HTMLElement, ko = (e, t = [], r = []) => {
   t.top += e.top, t.right += e.left, t.bottom += e.top, t.left += e.left, t.bottom > e.bottom && (e.bottom = t.bottom), t.right > e.right && (e.right = t.right);
 }, Ar = (e) => {
   e.width = e.right - e.left, e.height = e.bottom - e.top;
-}, Be = (e) => typeof e == "number", jo = (e, t, r, n = 1e-3) => Math.abs(e - t) < n && Math.abs(r) < n, $o = ({ stiffness: e = 0.5, damping: t = 0.75, mass: r = 10 } = {}) => {
+}, Be = (e) => typeof e == "number", $o = (e, t, r, n = 1e-3) => Math.abs(e - t) < n && Math.abs(r) < n, Qo = ({ stiffness: e = 0.5, damping: t = 0.75, mass: r = 10 } = {}) => {
   let n = null, o = null, s = 0, i = !1;
   const a = Fe({ interpolate: (l, u) => {
     if (i)
@@ -991,7 +994,7 @@ const xo = (e) => e instanceof HTMLElement, ko = (e, t = [], r = []) => {
       return;
     }
     const p = -(o - n) * e;
-    s += p / r, o += s, s *= t, jo(o, n, s) || u ? (o = n, s = 0, i = !0, a.onupdate(o), a.oncomplete(o)) : a.onupdate(o);
+    s += p / r, o += s, s *= t, $o(o, n, s) || u ? (o = n, s = 0, i = !0, a.onupdate(o), a.oncomplete(o)) : a.onupdate(o);
   }, target: { set: (l) => {
     if (Be(l) && !Be(o) && (o = l), n === null && (n = l, o = l), n = l, o === n || typeof n > "u") {
       i = !0, s = 0, a.onupdate(o), a.oncomplete(o);
@@ -1002,7 +1005,7 @@ const xo = (e) => e instanceof HTMLElement, ko = (e, t = [], r = []) => {
   }, oncomplete: (l) => {
   } });
   return a;
-}, Qo = (e) => e < 0.5 ? 2 * e * e : -1 + (4 - 2 * e) * e, Zo = ({ duration: e = 500, easing: t = Qo, delay: r = 0 } = {}) => {
+}, Zo = (e) => e < 0.5 ? 2 * e * e : -1 + (4 - 2 * e) * e, Ko = ({ duration: e = 500, easing: t = Zo, delay: r = 0 } = {}) => {
   let n = null, o, s, i = !0, a = !1, l = null;
   const u = Fe({ interpolate: (p, m) => {
     i || l === null || (n === null && (n = p), !(p - n < r) && (o = p - n - r, o >= e || m ? (o = 1, s = a ? 0 : 1, u.onupdate(s * l), u.oncomplete(s * l), i = !0) : (s = o / e, u.onupdate((o >= 0 ? t(a ? 1 - s : s) : 0) * l))));
@@ -1016,7 +1019,7 @@ const xo = (e) => e instanceof HTMLElement, ko = (e, t = [], r = []) => {
   }, oncomplete: (p) => {
   } });
   return u;
-}, Lr = { spring: $o, tween: Zo }, Ko = (e, t, r) => {
+}, Lr = { spring: Qo, tween: Ko }, Jo = (e, t, r) => {
   const n = e[t] && typeof e[t][r] == "object" ? e[t][r] : e[t] || e, o = typeof n == "string" ? n : n.type, s = typeof n == "object" ? { ...n } : {};
   return Lr[o] ? Lr[o](s) : null;
 }, Kt = (e, t, r, n = !1) => {
@@ -1026,10 +1029,10 @@ const xo = (e) => e instanceof HTMLElement, ko = (e, t = [], r = []) => {
       typeof s == "object" && (i = s.key, a = s.getter || a, l = s.setter || l), !(o[i] && !n) && (o[i] = { get: a, set: l });
     });
   });
-}, Jo = ({ mixinConfig: e, viewProps: t, viewInternalAPI: r, viewExternalAPI: n }) => {
+}, ei = ({ mixinConfig: e, viewProps: t, viewInternalAPI: r, viewExternalAPI: n }) => {
   const o = { ...t }, s = [];
   return K(e, (i, a) => {
-    const l = Ko(a);
+    const l = Jo(a);
     l && (l.onupdate = (u) => {
       t[i] = u;
     }, l.target = o[i], Kt([{ key: i, setter: (u) => {
@@ -1042,12 +1045,12 @@ const xo = (e) => e instanceof HTMLElement, ko = (e, t = [], r = []) => {
     }), l;
   }, destroy: () => {
   } };
-}, ei = (e) => (t, r) => {
-  e.addEventListener(t, r);
 }, ti = (e) => (t, r) => {
+  e.addEventListener(t, r);
+}, ri = (e) => (t, r) => {
   e.removeEventListener(t, r);
-}, ri = ({ mixinConfig: e, viewProps: t, viewInternalAPI: r, viewExternalAPI: n, viewState: o, view: s }) => {
-  const i = [], a = ei(s.element), l = ti(s.element);
+}, ni = ({ mixinConfig: e, viewProps: t, viewInternalAPI: r, viewExternalAPI: n, viewState: o, view: s }) => {
+  const i = [], a = ti(s.element), l = ri(s.element);
   return n.on = (u, p) => {
     i.push({ type: u, fn: p }), a(u, p);
   }, n.off = (u, p) => {
@@ -1057,32 +1060,32 @@ const xo = (e) => e instanceof HTMLElement, ko = (e, t = [], r = []) => {
       l(u.type, u.fn);
     });
   } };
-}, ni = ({ mixinConfig: e, viewProps: t, viewExternalAPI: r }) => {
+}, oi = ({ mixinConfig: e, viewProps: t, viewExternalAPI: r }) => {
   Kt(e, r, t);
-}, ue = (e) => e != null, oi = { opacity: 1, scaleX: 1, scaleY: 1, translateX: 0, translateY: 0, rotateX: 0, rotateY: 0, rotateZ: 0, originX: 0, originY: 0 }, ii = ({ mixinConfig: e, viewProps: t, viewInternalAPI: r, viewExternalAPI: n, view: o }) => {
+}, ue = (e) => e != null, ii = { opacity: 1, scaleX: 1, scaleY: 1, translateX: 0, translateY: 0, rotateX: 0, rotateY: 0, rotateZ: 0, originX: 0, originY: 0 }, si = ({ mixinConfig: e, viewProps: t, viewInternalAPI: r, viewExternalAPI: n, view: o }) => {
   const s = { ...t }, i = {};
   Kt(e, [r, n], t);
-  const a = () => [t.translateX || 0, t.translateY || 0], l = () => [t.scaleX || 0, t.scaleY || 0], u = () => o.rect ? In(o.rect, o.childViews, a(), l()) : null;
+  const a = () => [t.translateX || 0, t.translateY || 0], l = () => [t.scaleX || 0, t.scaleY || 0], u = () => o.rect ? gn(o.rect, o.childViews, a(), l()) : null;
   return r.rect = { get: u }, n.rect = { get: u }, e.forEach((p) => {
-    t[p] = typeof s[p] > "u" ? oi[p] : s[p];
+    t[p] = typeof s[p] > "u" ? ii[p] : s[p];
   }), { write: () => {
-    if (si(i, t))
-      return ai(o.element, t), Object.assign(i, { ...t }), !0;
+    if (ai(i, t))
+      return li(o.element, t), Object.assign(i, { ...t }), !0;
   }, destroy: () => {
   } };
-}, si = (e, t) => {
+}, ai = (e, t) => {
   if (Object.keys(e).length !== Object.keys(t).length)
     return !0;
   for (const r in t)
     if (t[r] !== e[r])
       return !0;
   return !1;
-}, ai = (e, { opacity: t, perspective: r, translateX: n, translateY: o, scaleX: s, scaleY: i, rotateX: a, rotateY: l, rotateZ: u, originX: p, originY: m, width: h, height: T }) => {
+}, li = (e, { opacity: t, perspective: r, translateX: n, translateY: o, scaleX: s, scaleY: i, rotateX: a, rotateY: l, rotateZ: u, originX: p, originY: m, width: h, height: T }) => {
   let E = "", I = "";
   (ue(p) || ue(m)) && (I += `transform-origin: ${p || 0}px ${m || 0}px;`), ue(r) && (E += `perspective(${r}px) `), (ue(n) || ue(o)) && (E += `translate3d(${n || 0}px, ${o || 0}px, 0) `), (ue(s) || ue(i)) && (E += `scale3d(${ue(s) ? s : 1}, ${ue(i) ? i : 1}, 1) `), ue(u) && (E += `rotateZ(${u}rad) `), ue(a) && (E += `rotateX(${a}rad) `), ue(l) && (E += `rotateY(${l}rad) `), E.length && (I += `transform:${E};`), ue(t) && (I += `opacity:${t};`, t === 0 && (I += "visibility:hidden;"), t < 1 && (I += "pointer-events:none;")), ue(T) && (I += `height:${T}px;`), ue(h) && (I += `width:${h}px;`);
   const O = e.elementCurrentStyle || "";
   (I.length !== O.length || I !== O) && (e.style.cssText = I, e.elementCurrentStyle = I);
-}, li = { styles: ii, listeners: ri, animations: Jo, apis: ni }, wr = (e = {}, t = {}, r = {}) => (t.layoutCalculated || (e.paddingTop = parseInt(r.paddingTop, 10) || 0, e.marginTop = parseInt(r.marginTop, 10) || 0, e.marginRight = parseInt(r.marginRight, 10) || 0, e.marginBottom = parseInt(r.marginBottom, 10) || 0, e.marginLeft = parseInt(r.marginLeft, 10) || 0, t.layoutCalculated = !0), e.left = t.offsetLeft || 0, e.top = t.offsetTop || 0, e.width = t.offsetWidth || 0, e.height = t.offsetHeight || 0, e.right = e.left + e.width, e.bottom = e.top + e.height, e.scrollTop = t.scrollTop, e.hidden = t.offsetParent === null, e), oe = ({ tag: e = "div", name: t = null, attributes: r = {}, read: n = () => {
+}, ci = { styles: si, listeners: ni, animations: ei, apis: oi }, wr = (e = {}, t = {}, r = {}) => (t.layoutCalculated || (e.paddingTop = parseInt(r.paddingTop, 10) || 0, e.marginTop = parseInt(r.marginTop, 10) || 0, e.marginRight = parseInt(r.marginRight, 10) || 0, e.marginBottom = parseInt(r.marginBottom, 10) || 0, e.marginLeft = parseInt(r.marginLeft, 10) || 0, t.layoutCalculated = !0), e.left = t.offsetLeft || 0, e.top = t.offsetTop || 0, e.width = t.offsetWidth || 0, e.height = t.offsetHeight || 0, e.right = e.left + e.width, e.bottom = e.top + e.height, e.scrollTop = t.scrollTop, e.hidden = t.offsetParent === null, e), oe = ({ tag: e = "div", name: t = null, attributes: r = {}, read: n = () => {
 }, write: o = () => {
 }, create: s = () => {
 }, destroy: i = () => {
@@ -1091,7 +1094,7 @@ const xo = (e) => e instanceof HTMLElement, ko = (e, t = [], r = []) => {
 }, ignoreRect: p = !1, ignoreRectUpdate: m = !1, mixins: h = [] } = {}) => (T, E = {}) => {
   const I = St(e, `filepond--${t}`, r), O = window.getComputedStyle(I, null), b = wr();
   let D = null, C = !1;
-  const N = [], L = [], F = {}, A = {}, w = [o], z = [n], P = [i], q = () => I, Q = () => N.concat(), Z = () => F, v = (H) => ($, Pe) => $(H, Pe), W = () => D || (D = In(b, N, [0, 0], [1, 1]), D), y = () => O, R = () => {
+  const N = [], L = [], F = {}, A = {}, w = [o], z = [n], P = [i], q = () => I, Q = () => N.concat(), Z = () => F, v = (H) => ($, Pe) => $(H, Pe), W = () => D || (D = gn(b, N, [0, 0], [1, 1]), D), y = () => O, R = () => {
     D = null, N.forEach(($) => $._read()), !(m && b.width && b.height) && wr(b, I, O);
     const H = { root: be, props: E, rect: b };
     z.forEach(($) => $(H));
@@ -1110,20 +1113,20 @@ const xo = (e) => e instanceof HTMLElement, ko = (e, t = [], r = []) => {
     L.forEach((H) => H.destroy()), P.forEach((H) => {
       H({ root: be, props: E });
     }), N.forEach((H) => H._destroy());
-  }, V = { element: { get: q }, style: { get: y }, childViews: { get: Q } }, fe = { ...V, rect: { get: W }, ref: { get: Z }, is: (H) => t === H, appendChild: Vo(I), createChildView: v(T), linkView: (H) => (N.push(H), H), unlinkView: (H) => {
+  }, V = { element: { get: q }, style: { get: y }, childViews: { get: Q } }, fe = { ...V, rect: { get: W }, ref: { get: Z }, is: (H) => t === H, appendChild: Ho(I), createChildView: v(T), linkView: (H) => (N.push(H), H), unlinkView: (H) => {
     N.splice(N.indexOf(H), 1);
-  }, appendChildView: Ho(I, N), removeChildView: Yo(I, N), registerWriter: (H) => w.push(H), registerReader: (H) => z.push(H), registerDestroyer: (H) => P.push(H), invalidateLayout: () => I.layoutCalculated = !1, dispatch: T.dispatch, query: T.query }, xe = { element: { get: q }, childViews: { get: Q }, rect: { get: W }, resting: { get: () => C }, isRectIgnored: () => p, _read: R, _write: M, _destroy: x }, Nt = { ...V, rect: { get: () => b } };
+  }, appendChildView: Yo(I, N), removeChildView: zo(I, N), registerWriter: (H) => w.push(H), registerReader: (H) => z.push(H), registerDestroyer: (H) => P.push(H), invalidateLayout: () => I.layoutCalculated = !1, dispatch: T.dispatch, query: T.query }, xe = { element: { get: q }, childViews: { get: Q }, rect: { get: W }, resting: { get: () => C }, isRectIgnored: () => p, _read: R, _write: M, _destroy: x }, Nt = { ...V, rect: { get: () => b } };
   Object.keys(h).sort((H, $) => H === "styles" ? 1 : $ === "styles" ? -1 : 0).forEach((H) => {
-    const $ = li[H]({ mixinConfig: h[H], viewProps: E, viewState: A, viewInternalAPI: fe, viewExternalAPI: xe, view: Fe(Nt) });
+    const $ = ci[H]({ mixinConfig: h[H], viewProps: E, viewState: A, viewInternalAPI: fe, viewExternalAPI: xe, view: Fe(Nt) });
     $ && L.push($);
   });
   const be = Fe(fe);
   s({ root: be, props: E });
-  const Gt = Xo(I);
+  const Gt = jo(I);
   return N.forEach((H, $) => {
     be.appendChild(H.element, Gt + $);
   }), l(be), Fe(xe);
-}, ci = (e, t, r = 60) => {
+}, ui = (e, t, r = 60) => {
   const n = "__framePainter";
   if (window[n]) {
     window[n].readers.push(e), window[n].writers.push(t);
@@ -1148,23 +1151,23 @@ const xo = (e) => e instanceof HTMLElement, ko = (e, t = [], r = []) => {
   } };
 }, pe = (e, t) => ({ root: r, props: n, actions: o = [], timestamp: s, shouldOptimize: i }) => {
   o.filter((a) => e[a.type]).forEach((a) => e[a.type]({ root: r, props: n, action: a.data, timestamp: s, shouldOptimize: i })), t && t({ root: r, props: n, actions: o, timestamp: s, shouldOptimize: i });
-}, Pr = (e, t) => t.parentNode.insertBefore(e, t), Mr = (e, t) => t.parentNode.insertBefore(e, t.nextSibling), Dt = (e) => Array.isArray(e), Le = (e) => e == null, ui = (e) => e.trim(), At = (e) => "" + e, di = (e, t = ",") => Le(e) ? [] : Dt(e) ? e : At(e).split(t).map(ui).filter((r) => r.length), gn = (e) => typeof e == "boolean", yn = (e) => gn(e) ? e : e === "true", de = (e) => typeof e == "string", Sn = (e) => Be(e) ? e : de(e) ? At(e).replace(/[a-z]+/gi, "") : 0, gt = (e) => parseInt(Sn(e), 10), Cr = (e) => parseFloat(Sn(e)), tt = (e) => Be(e) && isFinite(e) && Math.floor(e) === e, Nr = (e, t = 1e3) => {
+}, Pr = (e, t) => t.parentNode.insertBefore(e, t), Mr = (e, t) => t.parentNode.insertBefore(e, t.nextSibling), Dt = (e) => Array.isArray(e), Le = (e) => e == null, di = (e) => e.trim(), At = (e) => "" + e, pi = (e, t = ",") => Le(e) ? [] : Dt(e) ? e : At(e).split(t).map(di).filter((r) => r.length), yn = (e) => typeof e == "boolean", Sn = (e) => yn(e) ? e : e === "true", de = (e) => typeof e == "string", Rn = (e) => Be(e) ? e : de(e) ? At(e).replace(/[a-z]+/gi, "") : 0, gt = (e) => parseInt(Rn(e), 10), Cr = (e) => parseFloat(Rn(e)), tt = (e) => Be(e) && isFinite(e) && Math.floor(e) === e, Nr = (e, t = 1e3) => {
   if (tt(e))
     return e;
   let r = At(e).trim();
   return /MB$/i.test(r) ? (r = r.replace(/MB$i/, "").trim(), gt(r) * t * t) : /KB/i.test(r) ? (r = r.replace(/KB$i/, "").trim(), gt(r) * t) : gt(r);
-}, Ue = (e) => typeof e == "function", pi = (e) => {
+}, Ue = (e) => typeof e == "function", fi = (e) => {
   let t = self, r = e.split("."), n = null;
   for (; n = r.shift(); )
     if (t = t[n], !t)
       return null;
   return t;
-}, Gr = { process: "POST", patch: "PATCH", revert: "DELETE", fetch: "GET", restore: "GET", load: "GET" }, fi = (e) => {
+}, Gr = { process: "POST", patch: "PATCH", revert: "DELETE", fetch: "GET", restore: "GET", load: "GET" }, Ei = (e) => {
   const t = {};
   return t.url = de(e) ? e : e.url || "", t.timeout = e.timeout ? parseInt(e.timeout, 10) : 0, t.headers = e.headers ? e.headers : {}, K(Gr, (r) => {
-    t[r] = Ei(r, e[r], Gr[r], t.timeout, t.headers);
+    t[r] = hi(r, e[r], Gr[r], t.timeout, t.headers);
   }), t.process = e.process || de(e) || e.url ? t.process : null, t.remove = e.remove || null, delete t.headers, t;
-}, Ei = (e, t, r, n, o) => {
+}, hi = (e, t, r, n, o) => {
   if (t === null)
     return null;
   if (typeof t == "function")
@@ -1176,43 +1179,43 @@ const xo = (e) => e instanceof HTMLElement, ko = (e, t = [], r = []) => {
     const i = s.headers.split(/:(.+)/);
     s.headers = { header: i[0], value: i[1] };
   }
-  return s.withCredentials = yn(s.withCredentials), s;
-}, hi = (e) => fi(e), mi = (e) => e === null, se = (e) => typeof e == "object" && e !== null, Ti = (e) => se(e) && de(e.url) && se(e.process) && se(e.revert) && se(e.restore) && se(e.fetch), Ht = (e) => Dt(e) ? "array" : mi(e) ? "null" : tt(e) ? "int" : /^[0-9]+ ?(?:GB|MB|KB)$/gi.test(e) ? "bytes" : Ti(e) ? "api" : typeof e, _i = (e) => e.replace(/{\s*'/g, '{"').replace(/'\s*}/g, '"}').replace(/'\s*:/g, '":').replace(/:\s*'/g, ':"').replace(/,\s*'/g, ',"').replace(/'\s*,/g, '",'), Ii = { array: di, boolean: yn, int: (e) => Ht(e) === "bytes" ? Nr(e) : gt(e), number: Cr, float: Cr, bytes: Nr, string: (e) => Ue(e) ? e : At(e), function: (e) => pi(e), serverapi: hi, object: (e) => {
+  return s.withCredentials = Sn(s.withCredentials), s;
+}, mi = (e) => Ei(e), Ti = (e) => e === null, se = (e) => typeof e == "object" && e !== null, _i = (e) => se(e) && de(e.url) && se(e.process) && se(e.revert) && se(e.restore) && se(e.fetch), Ht = (e) => Dt(e) ? "array" : Ti(e) ? "null" : tt(e) ? "int" : /^[0-9]+ ?(?:GB|MB|KB)$/gi.test(e) ? "bytes" : _i(e) ? "api" : typeof e, Ii = (e) => e.replace(/{\s*'/g, '{"').replace(/'\s*}/g, '"}').replace(/'\s*:/g, '":').replace(/:\s*'/g, ':"').replace(/,\s*'/g, ',"').replace(/'\s*,/g, '",'), gi = { array: pi, boolean: Sn, int: (e) => Ht(e) === "bytes" ? Nr(e) : gt(e), number: Cr, float: Cr, bytes: Nr, string: (e) => Ue(e) ? e : At(e), function: (e) => fi(e), serverapi: mi, object: (e) => {
   try {
-    return JSON.parse(_i(e));
+    return JSON.parse(Ii(e));
   } catch {
     return null;
   }
-} }, gi = (e, t) => Ii[t](e), Rn = (e, t, r) => {
+} }, yi = (e, t) => gi[t](e), bn = (e, t, r) => {
   if (e === t)
     return e;
   let n = Ht(e);
   if (n !== r) {
-    const o = gi(e, r);
+    const o = yi(e, r);
     if (n = Ht(o), o === null)
       throw `Trying to assign value with incorrect type to "${option}", allowed type: "${r}"`;
     e = o;
   }
   return e;
-}, yi = (e, t) => {
+}, Si = (e, t) => {
   let r = e;
   return { enumerable: !0, get: () => r, set: (n) => {
-    r = Rn(n, e, t);
+    r = bn(n, e, t);
   } };
-}, Si = (e) => {
+}, Ri = (e) => {
   const t = {};
   return K(e, (r) => {
     const n = e[r];
-    t[r] = yi(n[0], n[1]);
+    t[r] = Si(n[0], n[1]);
   }), Fe(t);
-}, Ri = (e) => ({ items: [], listUpdateTimeout: null, itemUpdateTimeout: null, processingQueue: [], options: Si(e) }), Lt = (e, t = "-") => e.split(/(?=[A-Z])/).map((r) => r.toLowerCase()).join(t), bi = (e, t) => {
+}, bi = (e) => ({ items: [], listUpdateTimeout: null, itemUpdateTimeout: null, processingQueue: [], options: Ri(e) }), Lt = (e, t = "-") => e.split(/(?=[A-Z])/).map((r) => r.toLowerCase()).join(t), vi = (e, t) => {
   const r = {};
   return K(t, (n) => {
     r[n] = { get: () => e.getState().options[n], set: (o) => {
       e.dispatch(`SET_${Lt(n, "_").toUpperCase()}`, { value: o });
     } };
   }), r;
-}, vi = (e) => (t, r, n) => {
+}, Oi = (e) => (t, r, n) => {
   const o = {};
   return K(e, (s) => {
     const i = Lt(s, "_").toUpperCase();
@@ -1224,18 +1227,18 @@ const xo = (e) => e instanceof HTMLElement, ko = (e, t = [], r = []) => {
       t(`DID_SET_${i}`, { value: n.options[s] });
     };
   }), o;
-}, Oi = (e) => (t) => {
+}, Di = (e) => (t) => {
   const r = {};
   return K(e, (n) => {
     r[`GET_${Lt(n, "_").toUpperCase()}`] = (o) => t.options[n];
   }), r;
-}, Ie = { API: 1, DROP: 2, BROWSE: 3, PASTE: 4, NONE: 5 }, Jt = () => Math.random().toString(36).substring(2, 11), er = (e, t) => e.splice(t, 1), Di = (e, t) => {
+}, Ie = { API: 1, DROP: 2, BROWSE: 3, PASTE: 4, NONE: 5 }, Jt = () => Math.random().toString(36).substring(2, 11), er = (e, t) => e.splice(t, 1), Ai = (e, t) => {
   t ? e() : document.hidden ? Promise.resolve(1).then(e) : setTimeout(e, 0);
 }, wt = () => {
   const e = [], t = (n, o) => {
     er(e, e.findIndex((s) => s.event === n && (s.cb === o || !o)));
   }, r = (n, o, s) => {
-    e.filter((i) => i.event === n).map((i) => i.cb).forEach((i) => Di(() => i(...o), s));
+    e.filter((i) => i.event === n).map((i) => i.cb).forEach((i) => Ai(() => i(...o), s));
   };
   return { fireSync: (n, ...o) => {
     r(n, o, !0);
@@ -1248,18 +1251,18 @@ const xo = (e) => e instanceof HTMLElement, ko = (e, t = [], r = []) => {
       t(n, o), o(...s);
     } });
   }, off: t };
-}, bn = (e, t, r) => {
+}, vn = (e, t, r) => {
   Object.getOwnPropertyNames(e).filter((n) => !r.includes(n)).forEach((n) => Object.defineProperty(t, n, Object.getOwnPropertyDescriptor(e, n)));
-}, Ai = ["fire", "process", "revert", "load", "on", "off", "onOnce", "retryLoad", "extend", "archive", "archived", "release", "released", "requestProcessing", "freeze"], Ee = (e) => {
+}, Li = ["fire", "process", "revert", "load", "on", "off", "onOnce", "retryLoad", "extend", "archive", "archived", "release", "released", "requestProcessing", "freeze"], Ee = (e) => {
   const t = {};
-  return bn(e, t, Ai), t;
-}, Li = (e) => {
+  return vn(e, t, Li), t;
+}, wi = (e) => {
   e.forEach((t, r) => {
     t.released && er(e, r);
   });
-}, U = { INIT: 1, IDLE: 2, PROCESSING_QUEUED: 9, PROCESSING: 3, PROCESSING_COMPLETE: 5, PROCESSING_ERROR: 6, PROCESSING_REVERT_ERROR: 10, LOADING: 7, LOAD_ERROR: 8 }, ie = { INPUT: 1, LIMBO: 2, LOCAL: 3 }, vn = (e) => /[^0-9]+/.exec(e), On = () => vn(1.1.toLocaleString())[0], wi = () => {
-  const e = On(), t = 1e3.toLocaleString();
-  return t !== "1000" ? vn(t)[0] : e === "." ? "," : ".";
+}, U = { INIT: 1, IDLE: 2, PROCESSING_QUEUED: 9, PROCESSING: 3, PROCESSING_COMPLETE: 5, PROCESSING_ERROR: 6, PROCESSING_REVERT_ERROR: 10, LOADING: 7, LOAD_ERROR: 8 }, ie = { INPUT: 1, LIMBO: 2, LOCAL: 3 }, On = (e) => /[^0-9]+/.exec(e), Dn = () => On(1.1.toLocaleString())[0], Pi = () => {
+  const e = Dn(), t = 1e3.toLocaleString();
+  return t !== "1000" ? On(t)[0] : e === "." ? "," : ".";
 }, g = { BOOLEAN: "boolean", INT: "int", NUMBER: "number", STRING: "string", ARRAY: "array", OBJECT: "object", FUNCTION: "function", ACTION: "action", SERVER_API: "serverapi", REGEX: "regex" }, tr = [], ye = (e, t, r) => new Promise((n, o) => {
   const s = tr.filter((a) => a.key === e).map((a) => a.cb);
   if (s.length === 0) {
@@ -1268,11 +1271,11 @@ const xo = (e) => e instanceof HTMLElement, ko = (e, t = [], r = []) => {
   }
   const i = s.shift();
   s.reduce((a, l) => a.then((u) => l(u, r)), i(t, r)).then((a) => n(a)).catch((a) => o(a));
-}), Xe = (e, t, r) => tr.filter((n) => n.key === e).map((n) => n.cb(t, r)), Pi = (e, t) => tr.push({ key: e, cb: t }), Mi = (e) => Object.assign(Qe, e), Rt = () => ({ ...Qe }), Ci = (e) => {
+}), Xe = (e, t, r) => tr.filter((n) => n.key === e).map((n) => n.cb(t, r)), Mi = (e, t) => tr.push({ key: e, cb: t }), Ci = (e) => Object.assign(Qe, e), Rt = () => ({ ...Qe }), Ni = (e) => {
   K(e, (t, r) => {
-    Qe[t] && (Qe[t][0] = Rn(r, Qe[t][0], Qe[t][1]));
+    Qe[t] && (Qe[t][0] = bn(r, Qe[t][0], Qe[t][1]));
   });
-}, Qe = { id: [null, g.STRING], name: ["filepond", g.STRING], disabled: [!1, g.BOOLEAN], className: [null, g.STRING], required: [!1, g.BOOLEAN], captureMethod: [null, g.STRING], allowSyncAcceptAttribute: [!0, g.BOOLEAN], allowDrop: [!0, g.BOOLEAN], allowBrowse: [!0, g.BOOLEAN], allowPaste: [!0, g.BOOLEAN], allowMultiple: [!1, g.BOOLEAN], allowReplace: [!0, g.BOOLEAN], allowRevert: [!0, g.BOOLEAN], allowRemove: [!0, g.BOOLEAN], allowProcess: [!0, g.BOOLEAN], allowReorder: [!1, g.BOOLEAN], allowDirectoriesOnly: [!1, g.BOOLEAN], storeAsFile: [!1, g.BOOLEAN], forceRevert: [!1, g.BOOLEAN], maxFiles: [null, g.INT], checkValidity: [!1, g.BOOLEAN], itemInsertLocationFreedom: [!0, g.BOOLEAN], itemInsertLocation: ["before", g.STRING], itemInsertInterval: [75, g.INT], dropOnPage: [!1, g.BOOLEAN], dropOnElement: [!0, g.BOOLEAN], dropValidation: [!1, g.BOOLEAN], ignoredFiles: [[".ds_store", "thumbs.db", "desktop.ini"], g.ARRAY], instantUpload: [!0, g.BOOLEAN], maxParallelUploads: [2, g.INT], allowMinimumUploadDuration: [!0, g.BOOLEAN], chunkUploads: [!1, g.BOOLEAN], chunkForce: [!1, g.BOOLEAN], chunkSize: [5e6, g.INT], chunkRetryDelays: [[500, 1e3, 3e3], g.ARRAY], server: [null, g.SERVER_API], fileSizeBase: [1e3, g.INT], labelFileSizeBytes: ["bytes", g.STRING], labelFileSizeKilobytes: ["KB", g.STRING], labelFileSizeMegabytes: ["MB", g.STRING], labelFileSizeGigabytes: ["GB", g.STRING], labelDecimalSeparator: [On(), g.STRING], labelThousandsSeparator: [wi(), g.STRING], labelIdle: ['Drag & Drop your files or <span class="filepond--label-action">Browse</span>', g.STRING], labelInvalidField: ["Field contains invalid files", g.STRING], labelFileWaitingForSize: ["Waiting for size", g.STRING], labelFileSizeNotAvailable: ["Size not available", g.STRING], labelFileCountSingular: ["file in list", g.STRING], labelFileCountPlural: ["files in list", g.STRING], labelFileLoading: ["Loading", g.STRING], labelFileAdded: ["Added", g.STRING], labelFileLoadError: ["Error during load", g.STRING], labelFileRemoved: ["Removed", g.STRING], labelFileRemoveError: ["Error during remove", g.STRING], labelFileProcessing: ["Uploading", g.STRING], labelFileProcessingComplete: ["Upload complete", g.STRING], labelFileProcessingAborted: ["Upload cancelled", g.STRING], labelFileProcessingError: ["Error during upload", g.STRING], labelFileProcessingRevertError: ["Error during revert", g.STRING], labelTapToCancel: ["tap to cancel", g.STRING], labelTapToRetry: ["tap to retry", g.STRING], labelTapToUndo: ["tap to undo", g.STRING], labelButtonRemoveItem: ["Remove", g.STRING], labelButtonAbortItemLoad: ["Abort", g.STRING], labelButtonRetryItemLoad: ["Retry", g.STRING], labelButtonAbortItemProcessing: ["Cancel", g.STRING], labelButtonUndoItemProcessing: ["Undo", g.STRING], labelButtonRetryItemProcessing: ["Retry", g.STRING], labelButtonProcessItem: ["Upload", g.STRING], iconRemove: ['<svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg"><path d="M11.586 13l-2.293 2.293a1 1 0 0 0 1.414 1.414L13 14.414l2.293 2.293a1 1 0 0 0 1.414-1.414L14.414 13l2.293-2.293a1 1 0 0 0-1.414-1.414L13 11.586l-2.293-2.293a1 1 0 0 0-1.414 1.414L11.586 13z" fill="currentColor" fill-rule="nonzero"/></svg>', g.STRING], iconProcess: ['<svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg"><path d="M14 10.414v3.585a1 1 0 0 1-2 0v-3.585l-1.293 1.293a1 1 0 0 1-1.414-1.415l3-3a1 1 0 0 1 1.414 0l3 3a1 1 0 0 1-1.414 1.415L14 10.414zM9 18a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2H9z" fill="currentColor" fill-rule="evenodd"/></svg>', g.STRING], iconRetry: ['<svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg"><path d="M10.81 9.185l-.038.02A4.997 4.997 0 0 0 8 13.683a5 5 0 0 0 5 5 5 5 0 0 0 5-5 1 1 0 0 1 2 0A7 7 0 1 1 9.722 7.496l-.842-.21a.999.999 0 1 1 .484-1.94l3.23.806c.535.133.86.675.73 1.21l-.804 3.233a.997.997 0 0 1-1.21.73.997.997 0 0 1-.73-1.21l.23-.928v-.002z" fill="currentColor" fill-rule="nonzero"/></svg>', g.STRING], iconUndo: ['<svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg"><path d="M9.185 10.81l.02-.038A4.997 4.997 0 0 1 13.683 8a5 5 0 0 1 5 5 5 5 0 0 1-5 5 1 1 0 0 0 0 2A7 7 0 1 0 7.496 9.722l-.21-.842a.999.999 0 1 0-1.94.484l.806 3.23c.133.535.675.86 1.21.73l3.233-.803a.997.997 0 0 0 .73-1.21.997.997 0 0 0-1.21-.73l-.928.23-.002-.001z" fill="currentColor" fill-rule="nonzero"/></svg>', g.STRING], iconDone: ['<svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg"><path d="M18.293 9.293a1 1 0 0 1 1.414 1.414l-7.002 7a1 1 0 0 1-1.414 0l-3.998-4a1 1 0 1 1 1.414-1.414L12 15.586l6.294-6.293z" fill="currentColor" fill-rule="nonzero"/></svg>', g.STRING], oninit: [null, g.FUNCTION], onwarning: [null, g.FUNCTION], onerror: [null, g.FUNCTION], onactivatefile: [null, g.FUNCTION], oninitfile: [null, g.FUNCTION], onaddfilestart: [null, g.FUNCTION], onaddfileprogress: [null, g.FUNCTION], onaddfile: [null, g.FUNCTION], onprocessfilestart: [null, g.FUNCTION], onprocessfileprogress: [null, g.FUNCTION], onprocessfileabort: [null, g.FUNCTION], onprocessfilerevert: [null, g.FUNCTION], onprocessfile: [null, g.FUNCTION], onprocessfiles: [null, g.FUNCTION], onremovefile: [null, g.FUNCTION], onpreparefile: [null, g.FUNCTION], onupdatefiles: [null, g.FUNCTION], onreorderfiles: [null, g.FUNCTION], beforeDropFile: [null, g.FUNCTION], beforeAddFile: [null, g.FUNCTION], beforeRemoveFile: [null, g.FUNCTION], beforePrepareFile: [null, g.FUNCTION], stylePanelLayout: [null, g.STRING], stylePanelAspectRatio: [null, g.STRING], styleItemPanelAspectRatio: [null, g.STRING], styleButtonRemoveItemPosition: ["left", g.STRING], styleButtonProcessItemPosition: ["right", g.STRING], styleLoadIndicatorPosition: ["right", g.STRING], styleProgressIndicatorPosition: ["right", g.STRING], styleButtonRemoveItemAlign: [!1, g.BOOLEAN], files: [[], g.ARRAY], credits: [["https://pqina.nl/", "Powered by PQINA"], g.ARRAY] }, Ve = (e, t) => Le(t) ? e[0] || null : tt(t) ? e[t] || null : (typeof t == "object" && (t = t.id), e.find((r) => r.id === t) || null), Dn = (e) => {
+}, Qe = { id: [null, g.STRING], name: ["filepond", g.STRING], disabled: [!1, g.BOOLEAN], className: [null, g.STRING], required: [!1, g.BOOLEAN], captureMethod: [null, g.STRING], allowSyncAcceptAttribute: [!0, g.BOOLEAN], allowDrop: [!0, g.BOOLEAN], allowBrowse: [!0, g.BOOLEAN], allowPaste: [!0, g.BOOLEAN], allowMultiple: [!1, g.BOOLEAN], allowReplace: [!0, g.BOOLEAN], allowRevert: [!0, g.BOOLEAN], allowRemove: [!0, g.BOOLEAN], allowProcess: [!0, g.BOOLEAN], allowReorder: [!1, g.BOOLEAN], allowDirectoriesOnly: [!1, g.BOOLEAN], storeAsFile: [!1, g.BOOLEAN], forceRevert: [!1, g.BOOLEAN], maxFiles: [null, g.INT], checkValidity: [!1, g.BOOLEAN], itemInsertLocationFreedom: [!0, g.BOOLEAN], itemInsertLocation: ["before", g.STRING], itemInsertInterval: [75, g.INT], dropOnPage: [!1, g.BOOLEAN], dropOnElement: [!0, g.BOOLEAN], dropValidation: [!1, g.BOOLEAN], ignoredFiles: [[".ds_store", "thumbs.db", "desktop.ini"], g.ARRAY], instantUpload: [!0, g.BOOLEAN], maxParallelUploads: [2, g.INT], allowMinimumUploadDuration: [!0, g.BOOLEAN], chunkUploads: [!1, g.BOOLEAN], chunkForce: [!1, g.BOOLEAN], chunkSize: [5e6, g.INT], chunkRetryDelays: [[500, 1e3, 3e3], g.ARRAY], server: [null, g.SERVER_API], fileSizeBase: [1e3, g.INT], labelFileSizeBytes: ["bytes", g.STRING], labelFileSizeKilobytes: ["KB", g.STRING], labelFileSizeMegabytes: ["MB", g.STRING], labelFileSizeGigabytes: ["GB", g.STRING], labelDecimalSeparator: [Dn(), g.STRING], labelThousandsSeparator: [Pi(), g.STRING], labelIdle: ['Drag & Drop your files or <span class="filepond--label-action">Browse</span>', g.STRING], labelInvalidField: ["Field contains invalid files", g.STRING], labelFileWaitingForSize: ["Waiting for size", g.STRING], labelFileSizeNotAvailable: ["Size not available", g.STRING], labelFileCountSingular: ["file in list", g.STRING], labelFileCountPlural: ["files in list", g.STRING], labelFileLoading: ["Loading", g.STRING], labelFileAdded: ["Added", g.STRING], labelFileLoadError: ["Error during load", g.STRING], labelFileRemoved: ["Removed", g.STRING], labelFileRemoveError: ["Error during remove", g.STRING], labelFileProcessing: ["Uploading", g.STRING], labelFileProcessingComplete: ["Upload complete", g.STRING], labelFileProcessingAborted: ["Upload cancelled", g.STRING], labelFileProcessingError: ["Error during upload", g.STRING], labelFileProcessingRevertError: ["Error during revert", g.STRING], labelTapToCancel: ["tap to cancel", g.STRING], labelTapToRetry: ["tap to retry", g.STRING], labelTapToUndo: ["tap to undo", g.STRING], labelButtonRemoveItem: ["Remove", g.STRING], labelButtonAbortItemLoad: ["Abort", g.STRING], labelButtonRetryItemLoad: ["Retry", g.STRING], labelButtonAbortItemProcessing: ["Cancel", g.STRING], labelButtonUndoItemProcessing: ["Undo", g.STRING], labelButtonRetryItemProcessing: ["Retry", g.STRING], labelButtonProcessItem: ["Upload", g.STRING], iconRemove: ['<svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg"><path d="M11.586 13l-2.293 2.293a1 1 0 0 0 1.414 1.414L13 14.414l2.293 2.293a1 1 0 0 0 1.414-1.414L14.414 13l2.293-2.293a1 1 0 0 0-1.414-1.414L13 11.586l-2.293-2.293a1 1 0 0 0-1.414 1.414L11.586 13z" fill="currentColor" fill-rule="nonzero"/></svg>', g.STRING], iconProcess: ['<svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg"><path d="M14 10.414v3.585a1 1 0 0 1-2 0v-3.585l-1.293 1.293a1 1 0 0 1-1.414-1.415l3-3a1 1 0 0 1 1.414 0l3 3a1 1 0 0 1-1.414 1.415L14 10.414zM9 18a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2H9z" fill="currentColor" fill-rule="evenodd"/></svg>', g.STRING], iconRetry: ['<svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg"><path d="M10.81 9.185l-.038.02A4.997 4.997 0 0 0 8 13.683a5 5 0 0 0 5 5 5 5 0 0 0 5-5 1 1 0 0 1 2 0A7 7 0 1 1 9.722 7.496l-.842-.21a.999.999 0 1 1 .484-1.94l3.23.806c.535.133.86.675.73 1.21l-.804 3.233a.997.997 0 0 1-1.21.73.997.997 0 0 1-.73-1.21l.23-.928v-.002z" fill="currentColor" fill-rule="nonzero"/></svg>', g.STRING], iconUndo: ['<svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg"><path d="M9.185 10.81l.02-.038A4.997 4.997 0 0 1 13.683 8a5 5 0 0 1 5 5 5 5 0 0 1-5 5 1 1 0 0 0 0 2A7 7 0 1 0 7.496 9.722l-.21-.842a.999.999 0 1 0-1.94.484l.806 3.23c.133.535.675.86 1.21.73l3.233-.803a.997.997 0 0 0 .73-1.21.997.997 0 0 0-1.21-.73l-.928.23-.002-.001z" fill="currentColor" fill-rule="nonzero"/></svg>', g.STRING], iconDone: ['<svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg"><path d="M18.293 9.293a1 1 0 0 1 1.414 1.414l-7.002 7a1 1 0 0 1-1.414 0l-3.998-4a1 1 0 1 1 1.414-1.414L12 15.586l6.294-6.293z" fill="currentColor" fill-rule="nonzero"/></svg>', g.STRING], oninit: [null, g.FUNCTION], onwarning: [null, g.FUNCTION], onerror: [null, g.FUNCTION], onactivatefile: [null, g.FUNCTION], oninitfile: [null, g.FUNCTION], onaddfilestart: [null, g.FUNCTION], onaddfileprogress: [null, g.FUNCTION], onaddfile: [null, g.FUNCTION], onprocessfilestart: [null, g.FUNCTION], onprocessfileprogress: [null, g.FUNCTION], onprocessfileabort: [null, g.FUNCTION], onprocessfilerevert: [null, g.FUNCTION], onprocessfile: [null, g.FUNCTION], onprocessfiles: [null, g.FUNCTION], onremovefile: [null, g.FUNCTION], onpreparefile: [null, g.FUNCTION], onupdatefiles: [null, g.FUNCTION], onreorderfiles: [null, g.FUNCTION], beforeDropFile: [null, g.FUNCTION], beforeAddFile: [null, g.FUNCTION], beforeRemoveFile: [null, g.FUNCTION], beforePrepareFile: [null, g.FUNCTION], stylePanelLayout: [null, g.STRING], stylePanelAspectRatio: [null, g.STRING], styleItemPanelAspectRatio: [null, g.STRING], styleButtonRemoveItemPosition: ["left", g.STRING], styleButtonProcessItemPosition: ["right", g.STRING], styleLoadIndicatorPosition: ["right", g.STRING], styleProgressIndicatorPosition: ["right", g.STRING], styleButtonRemoveItemAlign: [!1, g.BOOLEAN], files: [[], g.ARRAY], credits: [["https://pqina.nl/", "Powered by PQINA"], g.ARRAY] }, Ve = (e, t) => Le(t) ? e[0] || null : tt(t) ? e[t] || null : (typeof t == "object" && (t = t.id), e.find((r) => r.id === t) || null), An = (e) => {
   if (Le(e))
     return e;
   if (/:/.test(e)) {
@@ -1280,9 +1283,9 @@ const xo = (e) => e instanceof HTMLElement, ko = (e, t = [], r = []) => {
     return t[1] / t[0];
   }
   return parseFloat(e);
-}, Se = (e) => e.filter((t) => !t.archived), An = { EMPTY: 0, IDLE: 1, ERROR: 2, BUSY: 3, READY: 4 };
+}, Se = (e) => e.filter((t) => !t.archived), Ln = { EMPTY: 0, IDLE: 1, ERROR: 2, BUSY: 3, READY: 4 };
 let Et = null;
-const Ni = () => {
+const Gi = () => {
   if (Et === null)
     try {
       const e = new DataTransfer();
@@ -1293,82 +1296,82 @@ const Ni = () => {
       Et = !1;
     }
   return Et;
-}, Gi = [U.LOAD_ERROR, U.PROCESSING_ERROR, U.PROCESSING_REVERT_ERROR], Fi = [U.LOADING, U.PROCESSING, U.PROCESSING_QUEUED, U.INIT], xi = [U.PROCESSING_COMPLETE], ki = (e) => Gi.includes(e.status), qi = (e) => Fi.includes(e.status), Bi = (e) => xi.includes(e.status), Fr = (e) => se(e.options.server) && (se(e.options.server.process) || Ue(e.options.server.process)), Ui = (e) => ({ GET_STATUS: () => {
-  const t = Se(e.items), { EMPTY: r, ERROR: n, BUSY: o, IDLE: s, READY: i } = An;
-  return t.length === 0 ? r : t.some(ki) ? n : t.some(qi) ? o : t.some(Bi) ? i : s;
+}, Fi = [U.LOAD_ERROR, U.PROCESSING_ERROR, U.PROCESSING_REVERT_ERROR], xi = [U.LOADING, U.PROCESSING, U.PROCESSING_QUEUED, U.INIT], ki = [U.PROCESSING_COMPLETE], qi = (e) => Fi.includes(e.status), Bi = (e) => xi.includes(e.status), Ui = (e) => ki.includes(e.status), Fr = (e) => se(e.options.server) && (se(e.options.server.process) || Ue(e.options.server.process)), Vi = (e) => ({ GET_STATUS: () => {
+  const t = Se(e.items), { EMPTY: r, ERROR: n, BUSY: o, IDLE: s, READY: i } = Ln;
+  return t.length === 0 ? r : t.some(qi) ? n : t.some(Bi) ? o : t.some(Ui) ? i : s;
 }, GET_ITEM: (t) => Ve(e.items, t), GET_ACTIVE_ITEM: (t) => Ve(Se(e.items), t), GET_ACTIVE_ITEMS: () => Se(e.items), GET_ITEMS: () => e.items, GET_ITEM_NAME: (t) => {
   const r = Ve(e.items, t);
   return r ? r.filename : null;
 }, GET_ITEM_SIZE: (t) => {
   const r = Ve(e.items, t);
   return r ? r.fileSize : null;
-}, GET_STYLES: () => Object.keys(e.options).filter((t) => /^style/.test(t)).map((t) => ({ name: t, value: e.options[t] })), GET_PANEL_ASPECT_RATIO: () => /circle/.test(e.options.stylePanelLayout) ? 1 : Dn(e.options.stylePanelAspectRatio), GET_ITEM_PANEL_ASPECT_RATIO: () => e.options.styleItemPanelAspectRatio, GET_ITEMS_BY_STATUS: (t) => Se(e.items).filter((r) => r.status === t), GET_TOTAL_ITEMS: () => Se(e.items).length, SHOULD_UPDATE_FILE_INPUT: () => e.options.storeAsFile && Ni() && !Fr(e), IS_ASYNC: () => Fr(e), GET_FILE_SIZE_LABELS: (t) => ({ labelBytes: t("GET_LABEL_FILE_SIZE_BYTES") || void 0, labelKilobytes: t("GET_LABEL_FILE_SIZE_KILOBYTES") || void 0, labelMegabytes: t("GET_LABEL_FILE_SIZE_MEGABYTES") || void 0, labelGigabytes: t("GET_LABEL_FILE_SIZE_GIGABYTES") || void 0 }) }), Vi = (e) => {
+}, GET_STYLES: () => Object.keys(e.options).filter((t) => /^style/.test(t)).map((t) => ({ name: t, value: e.options[t] })), GET_PANEL_ASPECT_RATIO: () => /circle/.test(e.options.stylePanelLayout) ? 1 : An(e.options.stylePanelAspectRatio), GET_ITEM_PANEL_ASPECT_RATIO: () => e.options.styleItemPanelAspectRatio, GET_ITEMS_BY_STATUS: (t) => Se(e.items).filter((r) => r.status === t), GET_TOTAL_ITEMS: () => Se(e.items).length, SHOULD_UPDATE_FILE_INPUT: () => e.options.storeAsFile && Gi() && !Fr(e), IS_ASYNC: () => Fr(e), GET_FILE_SIZE_LABELS: (t) => ({ labelBytes: t("GET_LABEL_FILE_SIZE_BYTES") || void 0, labelKilobytes: t("GET_LABEL_FILE_SIZE_KILOBYTES") || void 0, labelMegabytes: t("GET_LABEL_FILE_SIZE_MEGABYTES") || void 0, labelGigabytes: t("GET_LABEL_FILE_SIZE_GIGABYTES") || void 0 }) }), Hi = (e) => {
   const t = Se(e.items).length;
   if (!e.options.allowMultiple)
     return t === 0;
   const r = e.options.maxFiles;
   return r === null || t < r;
-}, Ln = (e, t, r) => Math.max(Math.min(r, e), t), Hi = (e, t, r) => e.splice(t, 0, r), Yi = (e, t, r) => Le(t) ? null : typeof r > "u" ? (e.push(t), t) : (r = Ln(r, 0, e.length), Hi(e, r, t), t), Yt = (e) => /^\s*data:([a-z]+\/[a-z0-9-+.]+(;[a-z-]+=[a-z0-9-]+)?)?(;base64)?,([a-z0-9!$&',()*+;=\-._~:@\/?%\s]*)\s*$/i.test(e), dt = (e) => `${e}`.split("/").pop().split("?").shift(), Pt = (e) => e.split(".").pop(), zi = (e) => {
+}, wn = (e, t, r) => Math.max(Math.min(r, e), t), Yi = (e, t, r) => e.splice(t, 0, r), zi = (e, t, r) => Le(t) ? null : typeof r > "u" ? (e.push(t), t) : (r = wn(r, 0, e.length), Yi(e, r, t), t), Yt = (e) => /^\s*data:([a-z]+\/[a-z0-9-+.]+(;[a-z-]+=[a-z0-9-]+)?)?(;base64)?,([a-z0-9!$&',()*+;=\-._~:@\/?%\s]*)\s*$/i.test(e), dt = (e) => `${e}`.split("/").pop().split("?").shift(), Pt = (e) => e.split(".").pop(), Wi = (e) => {
   if (typeof e != "string")
     return "";
   const t = e.split("/").pop();
   return /svg/.test(t) ? "svg" : /zip|compressed/.test(t) ? "zip" : /plain/.test(t) ? "txt" : /msword/.test(t) ? "doc" : /[a-z]+/.test(t) ? t === "jpeg" ? "jpg" : t : "";
-}, at = (e, t = "") => (t + e).slice(-t.length), wn = (e = /* @__PURE__ */ new Date()) => `${e.getFullYear()}-${at(e.getMonth() + 1, "00")}-${at(e.getDate(), "00")}_${at(e.getHours(), "00")}-${at(e.getMinutes(), "00")}-${at(e.getSeconds(), "00")}`, Je = (e, t, r = null, n = null) => {
+}, at = (e, t = "") => (t + e).slice(-t.length), Pn = (e = /* @__PURE__ */ new Date()) => `${e.getFullYear()}-${at(e.getMonth() + 1, "00")}-${at(e.getDate(), "00")}_${at(e.getHours(), "00")}-${at(e.getMinutes(), "00")}-${at(e.getSeconds(), "00")}`, Je = (e, t, r = null, n = null) => {
   const o = typeof r == "string" ? e.slice(0, e.size, r) : e.slice(0, e.size, e.type);
-  return o.lastModifiedDate = /* @__PURE__ */ new Date(), e._relativePath && (o._relativePath = e._relativePath), de(t) || (t = wn()), t && n === null && Pt(t) ? o.name = t : (n = n || zi(o.type), o.name = t + (n ? "." + n : "")), o;
-}, Wi = () => window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder || window.MSBlobBuilder, Pn = (e, t) => {
-  const r = Wi();
+  return o.lastModifiedDate = /* @__PURE__ */ new Date(), e._relativePath && (o._relativePath = e._relativePath), de(t) || (t = Pn()), t && n === null && Pt(t) ? o.name = t : (n = n || Wi(o.type), o.name = t + (n ? "." + n : "")), o;
+}, Xi = () => window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder || window.MSBlobBuilder, Mn = (e, t) => {
+  const r = Xi();
   if (r) {
     const n = new r();
     return n.append(e), n.getBlob(t);
   }
   return new Blob([e], { type: t });
-}, Xi = (e, t) => {
+}, ji = (e, t) => {
   const r = new ArrayBuffer(e.length), n = new Uint8Array(r);
   for (let o = 0; o < e.length; o++)
     n[o] = e.charCodeAt(o);
-  return Pn(r, t);
-}, Mn = (e) => (/^data:(.+);/.exec(e) || [])[1] || null, ji = (e) => e.split(",")[1].replace(/\s/g, ""), $i = (e) => atob(ji(e)), Qi = (e) => {
-  const t = Mn(e), r = $i(e);
-  return Xi(r, t);
-}, Zi = (e, t, r) => Je(Qi(e), t, null, r), Ki = (e) => {
+  return Mn(r, t);
+}, Cn = (e) => (/^data:(.+);/.exec(e) || [])[1] || null, $i = (e) => e.split(",")[1].replace(/\s/g, ""), Qi = (e) => atob($i(e)), Zi = (e) => {
+  const t = Cn(e), r = Qi(e);
+  return ji(r, t);
+}, Ki = (e, t, r) => Je(Zi(e), t, null, r), Ji = (e) => {
   if (!/^content-disposition:/i.test(e))
     return null;
   const t = e.split(/filename=|filename\*=.+''/).splice(1).map((r) => r.trim().replace(/^["']|[;"']{0,2}$/g, "")).filter((r) => r.length);
   return t.length ? decodeURI(t[t.length - 1]) : null;
-}, Ji = (e) => {
+}, es = (e) => {
   if (/content-length:/i.test(e)) {
     const t = e.match(/[0-9]+/)[0];
     return t ? parseInt(t, 10) : null;
   }
   return null;
-}, es = (e) => /x-content-transfer-id:/i.test(e) && (e.split(":")[1] || "").trim() || null, rr = (e) => {
+}, ts = (e) => /x-content-transfer-id:/i.test(e) && (e.split(":")[1] || "").trim() || null, rr = (e) => {
   const t = { source: null, name: null, size: null }, r = e.split(`
 `);
   for (let n of r) {
-    const o = Ki(n);
+    const o = Ji(n);
     if (o) {
       t.name = o;
       continue;
     }
-    const s = Ji(n);
+    const s = es(n);
     if (s) {
       t.size = s;
       continue;
     }
-    const i = es(n);
+    const i = ts(n);
     if (i) {
       t.source = i;
       continue;
     }
   }
   return t;
-}, ts = (e) => {
+}, rs = (e) => {
   const t = { source: null, complete: !1, progress: 0, size: null, timestamp: null, duration: 0, request: null }, r = () => t.progress, n = () => {
     t.request && t.request.abort && t.request.abort();
   }, o = () => {
     const a = t.source;
-    i.fire("init", a), a instanceof File ? i.fire("load", a) : a instanceof Blob ? i.fire("load", Je(a, a.name)) : Yt(a) ? i.fire("load", Zi(a)) : s(a);
+    i.fire("init", a), a instanceof File ? i.fire("load", a) : a instanceof Blob ? i.fire("load", Je(a, a.name)) : Yt(a) ? i.fire("load", Ki(a)) : s(a);
   }, s = (a) => {
     if (!e) {
       i.fire("error", { type: "error", body: "Can't load URL", code: 400 });
@@ -1441,7 +1444,7 @@ const Ni = () => {
       u(J("headers", m.status, null, m.getAllResponseHeaders()));
     }, p.ontimeout = Ye(i), p.onprogress = a, p.onabort = l, p;
   };
-}, Te = { QUEUED: 0, COMPLETE: 1, PROCESSING: 2, ERROR: 3, WAITING: 4 }, rs = (e, t, r, n, o, s, i, a, l, u, p) => {
+}, Te = { QUEUED: 0, COMPLETE: 1, PROCESSING: 2, ERROR: 3, WAITING: 4 }, ns = (e, t, r, n, o, s, i, a, l, u, p) => {
   const m = [], { chunkTransferId: h, chunkServer: T, chunkSize: E, chunkRetryDelays: I } = p, O = { serverId: h, aborted: !1 }, b = t.ondata || ((v) => v), D = t.onload || ((v, W) => W === "HEAD" ? v.getResponseHeader("Upload-Offset") : v.response), C = t.onerror || ((v) => null), N = (v) => {
     const W = new FormData();
     se(o) && W.append(r, JSON.stringify(o));
@@ -1499,12 +1502,12 @@ const Ni = () => {
   }), { abort: () => {
     O.aborted = !0, Z();
   } };
-}, ns = (e, t, r, n) => (o, s, i, a, l, u, p) => {
+}, os = (e, t, r, n) => (o, s, i, a, l, u, p) => {
   if (!o)
     return;
   const m = n.chunkUploads, h = m && o.size > n.chunkSize, T = m && (h || n.chunkForce);
   if (o instanceof Blob && T)
-    return rs(e, t, r, o, s, i, a, l, u, p, n);
+    return ns(e, t, r, o, s, i, a, l, u, p, n);
   const E = t.ondata || ((L) => L), I = t.onload || ((L) => L), O = t.onerror || ((L) => null), b = typeof t.headers == "function" ? t.headers(o, s) || {} : { ...t.headers }, D = { ...t, headers: b };
   var C = new FormData();
   se(s) && C.append(r, JSON.stringify(s)), (o instanceof Blob ? [{ name: null, file: o }] : o).forEach((L) => {
@@ -1516,7 +1519,7 @@ const Ni = () => {
   }, N.onerror = (L) => {
     a(J("error", L.status, O(L.response) || L.statusText, L.getAllResponseHeaders()));
   }, N.ontimeout = Ye(a), N.onprogress = l, N.onabort = u, N;
-}, os = (e = "", t, r, n) => typeof t == "function" ? (...o) => t(r, ...o, n) : !t || !de(t.url) ? null : ns(e, t, r, n), lt = (e = "", t) => {
+}, is = (e = "", t, r, n) => typeof t == "function" ? (...o) => t(r, ...o, n) : !t || !de(t.url) ? null : os(e, t, r, n), lt = (e = "", t) => {
   if (typeof t == "function")
     return t;
   if (!t || !de(t.url))
@@ -1530,10 +1533,10 @@ const Ni = () => {
       i(J("error", l.status, n(l.response) || l.statusText, l.getAllResponseHeaders()));
     }, a.ontimeout = Ye(i), a;
   };
-}, Cn = (e = 0, t = 1) => e + Math.random() * (t - e), is = (e, t = 1e3, r = 0, n = 25, o = 250) => {
+}, Nn = (e = 0, t = 1) => e + Math.random() * (t - e), ss = (e, t = 1e3, r = 0, n = 25, o = 250) => {
   let s = null;
   const i = Date.now(), a = () => {
-    let l = Date.now() - i, u = Cn(n, o);
+    let l = Date.now() - i, u = Nn(n, o);
     l + u > t && (u = l + u - t);
     let p = l / t;
     if (p >= 1 || document.hidden) {
@@ -1545,16 +1548,16 @@ const Ni = () => {
   return t > 0 && a(), { clear: () => {
     clearTimeout(s);
   } };
-}, ss = (e, t) => {
+}, as = (e, t) => {
   const r = { complete: !1, perceivedProgress: 0, perceivedPerformanceUpdater: null, progress: null, timestamp: null, perceivedDuration: 0, duration: 0, request: null, response: null }, { allowMinimumUploadDuration: n } = t, o = (p, m) => {
     const h = () => {
       r.duration === 0 || r.progress === null || u.fire("progress", u.getProgress());
     }, T = () => {
       r.complete = !0, u.fire("load-perceived", r.response.body);
     };
-    u.fire("start"), r.timestamp = Date.now(), r.perceivedPerformanceUpdater = is((E) => {
+    u.fire("start"), r.timestamp = Date.now(), r.perceivedPerformanceUpdater = ss((E) => {
       r.perceivedProgress = E, r.perceivedDuration = Date.now() - r.timestamp, h(), r.response && r.perceivedProgress === 1 && !r.complete && T();
-    }, n ? Cn(750, 1500) : 0), r.request = e(p, m, (E) => {
+    }, n ? Nn(750, 1500) : 0), r.request = e(p, m, (E) => {
       r.response = se(E) ? E : { type: "load", code: 200, body: `${E}`, headers: {} }, r.duration = Date.now() - r.timestamp, r.progress = 1, u.fire("load", r.response.body), (!n || n && r.perceivedProgress === 1) && T();
     }, (E) => {
       r.perceivedPerformanceUpdater.clear(), u.fire("error", se(E) ? E : { type: "error", code: 0, body: `${E}` });
@@ -1571,10 +1574,10 @@ const Ni = () => {
     s(), r.complete = !1, r.perceivedProgress = 0, r.progress = 0, r.timestamp = null, r.perceivedDuration = 0, r.duration = 0, r.request = null, r.response = null;
   }, a = n ? () => r.progress ? Math.min(r.progress, r.perceivedProgress) : null : () => r.progress || null, l = n ? () => Math.min(r.duration, r.perceivedDuration) : () => r.duration, u = { ...wt(), process: o, abort: s, getProgress: a, getDuration: l, reset: i };
   return u;
-}, Nn = (e) => e.substring(0, e.lastIndexOf(".")) || e, as = (e) => {
+}, Gn = (e) => e.substring(0, e.lastIndexOf(".")) || e, ls = (e) => {
   let t = [e.name, e.size, e.type];
-  return e instanceof Blob || Yt(e) ? t[0] = e.name || wn() : Yt(e) ? (t[1] = e.length, t[2] = Mn(e)) : de(e) && (t[0] = dt(e), t[1] = 0, t[2] = "application/octet-stream"), { name: t[0], size: t[1], type: t[2] };
-}, et = (e) => !!(e instanceof File || e instanceof Blob && e.name), Gn = (e) => {
+  return e instanceof Blob || Yt(e) ? t[0] = e.name || Pn() : Yt(e) ? (t[1] = e.length, t[2] = Cn(e)) : de(e) && (t[0] = dt(e), t[1] = 0, t[2] = "application/octet-stream"), { name: t[0], size: t[1], type: t[2] };
+}, et = (e) => !!(e instanceof File || e instanceof Blob && e.name), Fn = (e) => {
   if (!se(e))
     return e;
   const t = Dt(e) ? [] : {};
@@ -1582,10 +1585,10 @@ const Ni = () => {
     if (!e.hasOwnProperty(r))
       continue;
     const n = e[r];
-    t[r] = n && se(n) ? Gn(n) : n;
+    t[r] = n && se(n) ? Fn(n) : n;
   }
   return t;
-}, ls = (e = null, t = null, r = null) => {
+}, cs = (e = null, t = null, r = null) => {
   const n = Jt(), o = { archived: !1, frozen: !1, released: !1, source: null, file: r, serverFileReference: t, transferId: null, processingAborted: !1, status: t ? U.PROCESSING_COMPLETE : U.INIT, activeLoader: null, activeProcessor: null };
   let s = null;
   const i = {}, a = (A) => o.status = A, l = (A, ...w) => {
@@ -1595,7 +1598,7 @@ const Ni = () => {
       L.fireSync("load-skip");
       return;
     }
-    o.file = as(A), w.on("init", () => {
+    o.file = ls(A), w.on("init", () => {
       l("load-init");
     }), w.on("meta", (P) => {
       o.file.size = P.size, o.file.filename = P.filename, P.source && (e = ie.LIMBO, o.serverFileReference = P.source, o.status = U.PROCESSING_COMPLETE), l("load-meta");
@@ -1685,7 +1688,7 @@ const Ni = () => {
     const P = A.split("."), q = P[0], Q = P.pop();
     let Z = i;
     P.forEach((v) => Z = Z[v]), JSON.stringify(Z[Q]) !== JSON.stringify(w) && (Z[Q] = w, l("metadata-update", { key: q, value: i[q], silent: z }));
-  }, L = { id: { get: () => n }, origin: { get: () => e, set: (A) => e = A }, serverId: { get: () => o.serverFileReference }, transferId: { get: () => o.transferId }, status: { get: () => o.status }, filename: { get: () => o.file.name }, filenameWithoutExtension: { get: () => Nn(o.file.name) }, fileExtension: { get: u }, fileType: { get: p }, fileSize: { get: m }, file: { get: h }, relativePath: { get: () => o.file._relativePath }, source: { get: () => o.source }, getMetadata: (A) => Gn(A ? i[A] : i), setMetadata: (A, w, z) => {
+  }, L = { id: { get: () => n }, origin: { get: () => e, set: (A) => e = A }, serverId: { get: () => o.serverFileReference }, transferId: { get: () => o.transferId }, status: { get: () => o.status }, filename: { get: () => o.file.name }, filenameWithoutExtension: { get: () => Gn(o.file.name) }, fileExtension: { get: u }, fileType: { get: p }, fileSize: { get: m }, file: { get: h }, relativePath: { get: () => o.file._relativePath }, source: { get: () => o.source }, getMetadata: (A) => Fn(A ? i[A] : i), setMetadata: (A, w, z) => {
     if (se(A)) {
       const P = A;
       return Object.keys(P).forEach((q) => {
@@ -1695,11 +1698,11 @@ const Ni = () => {
     return N(A, w, z), w;
   }, extend: (A, w) => F[A] = w, abortLoad: I, retryLoad: E, requestProcessing: b, abortProcessing: D, load: T, process: O, revert: C, ...wt(), freeze: () => o.frozen = !0, release: () => o.released = !0, released: { get: () => o.released }, archive: () => o.archived = !0, archived: { get: () => o.archived } }, F = Fe(L);
   return F;
-}, cs = (e, t) => Le(t) ? 0 : de(t) ? e.findIndex((r) => r.id === t) : -1, qr = (e, t) => {
-  const r = cs(e, t);
+}, us = (e, t) => Le(t) ? 0 : de(t) ? e.findIndex((r) => r.id === t) : -1, qr = (e, t) => {
+  const r = us(e, t);
   if (!(r < 0))
     return e[r] || null;
-}, us = (e, t, r, n, o, s) => {
+}, ds = (e, t, r, n, o, s) => {
   const i = He(null, e, { method: "GET", responseType: "blob" });
   return i.onload = (a) => {
     const l = a.getAllResponseHeaders(), u = rr(l).name || dt(e);
@@ -1709,7 +1712,7 @@ const Ni = () => {
   }, i.onheaders = (a) => {
     s(J("headers", a.status, null, a.getAllResponseHeaders()));
   }, i.ontimeout = Ye(r), i.onprogress = n, i.onabort = o, i;
-}, Br = (e) => (e.indexOf("//") === 0 && (e = location.protocol + e), e.toLowerCase().replace("blob:", "").replace(/([a-z])?:\/\//, "$1").split("/")[0]), ds = (e) => (e.indexOf(":") > -1 || e.indexOf("//") > -1) && Br(location.href) !== Br(e), ht = (e) => (...t) => Ue(e) ? e(...t) : e, ps = (e) => !et(e.file), xt = (e, t) => {
+}, Br = (e) => (e.indexOf("//") === 0 && (e = location.protocol + e), e.toLowerCase().replace("blob:", "").replace(/([a-z])?:\/\//, "$1").split("/")[0]), ps = (e) => (e.indexOf(":") > -1 || e.indexOf("//") > -1) && Br(location.href) !== Br(e), ht = (e) => (...t) => Ue(e) ? e(...t) : e, fs = (e) => !et(e.file), xt = (e, t) => {
   clearTimeout(t.listUpdateTimeout), t.listUpdateTimeout = setTimeout(() => {
     e("DID_UPDATE_ITEMS", { items: Se(t.items) });
   }, 0);
@@ -1733,7 +1736,7 @@ const Ni = () => {
     return;
   }
   t(i, n, o, s || {});
-}, fs = (e, t, r) => ({ ABORT_ALL: () => {
+}, Es = (e, t, r) => ({ ABORT_ALL: () => {
   Se(r.items).forEach((n) => {
     n.freeze(), n.abortLoad(), n.abortProcessing();
   });
@@ -1781,7 +1784,7 @@ const Ni = () => {
   if (!s)
     return;
   const i = r.items.indexOf(s);
-  o = Ln(o, 0, r.items.length - 1), i !== o && r.items.splice(o, 0, r.items.splice(i, 1)[0]);
+  o = wn(o, 0, r.items.length - 1), i !== o && r.items.splice(o, 0, r.items.splice(i, 1)[0]);
 }, SORT: ({ compare: n }) => {
   kt(r, n), e("DID_SORT_ITEMS", { items: t("GET_ACTIVE_ITEMS") });
 }, ADD_ITEMS: ({ items: n, index: o, interactionMethod: s, success: i = () => {
@@ -1805,7 +1808,7 @@ const Ni = () => {
   }
   if (et(n) && r.options.ignoredFiles.includes(n.name.toLowerCase()))
     return;
-  if (!Vi(r)) {
+  if (!Hi(r)) {
     if (r.options.allowMultiple || !r.options.allowMultiple && !r.options.allowReplace) {
       const D = J("warning", 0, "Max files");
       e("DID_THROW_MAX_FILES", { source: n, error: D }), a({ error: D, file: null });
@@ -1822,12 +1825,12 @@ const Ni = () => {
     }
     e("REMOVE_ITEM", { query: b.id });
   }
-  const u = l.type === "local" ? ie.LOCAL : l.type === "limbo" ? ie.LIMBO : ie.INPUT, p = ls(u, u === ie.INPUT ? null : n, l.file);
+  const u = l.type === "local" ? ie.LOCAL : l.type === "limbo" ? ie.LIMBO : ie.INPUT, p = cs(u, u === ie.INPUT ? null : n, l.file);
   Object.keys(l.metadata || {}).forEach((b) => {
     p.setMetadata(b, l.metadata[b]);
   }), Xe("DID_CREATE_ITEM", p, { query: t, dispatch: e });
   const m = t("GET_ITEM_INSERT_LOCATION");
-  r.options.itemInsertLocationFreedom || (o = m === "before" ? -1 : r.items.length), Yi(r.items, p, o), Ue(m) && n && kt(r, m);
+  r.options.itemInsertLocationFreedom || (o = m === "before" ? -1 : r.items.length), zi(r.items, p, o), Ue(m) && n && kt(r, m);
   const h = p.id;
   p.on("init", () => {
     e("DID_INIT_ITEM", { id: h });
@@ -1896,7 +1899,7 @@ const Ni = () => {
     e("DID_REVERT_ITEM_PROCESSING", { id: h }), e("DID_DEFINE_VALUE", { id: h, value: null });
   }), e("DID_ADD_ITEM", { id: h, index: o, interactionMethod: s }), xt(e, r);
   const { url: T, load: E, restore: I, fetch: O } = r.options.server || {};
-  p.load(n, ts(u === ie.INPUT ? de(n) && ds(n) && O ? Ft(T, O) : us : u === ie.LIMBO ? Ft(T, I) : Ft(T, E)), (b, D, C) => {
+  p.load(n, rs(u === ie.INPUT ? de(n) && ps(n) && O ? Ft(T, O) : ds : u === ie.LIMBO ? Ft(T, I) : Ft(T, E)), (b, D, C) => {
     ye("LOAD_FILE", b, { query: t }).then(D).catch(C);
   });
 }, REQUEST_PREPARE_OUTPUT: ({ item: n, success: o, failure: s = () => {
@@ -1968,7 +1971,7 @@ const Ni = () => {
     s({ error: u, file: Ee(n) }), a();
   });
   const l = r.options;
-  n.process(ss(os(l.server.url, l.server.process, l.name, { chunkTransferId: n.transferId, chunkServer: l.server.patch, chunkUploads: l.chunkUploads, chunkForce: l.chunkForce, chunkSize: l.chunkSize, chunkRetryDelays: l.chunkRetryDelays }), { allowMinimumUploadDuration: t("GET_ALLOW_MINIMUM_UPLOAD_DURATION") }), (u, p, m) => {
+  n.process(as(is(l.server.url, l.server.process, l.name, { chunkTransferId: n.transferId, chunkServer: l.server.patch, chunkUploads: l.chunkUploads, chunkForce: l.chunkForce, chunkSize: l.chunkSize, chunkRetryDelays: l.chunkRetryDelays }), { allowMinimumUploadDuration: t("GET_ALLOW_MINIMUM_UPLOAD_DURATION") }), (u, p, m) => {
     ye("PREPARE_OUTPUT", u, { query: t, item: n }).then((h) => {
       e("DID_PREPARE_OUTPUT", { id: n.id, file: h }), p(h);
     }).catch(m);
@@ -2017,88 +2020,88 @@ const Ni = () => {
   typeof i.then == "function" && i.then(o);
 }), REVERT_ITEM_PROCESSING: _e(r, (n) => {
   n.revert(lt(r.options.server.url, r.options.server.revert), t("GET_FORCE_REVERT")).then(() => {
-    (r.options.instantUpload || ps(n)) && e("REMOVE_ITEM", { query: n.id });
+    (r.options.instantUpload || fs(n)) && e("REMOVE_ITEM", { query: n.id });
   }).catch(() => {
   });
 }), SET_OPTIONS: ({ options: n }) => {
-  const o = Object.keys(n), s = Es.filter((i) => o.includes(i));
+  const o = Object.keys(n), s = hs.filter((i) => o.includes(i));
   [...s, ...Object.keys(n).filter((i) => !s.includes(i))].forEach((i) => {
     e(`SET_${Lt(i, "_").toUpperCase()}`, { value: n[i] });
   });
-} }), Es = ["server"], nr = (e) => e, we = (e) => document.createElement(e), ee = (e, t) => {
+} }), hs = ["server"], nr = (e) => e, we = (e) => document.createElement(e), ee = (e, t) => {
   let r = e.childNodes[0];
   r ? t !== r.nodeValue && (r.nodeValue = t) : (r = document.createTextNode(t), e.appendChild(r));
 }, Vr = (e, t, r, n) => {
   const o = (n % 360 - 90) * Math.PI / 180;
   return { x: e + r * Math.cos(o), y: t + r * Math.sin(o) };
-}, hs = (e, t, r, n, o, s) => {
+}, ms = (e, t, r, n, o, s) => {
   const i = Vr(e, t, r, o), a = Vr(e, t, r, n);
   return ["M", i.x, i.y, "A", r, r, 0, s, 0, a.x, a.y].join(" ");
-}, ms = (e, t, r, n, o) => {
+}, Ts = (e, t, r, n, o) => {
   let s = 1;
-  return o > n && o - n <= 0.5 && (s = 0), n > o && n - o >= 0.5 && (s = 0), hs(e, t, r, Math.min(0.9999, n) * 360, Math.min(0.9999, o) * 360, s);
-}, Ts = ({ root: e, props: t }) => {
+  return o > n && o - n <= 0.5 && (s = 0), n > o && n - o >= 0.5 && (s = 0), ms(e, t, r, Math.min(0.9999, n) * 360, Math.min(0.9999, o) * 360, s);
+}, _s = ({ root: e, props: t }) => {
   t.spin = !1, t.progress = 0, t.opacity = 0;
   const r = St("svg");
   e.ref.path = St("path", { "stroke-width": 2, "stroke-linecap": "round" }), r.appendChild(e.ref.path), e.ref.svg = r, e.appendChild(r);
-}, _s = ({ root: e, props: t }) => {
+}, Is = ({ root: e, props: t }) => {
   if (t.opacity === 0)
     return;
   t.align && (e.element.dataset.align = t.align);
   const r = parseInt(ne(e.ref.path, "stroke-width"), 10), n = e.rect.element.width * 0.5;
   let o = 0, s = 0;
   t.spin ? (o = 0, s = 0.5) : (o = 0, s = t.progress);
-  const i = ms(n, n, n - r, o, s);
+  const i = Ts(n, n, n - r, o, s);
   ne(e.ref.path, "d", i), ne(e.ref.path, "stroke-opacity", t.spin || t.progress > 0 ? 1 : 0);
-}, Hr = oe({ tag: "div", name: "progress-indicator", ignoreRectUpdate: !0, ignoreRect: !0, create: Ts, write: _s, mixins: { apis: ["progress", "spin", "align"], styles: ["opacity"], animations: { opacity: { type: "tween", duration: 500 }, progress: { type: "spring", stiffness: 0.95, damping: 0.65, mass: 10 } } } }), Is = ({ root: e, props: t }) => {
+}, Hr = oe({ tag: "div", name: "progress-indicator", ignoreRectUpdate: !0, ignoreRect: !0, create: _s, write: Is, mixins: { apis: ["progress", "spin", "align"], styles: ["opacity"], animations: { opacity: { type: "tween", duration: 500 }, progress: { type: "spring", stiffness: 0.95, damping: 0.65, mass: 10 } } } }), gs = ({ root: e, props: t }) => {
   e.element.innerHTML = (t.icon || "") + `<span>${t.label}</span>`, t.isDisabled = !1;
-}, gs = ({ root: e, props: t }) => {
+}, ys = ({ root: e, props: t }) => {
   const { isDisabled: r } = t, n = e.query("GET_DISABLED") || t.opacity === 0;
   n && !r ? (t.isDisabled = !0, ne(e.element, "disabled", "disabled")) : !n && r && (t.isDisabled = !1, e.element.removeAttribute("disabled"));
-}, Fn = oe({ tag: "button", attributes: { type: "button" }, ignoreRect: !0, ignoreRectUpdate: !0, name: "file-action-button", mixins: { apis: ["label"], styles: ["translateX", "translateY", "scaleX", "scaleY", "opacity"], animations: { scaleX: "spring", scaleY: "spring", translateX: "spring", translateY: "spring", opacity: { type: "tween", duration: 250 } }, listeners: !0 }, create: Is, write: gs }), xn = (e, t = ".", r = 1e3, n = {}) => {
+}, xn = oe({ tag: "button", attributes: { type: "button" }, ignoreRect: !0, ignoreRectUpdate: !0, name: "file-action-button", mixins: { apis: ["label"], styles: ["translateX", "translateY", "scaleX", "scaleY", "opacity"], animations: { scaleX: "spring", scaleY: "spring", translateX: "spring", translateY: "spring", opacity: { type: "tween", duration: 250 } }, listeners: !0 }, create: gs, write: ys }), kn = (e, t = ".", r = 1e3, n = {}) => {
   const { labelBytes: o = "bytes", labelKilobytes: s = "KB", labelMegabytes: i = "MB", labelGigabytes: a = "GB" } = n;
   e = Math.round(Math.abs(e));
   const l = r, u = r * r, p = r * r * r;
   return e < l ? `${e} ${o}` : e < u ? `${Math.floor(e / l)} ${s}` : e < p ? `${Yr(e / u, 1, t)} ${i}` : `${Yr(e / p, 2, t)} ${a}`;
-}, Yr = (e, t, r) => e.toFixed(t).split(".").filter((n) => n !== "0").join(r), ys = ({ root: e, props: t }) => {
+}, Yr = (e, t, r) => e.toFixed(t).split(".").filter((n) => n !== "0").join(r), Ss = ({ root: e, props: t }) => {
   const r = we("span");
   r.className = "filepond--file-info-main", ne(r, "aria-hidden", "true"), e.appendChild(r), e.ref.fileName = r;
   const n = we("span");
   n.className = "filepond--file-info-sub", e.appendChild(n), e.ref.fileSize = n, ee(n, e.query("GET_LABEL_FILE_WAITING_FOR_SIZE")), ee(r, nr(e.query("GET_ITEM_NAME", t.id)));
 }, zt = ({ root: e, props: t }) => {
-  ee(e.ref.fileSize, xn(e.query("GET_ITEM_SIZE", t.id), ".", e.query("GET_FILE_SIZE_BASE"), e.query("GET_FILE_SIZE_LABELS", e.query))), ee(e.ref.fileName, nr(e.query("GET_ITEM_NAME", t.id)));
+  ee(e.ref.fileSize, kn(e.query("GET_ITEM_SIZE", t.id), ".", e.query("GET_FILE_SIZE_BASE"), e.query("GET_FILE_SIZE_LABELS", e.query))), ee(e.ref.fileName, nr(e.query("GET_ITEM_NAME", t.id)));
 }, zr = ({ root: e, props: t }) => {
   if (tt(e.query("GET_ITEM_SIZE", t.id))) {
     zt({ root: e, props: t });
     return;
   }
   ee(e.ref.fileSize, e.query("GET_LABEL_FILE_SIZE_NOT_AVAILABLE"));
-}, Ss = oe({ name: "file-info", ignoreRect: !0, ignoreRectUpdate: !0, write: pe({ DID_LOAD_ITEM: zt, DID_UPDATE_ITEM_META: zt, DID_THROW_ITEM_LOAD_ERROR: zr, DID_THROW_ITEM_INVALID: zr }), didCreateView: (e) => {
+}, Rs = oe({ name: "file-info", ignoreRect: !0, ignoreRectUpdate: !0, write: pe({ DID_LOAD_ITEM: zt, DID_UPDATE_ITEM_META: zt, DID_THROW_ITEM_LOAD_ERROR: zr, DID_THROW_ITEM_INVALID: zr }), didCreateView: (e) => {
   Xe("CREATE_VIEW", { ...e, view: e });
-}, create: ys, mixins: { styles: ["translateX", "translateY"], animations: { translateX: "spring", translateY: "spring" } } }), kn = (e) => Math.round(e * 100), Rs = ({ root: e }) => {
+}, create: Ss, mixins: { styles: ["translateX", "translateY"], animations: { translateX: "spring", translateY: "spring" } } }), qn = (e) => Math.round(e * 100), bs = ({ root: e }) => {
   const t = we("span");
   t.className = "filepond--file-status-main", e.appendChild(t), e.ref.main = t;
   const r = we("span");
-  r.className = "filepond--file-status-sub", e.appendChild(r), e.ref.sub = r, qn({ root: e, action: { progress: null } });
-}, qn = ({ root: e, action: t }) => {
-  const r = t.progress === null ? e.query("GET_LABEL_FILE_LOADING") : `${e.query("GET_LABEL_FILE_LOADING")} ${kn(t.progress)}%`;
+  r.className = "filepond--file-status-sub", e.appendChild(r), e.ref.sub = r, Bn({ root: e, action: { progress: null } });
+}, Bn = ({ root: e, action: t }) => {
+  const r = t.progress === null ? e.query("GET_LABEL_FILE_LOADING") : `${e.query("GET_LABEL_FILE_LOADING")} ${qn(t.progress)}%`;
   ee(e.ref.main, r), ee(e.ref.sub, e.query("GET_LABEL_TAP_TO_CANCEL"));
-}, bs = ({ root: e, action: t }) => {
-  const r = t.progress === null ? e.query("GET_LABEL_FILE_PROCESSING") : `${e.query("GET_LABEL_FILE_PROCESSING")} ${kn(t.progress)}%`;
+}, vs = ({ root: e, action: t }) => {
+  const r = t.progress === null ? e.query("GET_LABEL_FILE_PROCESSING") : `${e.query("GET_LABEL_FILE_PROCESSING")} ${qn(t.progress)}%`;
   ee(e.ref.main, r), ee(e.ref.sub, e.query("GET_LABEL_TAP_TO_CANCEL"));
-}, vs = ({ root: e }) => {
-  ee(e.ref.main, e.query("GET_LABEL_FILE_PROCESSING")), ee(e.ref.sub, e.query("GET_LABEL_TAP_TO_CANCEL"));
 }, Os = ({ root: e }) => {
-  ee(e.ref.main, e.query("GET_LABEL_FILE_PROCESSING_ABORTED")), ee(e.ref.sub, e.query("GET_LABEL_TAP_TO_RETRY"));
+  ee(e.ref.main, e.query("GET_LABEL_FILE_PROCESSING")), ee(e.ref.sub, e.query("GET_LABEL_TAP_TO_CANCEL"));
 }, Ds = ({ root: e }) => {
+  ee(e.ref.main, e.query("GET_LABEL_FILE_PROCESSING_ABORTED")), ee(e.ref.sub, e.query("GET_LABEL_TAP_TO_RETRY"));
+}, As = ({ root: e }) => {
   ee(e.ref.main, e.query("GET_LABEL_FILE_PROCESSING_COMPLETE")), ee(e.ref.sub, e.query("GET_LABEL_TAP_TO_UNDO"));
 }, Wr = ({ root: e }) => {
   ee(e.ref.main, ""), ee(e.ref.sub, "");
 }, ct = ({ root: e, action: t }) => {
   ee(e.ref.main, t.status.main), ee(e.ref.sub, t.status.sub);
-}, As = oe({ name: "file-status", ignoreRect: !0, ignoreRectUpdate: !0, write: pe({ DID_LOAD_ITEM: Wr, DID_REVERT_ITEM_PROCESSING: Wr, DID_REQUEST_ITEM_PROCESSING: vs, DID_ABORT_ITEM_PROCESSING: Os, DID_COMPLETE_ITEM_PROCESSING: Ds, DID_UPDATE_ITEM_PROCESS_PROGRESS: bs, DID_UPDATE_ITEM_LOAD_PROGRESS: qn, DID_THROW_ITEM_LOAD_ERROR: ct, DID_THROW_ITEM_INVALID: ct, DID_THROW_ITEM_PROCESSING_ERROR: ct, DID_THROW_ITEM_PROCESSING_REVERT_ERROR: ct, DID_THROW_ITEM_REMOVE_ERROR: ct }), didCreateView: (e) => {
+}, Ls = oe({ name: "file-status", ignoreRect: !0, ignoreRectUpdate: !0, write: pe({ DID_LOAD_ITEM: Wr, DID_REVERT_ITEM_PROCESSING: Wr, DID_REQUEST_ITEM_PROCESSING: Os, DID_ABORT_ITEM_PROCESSING: Ds, DID_COMPLETE_ITEM_PROCESSING: As, DID_UPDATE_ITEM_PROCESS_PROGRESS: vs, DID_UPDATE_ITEM_LOAD_PROGRESS: Bn, DID_THROW_ITEM_LOAD_ERROR: ct, DID_THROW_ITEM_INVALID: ct, DID_THROW_ITEM_PROCESSING_ERROR: ct, DID_THROW_ITEM_PROCESSING_REVERT_ERROR: ct, DID_THROW_ITEM_REMOVE_ERROR: ct }), didCreateView: (e) => {
   Xe("CREATE_VIEW", { ...e, view: e });
-}, create: Rs, mixins: { styles: ["translateX", "translateY", "opacity"], animations: { opacity: { type: "tween", duration: 250 }, translateX: "spring", translateY: "spring" } } }), Wt = { AbortItemLoad: { label: "GET_LABEL_BUTTON_ABORT_ITEM_LOAD", action: "ABORT_ITEM_LOAD", className: "filepond--action-abort-item-load", align: "LOAD_INDICATOR_POSITION" }, RetryItemLoad: { label: "GET_LABEL_BUTTON_RETRY_ITEM_LOAD", action: "RETRY_ITEM_LOAD", icon: "GET_ICON_RETRY", className: "filepond--action-retry-item-load", align: "BUTTON_PROCESS_ITEM_POSITION" }, RemoveItem: { label: "GET_LABEL_BUTTON_REMOVE_ITEM", action: "REQUEST_REMOVE_ITEM", icon: "GET_ICON_REMOVE", className: "filepond--action-remove-item", align: "BUTTON_REMOVE_ITEM_POSITION" }, ProcessItem: { label: "GET_LABEL_BUTTON_PROCESS_ITEM", action: "REQUEST_ITEM_PROCESSING", icon: "GET_ICON_PROCESS", className: "filepond--action-process-item", align: "BUTTON_PROCESS_ITEM_POSITION" }, AbortItemProcessing: { label: "GET_LABEL_BUTTON_ABORT_ITEM_PROCESSING", action: "ABORT_ITEM_PROCESSING", className: "filepond--action-abort-item-processing", align: "BUTTON_PROCESS_ITEM_POSITION" }, RetryItemProcessing: { label: "GET_LABEL_BUTTON_RETRY_ITEM_PROCESSING", action: "RETRY_ITEM_PROCESSING", icon: "GET_ICON_RETRY", className: "filepond--action-retry-item-processing", align: "BUTTON_PROCESS_ITEM_POSITION" }, RevertItemProcessing: { label: "GET_LABEL_BUTTON_UNDO_ITEM_PROCESSING", action: "REQUEST_REVERT_ITEM_PROCESSING", icon: "GET_ICON_UNDO", className: "filepond--action-revert-item-processing", align: "BUTTON_PROCESS_ITEM_POSITION" } }, Xt = [];
+}, create: bs, mixins: { styles: ["translateX", "translateY", "opacity"], animations: { opacity: { type: "tween", duration: 250 }, translateX: "spring", translateY: "spring" } } }), Wt = { AbortItemLoad: { label: "GET_LABEL_BUTTON_ABORT_ITEM_LOAD", action: "ABORT_ITEM_LOAD", className: "filepond--action-abort-item-load", align: "LOAD_INDICATOR_POSITION" }, RetryItemLoad: { label: "GET_LABEL_BUTTON_RETRY_ITEM_LOAD", action: "RETRY_ITEM_LOAD", icon: "GET_ICON_RETRY", className: "filepond--action-retry-item-load", align: "BUTTON_PROCESS_ITEM_POSITION" }, RemoveItem: { label: "GET_LABEL_BUTTON_REMOVE_ITEM", action: "REQUEST_REMOVE_ITEM", icon: "GET_ICON_REMOVE", className: "filepond--action-remove-item", align: "BUTTON_REMOVE_ITEM_POSITION" }, ProcessItem: { label: "GET_LABEL_BUTTON_PROCESS_ITEM", action: "REQUEST_ITEM_PROCESSING", icon: "GET_ICON_PROCESS", className: "filepond--action-process-item", align: "BUTTON_PROCESS_ITEM_POSITION" }, AbortItemProcessing: { label: "GET_LABEL_BUTTON_ABORT_ITEM_PROCESSING", action: "ABORT_ITEM_PROCESSING", className: "filepond--action-abort-item-processing", align: "BUTTON_PROCESS_ITEM_POSITION" }, RetryItemProcessing: { label: "GET_LABEL_BUTTON_RETRY_ITEM_PROCESSING", action: "RETRY_ITEM_PROCESSING", icon: "GET_ICON_RETRY", className: "filepond--action-retry-item-processing", align: "BUTTON_PROCESS_ITEM_POSITION" }, RevertItemProcessing: { label: "GET_LABEL_BUTTON_UNDO_ITEM_PROCESSING", action: "REQUEST_REVERT_ITEM_PROCESSING", icon: "GET_ICON_UNDO", className: "filepond--action-revert-item-processing", align: "BUTTON_PROCESS_ITEM_POSITION" } }, Xt = [];
 K(Wt, (e) => {
   Xt.push(e);
 });
@@ -2107,41 +2110,41 @@ const me = (e) => {
     return 0;
   const t = e.ref.buttonRemoveItem.rect.element;
   return t.hidden ? null : t.width + t.left;
-}, Ls = (e) => e.ref.buttonAbortItemLoad.rect.element.width, mt = (e) => Math.floor(e.ref.buttonRemoveItem.rect.element.height / 4), ws = (e) => Math.floor(e.ref.buttonRemoveItem.rect.element.left / 2), Ps = (e) => e.query("GET_STYLE_LOAD_INDICATOR_POSITION"), Ms = (e) => e.query("GET_STYLE_PROGRESS_INDICATOR_POSITION"), jt = (e) => e.query("GET_STYLE_BUTTON_REMOVE_ITEM_POSITION"), Cs = { buttonAbortItemLoad: { opacity: 0 }, buttonRetryItemLoad: { opacity: 0 }, buttonRemoveItem: { opacity: 0 }, buttonProcessItem: { opacity: 0 }, buttonAbortItemProcessing: { opacity: 0 }, buttonRetryItemProcessing: { opacity: 0 }, buttonRevertItemProcessing: { opacity: 0 }, loadProgressIndicator: { opacity: 0, align: Ps }, processProgressIndicator: { opacity: 0, align: Ms }, processingCompleteIndicator: { opacity: 0, scaleX: 0.75, scaleY: 0.75 }, info: { translateX: 0, translateY: 0, opacity: 0 }, status: { translateX: 0, translateY: 0, opacity: 0 } }, Xr = { buttonRemoveItem: { opacity: 1 }, buttonProcessItem: { opacity: 1 }, info: { translateX: me }, status: { translateX: me } }, qt = { buttonAbortItemProcessing: { opacity: 1 }, processProgressIndicator: { opacity: 1 }, status: { opacity: 1 } }, Ze = { DID_THROW_ITEM_INVALID: { buttonRemoveItem: { opacity: 1 }, info: { translateX: me }, status: { translateX: me, opacity: 1 } }, DID_START_ITEM_LOAD: { buttonAbortItemLoad: { opacity: 1 }, loadProgressIndicator: { opacity: 1 }, status: { opacity: 1 } }, DID_THROW_ITEM_LOAD_ERROR: { buttonRetryItemLoad: { opacity: 1 }, buttonRemoveItem: { opacity: 1 }, info: { translateX: me }, status: { opacity: 1 } }, DID_START_ITEM_REMOVE: { processProgressIndicator: { opacity: 1, align: jt }, info: { translateX: me }, status: { opacity: 0 } }, DID_THROW_ITEM_REMOVE_ERROR: { processProgressIndicator: { opacity: 0, align: jt }, buttonRemoveItem: { opacity: 1 }, info: { translateX: me }, status: { opacity: 1, translateX: me } }, DID_LOAD_ITEM: Xr, DID_LOAD_LOCAL_ITEM: { buttonRemoveItem: { opacity: 1 }, info: { translateX: me }, status: { translateX: me } }, DID_START_ITEM_PROCESSING: qt, DID_REQUEST_ITEM_PROCESSING: qt, DID_UPDATE_ITEM_PROCESS_PROGRESS: qt, DID_COMPLETE_ITEM_PROCESSING: { buttonRevertItemProcessing: { opacity: 1 }, info: { opacity: 1 }, status: { opacity: 1 } }, DID_THROW_ITEM_PROCESSING_ERROR: { buttonRemoveItem: { opacity: 1 }, buttonRetryItemProcessing: { opacity: 1 }, status: { opacity: 1 }, info: { translateX: me } }, DID_THROW_ITEM_PROCESSING_REVERT_ERROR: { buttonRevertItemProcessing: { opacity: 1 }, status: { opacity: 1 }, info: { opacity: 1 } }, DID_ABORT_ITEM_PROCESSING: { buttonRemoveItem: { opacity: 1 }, buttonProcessItem: { opacity: 1 }, info: { translateX: me }, status: { opacity: 1 } }, DID_REVERT_ITEM_PROCESSING: Xr }, Ns = oe({ create: ({ root: e }) => {
+}, ws = (e) => e.ref.buttonAbortItemLoad.rect.element.width, mt = (e) => Math.floor(e.ref.buttonRemoveItem.rect.element.height / 4), Ps = (e) => Math.floor(e.ref.buttonRemoveItem.rect.element.left / 2), Ms = (e) => e.query("GET_STYLE_LOAD_INDICATOR_POSITION"), Cs = (e) => e.query("GET_STYLE_PROGRESS_INDICATOR_POSITION"), jt = (e) => e.query("GET_STYLE_BUTTON_REMOVE_ITEM_POSITION"), Ns = { buttonAbortItemLoad: { opacity: 0 }, buttonRetryItemLoad: { opacity: 0 }, buttonRemoveItem: { opacity: 0 }, buttonProcessItem: { opacity: 0 }, buttonAbortItemProcessing: { opacity: 0 }, buttonRetryItemProcessing: { opacity: 0 }, buttonRevertItemProcessing: { opacity: 0 }, loadProgressIndicator: { opacity: 0, align: Ms }, processProgressIndicator: { opacity: 0, align: Cs }, processingCompleteIndicator: { opacity: 0, scaleX: 0.75, scaleY: 0.75 }, info: { translateX: 0, translateY: 0, opacity: 0 }, status: { translateX: 0, translateY: 0, opacity: 0 } }, Xr = { buttonRemoveItem: { opacity: 1 }, buttonProcessItem: { opacity: 1 }, info: { translateX: me }, status: { translateX: me } }, qt = { buttonAbortItemProcessing: { opacity: 1 }, processProgressIndicator: { opacity: 1 }, status: { opacity: 1 } }, Ze = { DID_THROW_ITEM_INVALID: { buttonRemoveItem: { opacity: 1 }, info: { translateX: me }, status: { translateX: me, opacity: 1 } }, DID_START_ITEM_LOAD: { buttonAbortItemLoad: { opacity: 1 }, loadProgressIndicator: { opacity: 1 }, status: { opacity: 1 } }, DID_THROW_ITEM_LOAD_ERROR: { buttonRetryItemLoad: { opacity: 1 }, buttonRemoveItem: { opacity: 1 }, info: { translateX: me }, status: { opacity: 1 } }, DID_START_ITEM_REMOVE: { processProgressIndicator: { opacity: 1, align: jt }, info: { translateX: me }, status: { opacity: 0 } }, DID_THROW_ITEM_REMOVE_ERROR: { processProgressIndicator: { opacity: 0, align: jt }, buttonRemoveItem: { opacity: 1 }, info: { translateX: me }, status: { opacity: 1, translateX: me } }, DID_LOAD_ITEM: Xr, DID_LOAD_LOCAL_ITEM: { buttonRemoveItem: { opacity: 1 }, info: { translateX: me }, status: { translateX: me } }, DID_START_ITEM_PROCESSING: qt, DID_REQUEST_ITEM_PROCESSING: qt, DID_UPDATE_ITEM_PROCESS_PROGRESS: qt, DID_COMPLETE_ITEM_PROCESSING: { buttonRevertItemProcessing: { opacity: 1 }, info: { opacity: 1 }, status: { opacity: 1 } }, DID_THROW_ITEM_PROCESSING_ERROR: { buttonRemoveItem: { opacity: 1 }, buttonRetryItemProcessing: { opacity: 1 }, status: { opacity: 1 }, info: { translateX: me } }, DID_THROW_ITEM_PROCESSING_REVERT_ERROR: { buttonRevertItemProcessing: { opacity: 1 }, status: { opacity: 1 }, info: { opacity: 1 } }, DID_ABORT_ITEM_PROCESSING: { buttonRemoveItem: { opacity: 1 }, buttonProcessItem: { opacity: 1 }, info: { translateX: me }, status: { opacity: 1 } }, DID_REVERT_ITEM_PROCESSING: Xr }, Gs = oe({ create: ({ root: e }) => {
   e.element.innerHTML = e.query("GET_ICON_DONE");
-}, name: "processing-complete-indicator", ignoreRect: !0, mixins: { styles: ["scaleX", "scaleY", "opacity"], animations: { scaleX: "spring", scaleY: "spring", opacity: { type: "tween", duration: 250 } } } }), Gs = ({ root: e, props: t }) => {
+}, name: "processing-complete-indicator", ignoreRect: !0, mixins: { styles: ["scaleX", "scaleY", "opacity"], animations: { scaleX: "spring", scaleY: "spring", opacity: { type: "tween", duration: 250 } } } }), Fs = ({ root: e, props: t }) => {
   const r = Object.keys(Wt).reduce((E, I) => (E[I] = { ...Wt[I] }, E), {}), { id: n } = t, o = e.query("GET_ALLOW_REVERT"), s = e.query("GET_ALLOW_REMOVE"), i = e.query("GET_ALLOW_PROCESS"), a = e.query("GET_INSTANT_UPLOAD"), l = e.query("IS_ASYNC"), u = e.query("GET_STYLE_BUTTON_REMOVE_ITEM_ALIGN");
   let p;
   l ? i && !o ? p = (E) => !/RevertItemProcessing/.test(E) : !i && o ? p = (E) => !/ProcessItem|RetryItemProcessing|AbortItemProcessing/.test(E) : !i && !o && (p = (E) => !/Process/.test(E)) : p = (E) => !/Process/.test(E);
   const m = p ? Xt.filter(p) : Xt.concat();
   if (a && o && (r.RevertItemProcessing.label = "GET_LABEL_BUTTON_REMOVE_ITEM", r.RevertItemProcessing.icon = "GET_ICON_REMOVE"), l && !o) {
     const E = Ze.DID_COMPLETE_ITEM_PROCESSING;
-    E.info.translateX = ws, E.info.translateY = mt, E.status.translateY = mt, E.processingCompleteIndicator = { opacity: 1, scaleX: 1, scaleY: 1 };
+    E.info.translateX = Ps, E.info.translateY = mt, E.status.translateY = mt, E.processingCompleteIndicator = { opacity: 1, scaleX: 1, scaleY: 1 };
   }
   if (l && !i && (["DID_START_ITEM_PROCESSING", "DID_REQUEST_ITEM_PROCESSING", "DID_UPDATE_ITEM_PROCESS_PROGRESS", "DID_THROW_ITEM_PROCESSING_ERROR"].forEach((E) => {
     Ze[E].status.translateY = mt;
-  }), Ze.DID_THROW_ITEM_PROCESSING_ERROR.status.translateX = Ls), u && o) {
+  }), Ze.DID_THROW_ITEM_PROCESSING_ERROR.status.translateX = ws), u && o) {
     r.RevertItemProcessing.align = "BUTTON_REMOVE_ITEM_POSITION";
     const E = Ze.DID_COMPLETE_ITEM_PROCESSING;
     E.info.translateX = me, E.status.translateY = mt, E.processingCompleteIndicator = { opacity: 1, scaleX: 1, scaleY: 1 };
   }
   s || (r.RemoveItem.disabled = !0), K(r, (E, I) => {
-    const O = e.createChildView(Fn, { label: e.query(I.label), icon: e.query(I.icon), opacity: 0 });
+    const O = e.createChildView(xn, { label: e.query(I.label), icon: e.query(I.icon), opacity: 0 });
     m.includes(E) && e.appendChildView(O), I.disabled && (O.element.setAttribute("disabled", "disabled"), O.element.setAttribute("hidden", "hidden")), O.element.dataset.align = e.query(`GET_STYLE_${I.align}`), O.element.classList.add(I.className), O.on("click", (b) => {
       b.stopPropagation(), !I.disabled && e.dispatch(I.action, { query: n });
     }), e.ref[`button${E}`] = O;
-  }), e.ref.processingCompleteIndicator = e.appendChildView(e.createChildView(Ns)), e.ref.processingCompleteIndicator.element.dataset.align = e.query("GET_STYLE_BUTTON_PROCESS_ITEM_POSITION"), e.ref.info = e.appendChildView(e.createChildView(Ss, { id: n })), e.ref.status = e.appendChildView(e.createChildView(As, { id: n }));
+  }), e.ref.processingCompleteIndicator = e.appendChildView(e.createChildView(Gs)), e.ref.processingCompleteIndicator.element.dataset.align = e.query("GET_STYLE_BUTTON_PROCESS_ITEM_POSITION"), e.ref.info = e.appendChildView(e.createChildView(Rs, { id: n })), e.ref.status = e.appendChildView(e.createChildView(Ls, { id: n }));
   const h = e.appendChildView(e.createChildView(Hr, { opacity: 0, align: e.query("GET_STYLE_LOAD_INDICATOR_POSITION") }));
   h.element.classList.add("filepond--load-indicator"), e.ref.loadProgressIndicator = h;
   const T = e.appendChildView(e.createChildView(Hr, { opacity: 0, align: e.query("GET_STYLE_PROGRESS_INDICATOR_POSITION") }));
   T.element.classList.add("filepond--process-indicator"), e.ref.processProgressIndicator = T, e.ref.activeStyles = [];
-}, Fs = ({ root: e, actions: t, props: r }) => {
-  xs({ root: e, actions: t, props: r });
+}, xs = ({ root: e, actions: t, props: r }) => {
+  ks({ root: e, actions: t, props: r });
   let n = t.concat().filter((o) => /^DID_/.test(o.type)).reverse().find((o) => Ze[o.type]);
   if (n) {
     e.ref.activeStyles = [];
     const o = Ze[n.type];
-    K(Cs, (s, i) => {
+    K(Ns, (s, i) => {
       const a = e.ref[s];
       K(i, (l, u) => {
         const p = o[s] && typeof o[s][l] < "u" ? o[s][l] : u;
@@ -2152,7 +2155,7 @@ const me = (e) => {
   e.ref.activeStyles.forEach(({ control: o, key: s, value: i }) => {
     o[s] = typeof i == "function" ? i(e) : i;
   });
-}, xs = pe({ DID_SET_LABEL_BUTTON_ABORT_ITEM_PROCESSING: ({ root: e, action: t }) => {
+}, ks = pe({ DID_SET_LABEL_BUTTON_ABORT_ITEM_PROCESSING: ({ root: e, action: t }) => {
   e.ref.buttonAbortItemProcessing.label = t.value;
 }, DID_SET_LABEL_BUTTON_ABORT_ITEM_LOAD: ({ root: e, action: t }) => {
   e.ref.buttonAbortItemLoad.label = t.value;
@@ -2168,34 +2171,34 @@ const me = (e) => {
   e.ref.loadProgressIndicator.spin = !1, e.ref.loadProgressIndicator.progress = t.progress;
 }, DID_UPDATE_ITEM_PROCESS_PROGRESS: ({ root: e, action: t }) => {
   e.ref.processProgressIndicator.spin = !1, e.ref.processProgressIndicator.progress = t.progress;
-} }), ks = oe({ create: Gs, write: Fs, didCreateView: (e) => {
+} }), qs = oe({ create: Fs, write: xs, didCreateView: (e) => {
   Xe("CREATE_VIEW", { ...e, view: e });
-}, name: "file" }), qs = ({ root: e, props: t }) => {
-  e.ref.fileName = we("legend"), e.appendChild(e.ref.fileName), e.ref.file = e.appendChildView(e.createChildView(ks, { id: t.id })), e.ref.data = !1;
-}, Bs = ({ root: e, props: t }) => {
+}, name: "file" }), Bs = ({ root: e, props: t }) => {
+  e.ref.fileName = we("legend"), e.appendChild(e.ref.fileName), e.ref.file = e.appendChildView(e.createChildView(qs, { id: t.id })), e.ref.data = !1;
+}, Us = ({ root: e, props: t }) => {
   ee(e.ref.fileName, nr(e.query("GET_ITEM_NAME", t.id)));
-}, Us = oe({ create: qs, ignoreRect: !0, write: pe({ DID_LOAD_ITEM: Bs }), didCreateView: (e) => {
+}, Vs = oe({ create: Bs, ignoreRect: !0, write: pe({ DID_LOAD_ITEM: Us }), didCreateView: (e) => {
   Xe("CREATE_VIEW", { ...e, view: e });
-}, tag: "fieldset", name: "file-wrapper" }), jr = { type: "spring", damping: 0.6, mass: 7 }, Vs = ({ root: e, props: t }) => {
+}, tag: "fieldset", name: "file-wrapper" }), jr = { type: "spring", damping: 0.6, mass: 7 }, Hs = ({ root: e, props: t }) => {
   [{ name: "top" }, { name: "center", props: { translateY: null, scaleY: null }, mixins: { animations: { scaleY: jr }, styles: ["translateY", "scaleY"] } }, { name: "bottom", props: { translateY: null }, mixins: { animations: { translateY: jr }, styles: ["translateY"] } }].forEach((r) => {
-    Hs(e, r, t.name);
+    Ys(e, r, t.name);
   }), e.element.classList.add(`filepond--${t.name}`), e.ref.scalable = null;
-}, Hs = (e, t, r) => {
+}, Ys = (e, t, r) => {
   const n = oe({ name: `panel-${t.name} filepond--${r}`, mixins: t.mixins, ignoreRectUpdate: !0 }), o = e.createChildView(n, t.props);
   e.ref[t.name] = e.appendChildView(o);
-}, Ys = ({ root: e, props: t }) => {
-  if ((e.ref.scalable === null || t.scalable !== e.ref.scalable) && (e.ref.scalable = gn(t.scalable) ? t.scalable : !0, e.element.dataset.scalable = e.ref.scalable), !t.height)
+}, zs = ({ root: e, props: t }) => {
+  if ((e.ref.scalable === null || t.scalable !== e.ref.scalable) && (e.ref.scalable = yn(t.scalable) ? t.scalable : !0, e.element.dataset.scalable = e.ref.scalable), !t.height)
     return;
   const r = e.ref.top.rect.element, n = e.ref.bottom.rect.element, o = Math.max(r.height + n.height, t.height);
   e.ref.center.translateY = r.height, e.ref.center.scaleY = (o - r.height - n.height) / 100, e.ref.bottom.translateY = o - n.height;
-}, Bn = oe({ name: "panel", read: ({ root: e, props: t }) => t.heightCurrent = e.ref.bottom.translateY, write: Ys, create: Vs, ignoreRect: !0, mixins: { apis: ["height", "heightCurrent", "scalable"] } }), zs = (e) => {
+}, Un = oe({ name: "panel", read: ({ root: e, props: t }) => t.heightCurrent = e.ref.bottom.translateY, write: zs, create: Hs, ignoreRect: !0, mixins: { apis: ["height", "heightCurrent", "scalable"] } }), Ws = (e) => {
   const t = e.map((n) => n.id);
   let r;
   return { setIndex: (n) => {
     r = n;
   }, getIndex: () => r, getItemIndex: (n) => t.indexOf(n.id) };
-}, $r = { type: "spring", stiffness: 0.75, damping: 0.45, mass: 10 }, Qr = "spring", Zr = { DID_START_ITEM_LOAD: "busy", DID_UPDATE_ITEM_LOAD_PROGRESS: "loading", DID_THROW_ITEM_INVALID: "load-invalid", DID_THROW_ITEM_LOAD_ERROR: "load-error", DID_LOAD_ITEM: "idle", DID_THROW_ITEM_REMOVE_ERROR: "remove-error", DID_START_ITEM_REMOVE: "busy", DID_START_ITEM_PROCESSING: "busy processing", DID_REQUEST_ITEM_PROCESSING: "busy processing", DID_UPDATE_ITEM_PROCESS_PROGRESS: "processing", DID_COMPLETE_ITEM_PROCESSING: "processing-complete", DID_THROW_ITEM_PROCESSING_ERROR: "processing-error", DID_THROW_ITEM_PROCESSING_REVERT_ERROR: "processing-revert-error", DID_ABORT_ITEM_PROCESSING: "cancelled", DID_REVERT_ITEM_PROCESSING: "idle" }, Ws = ({ root: e, props: t }) => {
-  if (e.ref.handleClick = (n) => e.dispatch("DID_ACTIVATE_ITEM", { id: t.id }), e.element.id = `filepond--item-${t.id}`, e.element.addEventListener("click", e.ref.handleClick), e.ref.container = e.appendChildView(e.createChildView(Us, { id: t.id })), e.ref.panel = e.appendChildView(e.createChildView(Bn, { name: "item-panel" })), e.ref.panel.height = null, t.markedForRemoval = !1, !e.query("GET_ALLOW_REORDER"))
+}, $r = { type: "spring", stiffness: 0.75, damping: 0.45, mass: 10 }, Qr = "spring", Zr = { DID_START_ITEM_LOAD: "busy", DID_UPDATE_ITEM_LOAD_PROGRESS: "loading", DID_THROW_ITEM_INVALID: "load-invalid", DID_THROW_ITEM_LOAD_ERROR: "load-error", DID_LOAD_ITEM: "idle", DID_THROW_ITEM_REMOVE_ERROR: "remove-error", DID_START_ITEM_REMOVE: "busy", DID_START_ITEM_PROCESSING: "busy processing", DID_REQUEST_ITEM_PROCESSING: "busy processing", DID_UPDATE_ITEM_PROCESS_PROGRESS: "processing", DID_COMPLETE_ITEM_PROCESSING: "processing-complete", DID_THROW_ITEM_PROCESSING_ERROR: "processing-error", DID_THROW_ITEM_PROCESSING_REVERT_ERROR: "processing-revert-error", DID_ABORT_ITEM_PROCESSING: "cancelled", DID_REVERT_ITEM_PROCESSING: "idle" }, Xs = ({ root: e, props: t }) => {
+  if (e.ref.handleClick = (n) => e.dispatch("DID_ACTIVATE_ITEM", { id: t.id }), e.element.id = `filepond--item-${t.id}`, e.element.addEventListener("click", e.ref.handleClick), e.ref.container = e.appendChildView(e.createChildView(Vs, { id: t.id })), e.ref.panel = e.appendChildView(e.createChildView(Un, { name: "item-panel" })), e.ref.panel.height = null, t.markedForRemoval = !1, !e.query("GET_ALLOW_REORDER"))
     return;
   e.element.dataset.dragState = "idle";
   const r = (n) => {
@@ -2204,7 +2207,7 @@ const me = (e) => {
     let o = !1;
     const s = { x: n.pageX, y: n.pageY };
     t.dragOrigin = { x: e.translateX, y: e.translateY }, t.dragCenter = { x: n.offsetX, y: n.offsetY };
-    const i = zs(e.query("GET_ACTIVE_ITEMS"));
+    const i = Ws(e.query("GET_ACTIVE_ITEMS"));
     e.dispatch("DID_GRAB_ITEM", { id: t.id, dragState: i });
     const a = (u) => {
       u.isPrimary && (u.stopPropagation(), u.preventDefault(), t.dragOffset = { x: u.pageX - s.x, y: u.pageY - s.y }, t.dragOffset.x * t.dragOffset.x + t.dragOffset.y * t.dragOffset.y > 16 && !o && (o = !0, e.element.removeEventListener("click", e.ref.handleClick)), e.dispatch("DID_DRAG_ITEM", { id: t.id, dragState: i }));
@@ -2214,9 +2217,9 @@ const me = (e) => {
     document.addEventListener("pointermove", a), document.addEventListener("pointerup", l);
   };
   e.element.addEventListener("pointerdown", r);
-}, Xs = pe({ DID_UPDATE_PANEL_HEIGHT: ({ root: e, action: t }) => {
+}, js = pe({ DID_UPDATE_PANEL_HEIGHT: ({ root: e, action: t }) => {
   e.height = t.height;
-} }), js = pe({ DID_GRAB_ITEM: ({ root: e, props: t }) => {
+} }), $s = pe({ DID_GRAB_ITEM: ({ root: e, props: t }) => {
   t.dragOrigin = { x: e.translateX, y: e.translateY };
 }, DID_DRAG_ITEM: ({ root: e }) => {
   e.element.dataset.dragState = "drag";
@@ -2227,8 +2230,8 @@ const me = (e) => {
   let o = t.concat().filter((i) => /^DID_/.test(i.type)).reverse().find((i) => Zr[i.type]);
   o && o.type !== r.currentState && (r.currentState = o.type, e.element.dataset.filepondItemState = Zr[r.currentState] || "");
   const s = e.query("GET_ITEM_PANEL_ASPECT_RATIO") || e.query("GET_PANEL_ASPECT_RATIO");
-  s ? n || (e.height = e.rect.element.width * s) : (Xs({ root: e, actions: t, props: r }), !e.height && e.ref.container.rect.element.height > 0 && (e.height = e.ref.container.rect.element.height)), n && (e.ref.panel.height = null), e.ref.panel.height = e.height;
-}), $s = oe({ create: Ws, write: js, destroy: ({ root: e, props: t }) => {
+  s ? n || (e.height = e.rect.element.width * s) : (js({ root: e, actions: t, props: r }), !e.height && e.ref.container.rect.element.height > 0 && (e.height = e.ref.container.rect.element.height)), n && (e.ref.panel.height = null), e.ref.panel.height = e.height;
+}), Qs = oe({ create: Xs, write: $s, destroy: ({ root: e, props: t }) => {
   e.element.removeEventListener("click", e.ref.handleClick), e.dispatch("RELEASE_ITEM", { query: t.id });
 }, tag: "li", name: "item", mixins: { apis: ["id", "interactionMethod", "markedForRemoval", "spawnDate", "dragCenter", "dragOrigin", "dragOffset"], styles: ["translateX", "translateY", "scaleX", "scaleY", "opacity", "height"], animations: { scaleX: Qr, scaleY: Qr, translateX: $r, translateY: $r, opacity: { type: "tween", duration: 150 } } } });
 var or = (e, t) => Math.max(1, Math.floor((e + 1) / t));
@@ -2268,9 +2271,9 @@ const ir = (e, t, r) => {
   (this.width === 0 || e === 0) && (this.width = e);
 }, setDimensions: function(e, t) {
   (this.height === 0 || e === 0) && (this.height = e), (this.width === 0 || t === 0) && (this.width = t);
-} }, Qs = ({ root: e }) => {
+} }, Zs = ({ root: e }) => {
   ne(e.element, "role", "list"), e.ref.lastItemSpanwDate = Date.now();
-}, Zs = ({ root: e, action: t }) => {
+}, Ks = ({ root: e, action: t }) => {
   const { id: r, index: n, interactionMethod: o } = t;
   e.ref.addIndex = n;
   const s = Date.now();
@@ -2280,19 +2283,19 @@ const ir = (e, t, r) => {
     const l = e.query("GET_ITEM_INSERT_INTERVAL"), u = s - e.ref.lastItemSpanwDate;
     i = u < l ? s + (l - u) : s;
   }
-  e.ref.lastItemSpanwDate = i, e.appendChildView(e.createChildView($s, { spawnDate: i, id: r, opacity: a, interactionMethod: o }), n);
+  e.ref.lastItemSpanwDate = i, e.appendChildView(e.createChildView(Qs, { spawnDate: i, id: r, opacity: a, interactionMethod: o }), n);
 }, Kr = (e, t, r, n = 0, o = 1) => {
-  e.dragOffset ? (e.translateX = null, e.translateY = null, e.translateX = e.dragOrigin.x + e.dragOffset.x, e.translateY = e.dragOrigin.y + e.dragOffset.y, e.scaleX = 1.025, e.scaleY = 1.025) : (e.translateX = t, e.translateY = r, Date.now() > e.spawnDate && (e.opacity === 0 && Ks(e, t, r, n, o), e.scaleX = 1, e.scaleY = 1, e.opacity = 1));
-}, Ks = (e, t, r, n, o) => {
+  e.dragOffset ? (e.translateX = null, e.translateY = null, e.translateX = e.dragOrigin.x + e.dragOffset.x, e.translateY = e.dragOrigin.y + e.dragOffset.y, e.scaleX = 1.025, e.scaleY = 1.025) : (e.translateX = t, e.translateY = r, Date.now() > e.spawnDate && (e.opacity === 0 && Js(e, t, r, n, o), e.scaleX = 1, e.scaleY = 1, e.opacity = 1));
+}, Js = (e, t, r, n, o) => {
   e.interactionMethod === Ie.NONE ? (e.translateX = null, e.translateX = t, e.translateY = null, e.translateY = r) : e.interactionMethod === Ie.DROP ? (e.translateX = null, e.translateX = t - n * 20, e.translateY = null, e.translateY = r - o * 10, e.scaleX = 0.8, e.scaleY = 0.8) : e.interactionMethod === Ie.BROWSE ? (e.translateY = null, e.translateY = r - 30) : e.interactionMethod === Ie.API && (e.translateX = null, e.translateX = t - 30, e.translateY = null);
-}, Js = ({ root: e, action: t }) => {
+}, ea = ({ root: e, action: t }) => {
   const { id: r } = t, n = e.childViews.find((o) => o.id === r);
   n && (n.scaleX = 0.9, n.scaleY = 0.9, n.opacity = 0, n.markedForRemoval = !0);
-}, Bt = (e) => e.rect.element.height + e.rect.element.marginBottom * 0.5 + e.rect.element.marginTop * 0.5, ea = (e) => e.rect.element.width + e.rect.element.marginLeft * 0.5 + e.rect.element.marginRight * 0.5, ta = ({ root: e, action: t }) => {
+}, Bt = (e) => e.rect.element.height + e.rect.element.marginBottom * 0.5 + e.rect.element.marginTop * 0.5, ta = (e) => e.rect.element.width + e.rect.element.marginLeft * 0.5 + e.rect.element.marginRight * 0.5, ra = ({ root: e, action: t }) => {
   const { id: r, dragState: n } = t, o = e.query("GET_ITEM", { id: r }), s = e.childViews.find((O) => O.id === r), i = e.childViews.length, a = n.getItemIndex(o);
   if (!s)
     return;
-  const l = { x: s.dragOrigin.x + s.dragOffset.x + s.dragCenter.x, y: s.dragOrigin.y + s.dragOffset.y + s.dragCenter.y }, u = Bt(s), p = ea(s);
+  const l = { x: s.dragOrigin.x + s.dragOffset.x + s.dragCenter.x, y: s.dragOrigin.y + s.dragOffset.y + s.dragCenter.y }, u = Bt(s), p = ta(s);
   let m = Math.floor(e.rect.outer.width / p);
   m > i && (m = i);
   const h = Math.floor(i / m + 1);
@@ -2324,8 +2327,8 @@ const ir = (e, t, r) => {
       return;
     e.dispatch("DID_REORDER_ITEMS", { items: e.query("GET_ACTIVE_ITEMS"), origin: a, target: E });
   }
-}, ra = pe({ DID_ADD_ITEM: Zs, DID_REMOVE_ITEM: Js, DID_DRAG_ITEM: ta }), na = ({ root: e, props: t, actions: r, shouldOptimize: n }) => {
-  ra({ root: e, props: t, actions: r });
+}, na = pe({ DID_ADD_ITEM: Ks, DID_REMOVE_ITEM: ea, DID_DRAG_ITEM: ra }), oa = ({ root: e, props: t, actions: r, shouldOptimize: n }) => {
+  na({ root: e, props: t, actions: r });
   const { dragCoordinates: o } = t, s = e.rect.element.width, i = e.childViews.filter((C) => C.rect.element.height), a = e.query("GET_ACTIVE_ITEMS").map((C) => i.find((N) => N.id === C.id)).filter((C) => C), l = o ? ir(e, a, o) : null, u = e.ref.addIndex || null;
   e.ref.addIndex = null;
   let p = 0, m = 0, h = 0;
@@ -2351,24 +2354,24 @@ const ir = (e, t, r) => {
       C = P, N = q, !L.markedForRemoval && (n && (L.translateX = null, L.translateY = null), Kr(L, P, q, Q, Z));
     });
   }
-}, oa = (e, t) => t.filter((r) => r.data && r.data.id ? e.id === r.data.id : !0), ia = oe({ create: Qs, write: na, tag: "ul", name: "list", didWriteView: ({ root: e }) => {
+}, ia = (e, t) => t.filter((r) => r.data && r.data.id ? e.id === r.data.id : !0), sa = oe({ create: Zs, write: oa, tag: "ul", name: "list", didWriteView: ({ root: e }) => {
   e.childViews.filter((t) => t.markedForRemoval && t.opacity === 0 && t.resting).forEach((t) => {
     t._destroy(), e.removeChildView(t);
   });
-}, filterFrameActionsForChild: oa, mixins: { apis: ["dragCoordinates"] } }), sa = ({ root: e, props: t }) => {
-  e.ref.list = e.appendChildView(e.createChildView(ia)), t.dragCoordinates = null, t.overflowing = !1;
-}, aa = ({ root: e, props: t, action: r }) => {
+}, filterFrameActionsForChild: ia, mixins: { apis: ["dragCoordinates"] } }), aa = ({ root: e, props: t }) => {
+  e.ref.list = e.appendChildView(e.createChildView(sa)), t.dragCoordinates = null, t.overflowing = !1;
+}, la = ({ root: e, props: t, action: r }) => {
   e.query("GET_ITEM_INSERT_LOCATION_FREEDOM") && (t.dragCoordinates = { left: r.position.scopeLeft - e.ref.list.rect.element.left, top: r.position.scopeTop - (e.rect.outer.top + e.rect.element.marginTop + e.rect.element.scrollTop) });
-}, la = ({ props: e }) => {
+}, ca = ({ props: e }) => {
   e.dragCoordinates = null;
-}, ca = pe({ DID_DRAG: aa, DID_END_DRAG: la }), ua = ({ root: e, props: t, actions: r }) => {
-  if (ca({ root: e, props: t, actions: r }), e.ref.list.dragCoordinates = t.dragCoordinates, t.overflowing && !t.overflow && (t.overflowing = !1, e.element.dataset.state = "", e.height = null), t.overflow) {
+}, ua = pe({ DID_DRAG: la, DID_END_DRAG: ca }), da = ({ root: e, props: t, actions: r }) => {
+  if (ua({ root: e, props: t, actions: r }), e.ref.list.dragCoordinates = t.dragCoordinates, t.overflowing && !t.overflow && (t.overflowing = !1, e.element.dataset.state = "", e.height = null), t.overflow) {
     const n = Math.round(t.overflow);
     n !== e.height && (t.overflowing = !0, e.element.dataset.state = "overflow", e.height = n);
   }
-}, da = oe({ create: sa, write: ua, name: "list-scroller", mixins: { apis: ["overflow", "dragCoordinates"], styles: ["height", "translateY"], animations: { translateY: "spring" } } }), Re = (e, t, r, n = "") => {
+}, pa = oe({ create: aa, write: da, name: "list-scroller", mixins: { apis: ["overflow", "dragCoordinates"], styles: ["height", "translateY"], animations: { translateY: "spring" } } }), Re = (e, t, r, n = "") => {
   r ? ne(e, t, n) : e.removeAttribute(t);
-}, pa = (e) => {
+}, fa = (e) => {
   if (!(!e || e.value === "")) {
     try {
       e.value = "";
@@ -2379,68 +2382,68 @@ const ir = (e, t, r) => {
       t.appendChild(e), t.reset(), n ? r.insertBefore(e, n) : r.appendChild(e);
     }
   }
-}, fa = ({ root: e, props: t }) => {
-  e.element.id = `filepond--browser-${t.id}`, ne(e.element, "name", e.query("GET_NAME")), ne(e.element, "aria-controls", `filepond--assistant-${t.id}`), ne(e.element, "aria-labelledby", `filepond--drop-label-${t.id}`), Un({ root: e, action: { value: e.query("GET_ACCEPTED_FILE_TYPES") } }), Vn({ root: e, action: { value: e.query("GET_ALLOW_MULTIPLE") } }), Hn({ root: e, action: { value: e.query("GET_ALLOW_DIRECTORIES_ONLY") } }), $t({ root: e }), Yn({ root: e, action: { value: e.query("GET_REQUIRED") } }), zn({ root: e, action: { value: e.query("GET_CAPTURE_METHOD") } }), e.ref.handleChange = (r) => {
+}, Ea = ({ root: e, props: t }) => {
+  e.element.id = `filepond--browser-${t.id}`, ne(e.element, "name", e.query("GET_NAME")), ne(e.element, "aria-controls", `filepond--assistant-${t.id}`), ne(e.element, "aria-labelledby", `filepond--drop-label-${t.id}`), Vn({ root: e, action: { value: e.query("GET_ACCEPTED_FILE_TYPES") } }), Hn({ root: e, action: { value: e.query("GET_ALLOW_MULTIPLE") } }), Yn({ root: e, action: { value: e.query("GET_ALLOW_DIRECTORIES_ONLY") } }), $t({ root: e }), zn({ root: e, action: { value: e.query("GET_REQUIRED") } }), Wn({ root: e, action: { value: e.query("GET_CAPTURE_METHOD") } }), e.ref.handleChange = (r) => {
     if (!e.element.value)
       return;
     const n = Array.from(e.element.files).map((o) => (o._relativePath = o.webkitRelativePath, o));
     setTimeout(() => {
-      t.onload(n), pa(e.element);
+      t.onload(n), fa(e.element);
     }, 250);
   }, e.element.addEventListener("change", e.ref.handleChange);
-}, Un = ({ root: e, action: t }) => {
-  e.query("GET_ALLOW_SYNC_ACCEPT_ATTRIBUTE") && Re(e.element, "accept", !!t.value, t.value ? t.value.join(",") : "");
 }, Vn = ({ root: e, action: t }) => {
-  Re(e.element, "multiple", t.value);
+  e.query("GET_ALLOW_SYNC_ACCEPT_ATTRIBUTE") && Re(e.element, "accept", !!t.value, t.value ? t.value.join(",") : "");
 }, Hn = ({ root: e, action: t }) => {
+  Re(e.element, "multiple", t.value);
+}, Yn = ({ root: e, action: t }) => {
   Re(e.element, "webkitdirectory", t.value);
 }, $t = ({ root: e }) => {
   const t = e.query("GET_DISABLED"), r = e.query("GET_ALLOW_BROWSE"), n = t || !r;
   Re(e.element, "disabled", n);
-}, Yn = ({ root: e, action: t }) => {
-  t.value ? e.query("GET_TOTAL_ITEMS") === 0 && Re(e.element, "required", !0) : Re(e.element, "required", !1);
 }, zn = ({ root: e, action: t }) => {
+  t.value ? e.query("GET_TOTAL_ITEMS") === 0 && Re(e.element, "required", !0) : Re(e.element, "required", !1);
+}, Wn = ({ root: e, action: t }) => {
   Re(e.element, "capture", !!t.value, t.value === !0 ? "" : t.value);
 }, Jr = ({ root: e }) => {
   const { element: t } = e;
   e.query("GET_TOTAL_ITEMS") > 0 ? (Re(t, "required", !1), Re(t, "name", !1)) : (Re(t, "name", !0, e.query("GET_NAME")), e.query("GET_CHECK_VALIDITY") && t.setCustomValidity(""), e.query("GET_REQUIRED") && Re(t, "required", !0));
-}, Ea = ({ root: e }) => {
+}, ha = ({ root: e }) => {
   e.query("GET_CHECK_VALIDITY") && e.element.setCustomValidity(e.query("GET_LABEL_INVALID_FIELD"));
-}, ha = oe({ tag: "input", name: "browser", ignoreRect: !0, ignoreRectUpdate: !0, attributes: { type: "file" }, create: fa, destroy: ({ root: e }) => {
+}, ma = oe({ tag: "input", name: "browser", ignoreRect: !0, ignoreRectUpdate: !0, attributes: { type: "file" }, create: Ea, destroy: ({ root: e }) => {
   e.element.removeEventListener("change", e.ref.handleChange);
-}, write: pe({ DID_LOAD_ITEM: Jr, DID_REMOVE_ITEM: Jr, DID_THROW_ITEM_INVALID: Ea, DID_SET_DISABLED: $t, DID_SET_ALLOW_BROWSE: $t, DID_SET_ALLOW_DIRECTORIES_ONLY: Hn, DID_SET_ALLOW_MULTIPLE: Vn, DID_SET_ACCEPTED_FILE_TYPES: Un, DID_SET_CAPTURE_METHOD: zn, DID_SET_REQUIRED: Yn }) }), en = { ENTER: 13, SPACE: 32 }, ma = ({ root: e, props: t }) => {
+}, write: pe({ DID_LOAD_ITEM: Jr, DID_REMOVE_ITEM: Jr, DID_THROW_ITEM_INVALID: ha, DID_SET_DISABLED: $t, DID_SET_ALLOW_BROWSE: $t, DID_SET_ALLOW_DIRECTORIES_ONLY: Yn, DID_SET_ALLOW_MULTIPLE: Hn, DID_SET_ACCEPTED_FILE_TYPES: Vn, DID_SET_CAPTURE_METHOD: Wn, DID_SET_REQUIRED: zn }) }), en = { ENTER: 13, SPACE: 32 }, Ta = ({ root: e, props: t }) => {
   const r = we("label");
   ne(r, "for", `filepond--browser-${t.id}`), ne(r, "id", `filepond--drop-label-${t.id}`), ne(r, "aria-hidden", "true"), e.ref.handleKeyDown = (n) => {
     (n.keyCode === en.ENTER || n.keyCode === en.SPACE) && (n.preventDefault(), e.ref.label.click());
   }, e.ref.handleClick = (n) => {
     n.target === r || r.contains(n.target) || e.ref.label.click();
-  }, r.addEventListener("keydown", e.ref.handleKeyDown), e.element.addEventListener("click", e.ref.handleClick), Wn(r, t.caption), e.appendChild(r), e.ref.label = r;
-}, Wn = (e, t) => {
+  }, r.addEventListener("keydown", e.ref.handleKeyDown), e.element.addEventListener("click", e.ref.handleClick), Xn(r, t.caption), e.appendChild(r), e.ref.label = r;
+}, Xn = (e, t) => {
   e.innerHTML = t;
   const r = e.querySelector(".filepond--label-action");
   return r && ne(r, "tabindex", "0"), t;
-}, Ta = oe({ name: "drop-label", ignoreRect: !0, create: ma, destroy: ({ root: e }) => {
+}, _a = oe({ name: "drop-label", ignoreRect: !0, create: Ta, destroy: ({ root: e }) => {
   e.ref.label.addEventListener("keydown", e.ref.handleKeyDown), e.element.removeEventListener("click", e.ref.handleClick);
 }, write: pe({ DID_SET_LABEL_IDLE: ({ root: e, action: t }) => {
-  Wn(e.ref.label, t.value);
-} }), mixins: { styles: ["opacity", "translateX", "translateY"], animations: { opacity: { type: "tween", duration: 150 }, translateX: "spring", translateY: "spring" } } }), _a = oe({ name: "drip-blob", ignoreRect: !0, mixins: { styles: ["translateX", "translateY", "scaleX", "scaleY", "opacity"], animations: { scaleX: "spring", scaleY: "spring", translateX: "spring", translateY: "spring", opacity: { type: "tween", duration: 250 } } } }), Ia = ({ root: e }) => {
+  Xn(e.ref.label, t.value);
+} }), mixins: { styles: ["opacity", "translateX", "translateY"], animations: { opacity: { type: "tween", duration: 150 }, translateX: "spring", translateY: "spring" } } }), Ia = oe({ name: "drip-blob", ignoreRect: !0, mixins: { styles: ["translateX", "translateY", "scaleX", "scaleY", "opacity"], animations: { scaleX: "spring", scaleY: "spring", translateX: "spring", translateY: "spring", opacity: { type: "tween", duration: 250 } } } }), ga = ({ root: e }) => {
   const t = e.rect.element.width * 0.5, r = e.rect.element.height * 0.5;
-  e.ref.blob = e.appendChildView(e.createChildView(_a, { opacity: 0, scaleX: 2.5, scaleY: 2.5, translateX: t, translateY: r }));
-}, ga = ({ root: e, action: t }) => {
+  e.ref.blob = e.appendChildView(e.createChildView(Ia, { opacity: 0, scaleX: 2.5, scaleY: 2.5, translateX: t, translateY: r }));
+}, ya = ({ root: e, action: t }) => {
   if (!e.ref.blob) {
-    Ia({ root: e });
+    ga({ root: e });
     return;
   }
   e.ref.blob.translateX = t.position.scopeLeft, e.ref.blob.translateY = t.position.scopeTop, e.ref.blob.scaleX = 1, e.ref.blob.scaleY = 1, e.ref.blob.opacity = 1;
-}, ya = ({ root: e }) => {
-  e.ref.blob && (e.ref.blob.opacity = 0);
 }, Sa = ({ root: e }) => {
+  e.ref.blob && (e.ref.blob.opacity = 0);
+}, Ra = ({ root: e }) => {
   e.ref.blob && (e.ref.blob.scaleX = 2.5, e.ref.blob.scaleY = 2.5, e.ref.blob.opacity = 0);
-}, Ra = ({ root: e, props: t, actions: r }) => {
-  ba({ root: e, props: t, actions: r });
+}, ba = ({ root: e, props: t, actions: r }) => {
+  va({ root: e, props: t, actions: r });
   const { blob: n } = e.ref;
   r.length === 0 && n && n.opacity === 0 && (e.removeChildView(n), e.ref.blob = null);
-}, ba = pe({ DID_DRAG: ga, DID_DROP: Sa, DID_END_DRAG: ya }), va = oe({ ignoreRect: !0, ignoreRectUpdate: !0, name: "drip", write: Ra }), Xn = (e, t) => {
+}, va = pe({ DID_DRAG: ya, DID_DROP: Ra, DID_END_DRAG: Sa }), Oa = oe({ ignoreRect: !0, ignoreRectUpdate: !0, name: "drip", write: ba }), jn = (e, t) => {
   try {
     const r = new DataTransfer();
     t.forEach((n) => {
@@ -2450,39 +2453,39 @@ const ir = (e, t, r) => {
     return !1;
   }
   return !0;
-}, Oa = ({ root: e }) => e.ref.fields = {}, Mt = (e, t) => e.ref.fields[t], sr = (e) => {
+}, Da = ({ root: e }) => e.ref.fields = {}, Mt = (e, t) => e.ref.fields[t], sr = (e) => {
   e.query("GET_ACTIVE_ITEMS").forEach((t) => {
     e.ref.fields[t.id] && e.element.appendChild(e.ref.fields[t.id]);
   });
-}, tn = ({ root: e }) => sr(e), Da = ({ root: e, action: t }) => {
+}, tn = ({ root: e }) => sr(e), Aa = ({ root: e, action: t }) => {
   const r = e.query("GET_ITEM", t.id).origin !== ie.LOCAL && e.query("SHOULD_UPDATE_FILE_INPUT"), n = we("input");
   n.type = r ? "file" : "hidden", n.name = e.query("GET_NAME"), n.disabled = e.query("GET_DISABLED"), e.ref.fields[t.id] = n, sr(e);
-}, Aa = ({ root: e, action: t }) => {
+}, La = ({ root: e, action: t }) => {
   const r = Mt(e, t.id);
   if (!r || (t.serverFileReference !== null && (r.value = t.serverFileReference), !e.query("SHOULD_UPDATE_FILE_INPUT")))
     return;
   const n = e.query("GET_ITEM", t.id);
-  Xn(r, [n.file]);
-}, La = ({ root: e, action: t }) => {
+  jn(r, [n.file]);
+}, wa = ({ root: e, action: t }) => {
   e.query("SHOULD_UPDATE_FILE_INPUT") && setTimeout(() => {
     const r = Mt(e, t.id);
-    r && Xn(r, [t.file]);
+    r && jn(r, [t.file]);
   }, 0);
-}, wa = ({ root: e }) => {
+}, Pa = ({ root: e }) => {
   e.element.disabled = e.query("GET_DISABLED");
-}, Pa = ({ root: e, action: t }) => {
-  const r = Mt(e, t.id);
-  r && (r.parentNode && r.parentNode.removeChild(r), delete e.ref.fields[t.id]);
 }, Ma = ({ root: e, action: t }) => {
   const r = Mt(e, t.id);
+  r && (r.parentNode && r.parentNode.removeChild(r), delete e.ref.fields[t.id]);
+}, Ca = ({ root: e, action: t }) => {
+  const r = Mt(e, t.id);
   r && (t.value === null ? r.removeAttribute("value") : r.type != "file" && (r.value = t.value), sr(e));
-}, Ca = pe({ DID_SET_DISABLED: wa, DID_ADD_ITEM: Da, DID_LOAD_ITEM: Aa, DID_REMOVE_ITEM: Pa, DID_DEFINE_VALUE: Ma, DID_PREPARE_OUTPUT: La, DID_REORDER_ITEMS: tn, DID_SORT_ITEMS: tn }), Na = oe({ tag: "fieldset", name: "data", create: Oa, write: Ca, ignoreRect: !0 }), Ga = (e) => "getRootNode" in e ? e.getRootNode() : document, Fa = ["jpg", "jpeg", "png", "gif", "bmp", "webp", "svg", "tiff"], xa = ["css", "csv", "html", "txt"], ka = { zip: "zip|compressed", epub: "application/epub+zip" }, jn = (e = "") => (e = e.toLowerCase(), Fa.includes(e) ? "image/" + (e === "jpg" ? "jpeg" : e === "svg" ? "svg+xml" : e) : xa.includes(e) ? "text/" + e : ka[e] || ""), ar = (e) => new Promise((t, r) => {
-  const n = Wa(e);
-  if (n.length && !qa(e))
+}, Na = pe({ DID_SET_DISABLED: Pa, DID_ADD_ITEM: Aa, DID_LOAD_ITEM: La, DID_REMOVE_ITEM: Ma, DID_DEFINE_VALUE: Ca, DID_PREPARE_OUTPUT: wa, DID_REORDER_ITEMS: tn, DID_SORT_ITEMS: tn }), Ga = oe({ tag: "fieldset", name: "data", create: Da, write: Na, ignoreRect: !0 }), Fa = (e) => "getRootNode" in e ? e.getRootNode() : document, xa = ["jpg", "jpeg", "png", "gif", "bmp", "webp", "svg", "tiff"], ka = ["css", "csv", "html", "txt"], qa = { zip: "zip|compressed", epub: "application/epub+zip" }, $n = (e = "") => (e = e.toLowerCase(), xa.includes(e) ? "image/" + (e === "jpg" ? "jpeg" : e === "svg" ? "svg+xml" : e) : ka.includes(e) ? "text/" + e : qa[e] || ""), ar = (e) => new Promise((t, r) => {
+  const n = Xa(e);
+  if (n.length && !Ba(e))
     return t(n);
-  Ba(e).then(t);
-}), qa = (e) => e.files ? e.files.length > 0 : !1, Ba = (e) => new Promise((t, r) => {
-  const n = (e.items ? Array.from(e.items) : []).filter((o) => Ua(o)).map((o) => Va(o));
+  Ua(e).then(t);
+}), Ba = (e) => e.files ? e.files.length > 0 : !1, Ua = (e) => new Promise((t, r) => {
+  const n = (e.items ? Array.from(e.items) : []).filter((o) => Va(o)).map((o) => Ha(o));
   if (!n.length) {
     t(e.files ? Array.from(e.files) : []);
     return;
@@ -2493,20 +2496,20 @@ const ir = (e, t, r) => {
       s.push.apply(s, i);
     }), t(s.filter((i) => i).map((i) => (i._relativePath || (i._relativePath = i.webkitRelativePath), i)));
   }).catch(console.error);
-}), Ua = (e) => {
-  if ($n(e)) {
+}), Va = (e) => {
+  if (Qn(e)) {
     const t = lr(e);
     if (t)
       return t.isFile || t.isDirectory;
   }
   return e.kind === "file";
-}, Va = (e) => new Promise((t, r) => {
-  if (za(e)) {
-    Ha(lr(e)).then(t).catch(r);
+}, Ha = (e) => new Promise((t, r) => {
+  if (Wa(e)) {
+    Ya(lr(e)).then(t).catch(r);
     return;
   }
   t([e.getAsFile()]);
-}), Ha = (e) => new Promise((t, r) => {
+}), Ya = (e) => new Promise((t, r) => {
   const n = [];
   let o = 0, s = 0;
   const i = () => {
@@ -2521,7 +2524,7 @@ const ir = (e, t, r) => {
         }
         m.forEach((h) => {
           h.isDirectory ? a(h) : (s++, h.file((T) => {
-            const E = Ya(T);
+            const E = za(T);
             h.fullPath && (E._relativePath = h.fullPath), n.push(E), s--, i();
           }));
         }), p();
@@ -2530,24 +2533,24 @@ const ir = (e, t, r) => {
     p();
   };
   a(e);
-}), Ya = (e) => {
+}), za = (e) => {
   if (e.type.length)
     return e;
-  const t = e.lastModifiedDate, r = e.name, n = jn(Pt(e.name));
+  const t = e.lastModifiedDate, r = e.name, n = $n(Pt(e.name));
   return n.length && (e = e.slice(0, e.size, n), e.name = r, e.lastModifiedDate = t), e;
-}, za = (e) => $n(e) && (lr(e) || {}).isDirectory, $n = (e) => "webkitGetAsEntry" in e, lr = (e) => e.webkitGetAsEntry(), Wa = (e) => {
+}, Wa = (e) => Qn(e) && (lr(e) || {}).isDirectory, Qn = (e) => "webkitGetAsEntry" in e, lr = (e) => e.webkitGetAsEntry(), Xa = (e) => {
   let t = [];
   try {
-    if (t = ja(e), t.length)
+    if (t = $a(e), t.length)
       return t;
-    t = Xa(e);
+    t = ja(e);
   } catch {
   }
   return t;
-}, Xa = (e) => {
+}, ja = (e) => {
   let t = e.getData("url");
   return typeof t == "string" && t.length ? [t] : [];
-}, ja = (e) => {
+}, $a = (e) => {
   let t = e.getData("text/html");
   if (typeof t == "string" && t.length) {
     const r = t.match(/src\s*=\s*"(.+?)"/);
@@ -2555,8 +2558,8 @@ const ir = (e, t, r) => {
       return [r[1]];
   }
   return [];
-}, bt = [], ze = (e) => ({ pageLeft: e.pageX, pageTop: e.pageY, scopeLeft: e.offsetX || e.layerX, scopeTop: e.offsetY || e.layerY }), $a = (e, t, r) => {
-  const n = Qa(t), o = { element: e, filterElement: r, state: null, ondrop: () => {
+}, bt = [], ze = (e) => ({ pageLeft: e.pageX, pageTop: e.pageY, scopeLeft: e.offsetX || e.layerX, scopeTop: e.offsetY || e.layerY }), Qa = (e, t, r) => {
+  const n = Za(t), o = { element: e, filterElement: r, state: null, ondrop: () => {
   }, onenter: () => {
   }, ondrag: () => {
   }, onexit: () => {
@@ -2564,14 +2567,14 @@ const ir = (e, t, r) => {
   }, allowdrop: () => {
   } };
   return o.destroy = n.addListener(o), o;
-}, Qa = (e) => {
+}, Za = (e) => {
   const t = bt.find((n) => n.element === e);
   if (t)
     return t;
-  const r = Za(e);
+  const r = Ka(e);
   return bt.push(r), r;
-}, Za = (e) => {
-  const t = [], r = { dragenter: Ja, dragover: el, dragleave: rl, drop: tl }, n = {};
+}, Ka = (e) => {
+  const t = [], r = { dragenter: el, dragover: tl, dragleave: nl, drop: rl }, n = {};
   K(r, (s, i) => {
     n[s] = i(e, t), e.addEventListener(s, n[s], !1);
   });
@@ -2581,22 +2584,22 @@ const ir = (e, t, r) => {
     }));
   }) };
   return o;
-}, Ka = (e, t) => ("elementFromPoint" in e || (e = document), e.elementFromPoint(t.x, t.y)), cr = (e, t) => {
-  const r = Ga(t), n = Ka(r, { x: e.pageX - window.pageXOffset, y: e.pageY - window.pageYOffset });
+}, Ja = (e, t) => ("elementFromPoint" in e || (e = document), e.elementFromPoint(t.x, t.y)), cr = (e, t) => {
+  const r = Fa(t), n = Ja(r, { x: e.pageX - window.pageXOffset, y: e.pageY - window.pageYOffset });
   return n === t || t.contains(n);
 };
-let Qn = null;
+let Zn = null;
 const _t = (e, t) => {
   try {
     e.dropEffect = t;
   } catch {
   }
-}, Ja = (e, t) => (r) => {
-  r.preventDefault(), Qn = r.target, t.forEach((n) => {
+}, el = (e, t) => (r) => {
+  r.preventDefault(), Zn = r.target, t.forEach((n) => {
     const { element: o, onenter: s } = n;
     cr(r, o) && (n.state = "enter", s(ze(r)));
   });
-}, el = (e, t) => (r) => {
+}, tl = (e, t) => (r) => {
   r.preventDefault();
   const n = r.dataTransfer;
   ar(n).then((o) => {
@@ -2623,7 +2626,7 @@ const _t = (e, t) => {
         a && !s && _t(n, "none"), i.state && (i.state = null, p(ze(r)));
     });
   });
-}, tl = (e, t) => (r) => {
+}, rl = (e, t) => (r) => {
   r.preventDefault();
   const n = r.dataTransfer;
   ar(n).then((o) => {
@@ -2636,14 +2639,14 @@ const _t = (e, t) => {
       }
     });
   });
-}, rl = (e, t) => (r) => {
-  Qn === r.target && t.forEach((n) => {
+}, nl = (e, t) => (r) => {
+  Zn === r.target && t.forEach((n) => {
     const { onexit: o } = n;
     n.state = null, o(ze(r));
   });
-}, nl = (e, t, r) => {
+}, ol = (e, t, r) => {
   e.classList.add("filepond--hopper");
-  const { catchesDropsOnPage: n, requiresDropOnElement: o, filterItems: s = (p) => p } = r, i = $a(e, n ? document.documentElement : e, o);
+  const { catchesDropsOnPage: n, requiresDropOnElement: o, filterItems: s = (p) => p } = r, i = Qa(e, n ? document.documentElement : e, o);
   let a = "", l = "";
   i.allowdrop = (p) => t(s(p)), i.ondrop = (p, m) => {
     const h = s(m);
@@ -2671,7 +2674,7 @@ const _t = (e, t) => {
   return u;
 };
 let Qt = !1;
-const Ke = [], Zn = (e) => {
+const Ke = [], Kn = (e) => {
   const t = document.activeElement;
   if (t && /textarea|input/i.test(t.nodeName)) {
     let r = !1, n = t;
@@ -2688,45 +2691,45 @@ const Ke = [], Zn = (e) => {
   ar(e.clipboardData).then((r) => {
     r.length && Ke.forEach((n) => n(r));
   });
-}, ol = (e) => {
-  Ke.includes(e) || (Ke.push(e), !Qt && (Qt = !0, document.addEventListener("paste", Zn)));
 }, il = (e) => {
-  er(Ke, Ke.indexOf(e)), Ke.length === 0 && (document.removeEventListener("paste", Zn), Qt = !1);
-}, sl = () => {
+  Ke.includes(e) || (Ke.push(e), !Qt && (Qt = !0, document.addEventListener("paste", Kn)));
+}, sl = (e) => {
+  er(Ke, Ke.indexOf(e)), Ke.length === 0 && (document.removeEventListener("paste", Kn), Qt = !1);
+}, al = () => {
   const e = (r) => {
     t.onload(r);
   }, t = { destroy: () => {
-    il(e);
+    sl(e);
   }, onload: () => {
   } };
-  return ol(e), t;
-}, al = ({ root: e, props: t }) => {
+  return il(e), t;
+}, ll = ({ root: e, props: t }) => {
   e.element.id = `filepond--assistant-${t.id}`, ne(e.element, "role", "status"), ne(e.element, "aria-live", "polite"), ne(e.element, "aria-relevant", "additions");
 };
 let rn = null, nn = null;
 const Ut = [], Ct = (e, t) => {
   e.element.textContent = t;
-}, ll = (e) => {
+}, cl = (e) => {
   e.element.textContent = "";
-}, Kn = (e, t, r) => {
+}, Jn = (e, t, r) => {
   const n = e.query("GET_TOTAL_ITEMS");
   Ct(e, `${r} ${t}, ${n} ${n === 1 ? e.query("GET_LABEL_FILE_COUNT_SINGULAR") : e.query("GET_LABEL_FILE_COUNT_PLURAL")}`), clearTimeout(nn), nn = setTimeout(() => {
-    ll(e);
+    cl(e);
   }, 1500);
-}, Jn = (e) => e.element.parentNode.contains(document.activeElement), cl = ({ root: e, action: t }) => {
-  if (!Jn(e))
+}, eo = (e) => e.element.parentNode.contains(document.activeElement), ul = ({ root: e, action: t }) => {
+  if (!eo(e))
     return;
   e.element.textContent = "";
   const r = e.query("GET_ITEM", t.id);
   Ut.push(r.filename), clearTimeout(rn), rn = setTimeout(() => {
-    Kn(e, Ut.join(", "), e.query("GET_LABEL_FILE_ADDED")), Ut.length = 0;
+    Jn(e, Ut.join(", "), e.query("GET_LABEL_FILE_ADDED")), Ut.length = 0;
   }, 750);
-}, ul = ({ root: e, action: t }) => {
-  if (!Jn(e))
+}, dl = ({ root: e, action: t }) => {
+  if (!eo(e))
     return;
   const r = t.item;
-  Kn(e, r.filename, e.query("GET_LABEL_FILE_REMOVED"));
-}, dl = ({ root: e, action: t }) => {
+  Jn(e, r.filename, e.query("GET_LABEL_FILE_REMOVED"));
+}, pl = ({ root: e, action: t }) => {
   const r = e.query("GET_ITEM", t.id).filename, n = e.query("GET_LABEL_FILE_PROCESSING_COMPLETE");
   Ct(e, `${r} ${n}`);
 }, on = ({ root: e, action: t }) => {
@@ -2735,7 +2738,7 @@ const Ut = [], Ct = (e, t) => {
 }, It = ({ root: e, action: t }) => {
   const r = e.query("GET_ITEM", t.id).filename;
   Ct(e, `${t.status.main} ${r} ${t.status.sub}`);
-}, pl = oe({ create: al, ignoreRect: !0, ignoreRectUpdate: !0, write: pe({ DID_LOAD_ITEM: cl, DID_REMOVE_ITEM: ul, DID_COMPLETE_ITEM_PROCESSING: dl, DID_ABORT_ITEM_PROCESSING: on, DID_REVERT_ITEM_PROCESSING: on, DID_THROW_ITEM_REMOVE_ERROR: It, DID_THROW_ITEM_LOAD_ERROR: It, DID_THROW_ITEM_INVALID: It, DID_THROW_ITEM_PROCESSING_ERROR: It }), tag: "span", name: "assistant" }), eo = (e, t = "-") => e.replace(new RegExp(`${t}.`, "g"), (r) => r.charAt(1).toUpperCase()), to = (e, t = 16, r = !0) => {
+}, fl = oe({ create: ll, ignoreRect: !0, ignoreRectUpdate: !0, write: pe({ DID_LOAD_ITEM: ul, DID_REMOVE_ITEM: dl, DID_COMPLETE_ITEM_PROCESSING: pl, DID_ABORT_ITEM_PROCESSING: on, DID_REVERT_ITEM_PROCESSING: on, DID_THROW_ITEM_REMOVE_ERROR: It, DID_THROW_ITEM_LOAD_ERROR: It, DID_THROW_ITEM_INVALID: It, DID_THROW_ITEM_PROCESSING_ERROR: It }), tag: "span", name: "assistant" }), to = (e, t = "-") => e.replace(new RegExp(`${t}.`, "g"), (r) => r.charAt(1).toUpperCase()), ro = (e, t = 16, r = !0) => {
   let n = Date.now(), o = null;
   return (...s) => {
     clearTimeout(o);
@@ -2744,15 +2747,15 @@ const Ut = [], Ct = (e, t) => {
     };
     i < t ? r || (o = setTimeout(a, t - i)) : a();
   };
-}, fl = 1e6, vt = (e) => e.preventDefault(), El = ({ root: e, props: t }) => {
+}, El = 1e6, vt = (e) => e.preventDefault(), hl = ({ root: e, props: t }) => {
   const r = e.query("GET_ID");
   r && (e.element.id = r);
   const n = e.query("GET_CLASS_NAME");
   n && n.split(" ").filter((a) => a.length).forEach((a) => {
     e.element.classList.add(a);
-  }), e.ref.label = e.appendChildView(e.createChildView(Ta, { ...t, translateY: null, caption: e.query("GET_LABEL_IDLE") })), e.ref.list = e.appendChildView(e.createChildView(da, { translateY: null })), e.ref.panel = e.appendChildView(e.createChildView(Bn, { name: "panel-root" })), e.ref.assistant = e.appendChildView(e.createChildView(pl, { ...t })), e.ref.data = e.appendChildView(e.createChildView(Na, { ...t })), e.ref.measure = we("div"), e.ref.measure.style.height = "100%", e.element.appendChild(e.ref.measure), e.ref.bounds = null, e.query("GET_STYLES").filter((a) => !Le(a.value)).map(({ name: a, value: l }) => {
+  }), e.ref.label = e.appendChildView(e.createChildView(_a, { ...t, translateY: null, caption: e.query("GET_LABEL_IDLE") })), e.ref.list = e.appendChildView(e.createChildView(pa, { translateY: null })), e.ref.panel = e.appendChildView(e.createChildView(Un, { name: "panel-root" })), e.ref.assistant = e.appendChildView(e.createChildView(fl, { ...t })), e.ref.data = e.appendChildView(e.createChildView(Ga, { ...t })), e.ref.measure = we("div"), e.ref.measure.style.height = "100%", e.element.appendChild(e.ref.measure), e.ref.bounds = null, e.query("GET_STYLES").filter((a) => !Le(a.value)).map(({ name: a, value: l }) => {
     e.element.dataset[a] = l;
-  }), e.ref.widthPrevious = null, e.ref.widthUpdated = to(() => {
+  }), e.ref.widthPrevious = null, e.ref.widthUpdated = ro(() => {
     e.ref.updateHistory = [], e.dispatch("DID_RESIZE_ROOT");
   }, 250), e.ref.previousAspectRatio = null, e.ref.updateHistory = [];
   const o = window.matchMedia("(pointer: fine) and (hover: hover)").matches, s = "PointerEvent" in window;
@@ -2762,24 +2765,24 @@ const Ut = [], Ct = (e, t) => {
     const a = document.createElement("a");
     a.className = "filepond--credits", a.setAttribute("aria-hidden", "true"), a.href = i[0], a.tabindex = -1, a.target = "_blank", a.rel = "noopener noreferrer", a.textContent = i[1], e.element.appendChild(a), e.ref.credits = a;
   }
-}, hl = ({ root: e, props: t, actions: r }) => {
-  if (gl({ root: e, props: t, actions: r }), r.filter((F) => /^DID_SET_STYLE_/.test(F.type)).filter((F) => !Le(F.data.value)).map(({ type: F, data: A }) => {
-    const w = eo(F.substring(8).toLowerCase(), "_");
+}, ml = ({ root: e, props: t, actions: r }) => {
+  if (yl({ root: e, props: t, actions: r }), r.filter((F) => /^DID_SET_STYLE_/.test(F.type)).filter((F) => !Le(F.data.value)).map(({ type: F, data: A }) => {
+    const w = to(F.substring(8).toLowerCase(), "_");
     e.element.dataset[w] = A.value, e.invalidateLayout();
   }), e.rect.element.hidden)
     return;
   e.rect.element.width !== e.ref.widthPrevious && (e.ref.widthPrevious = e.rect.element.width, e.ref.widthUpdated());
   let n = e.ref.bounds;
-  n || (n = e.ref.bounds = _l(e), e.element.removeChild(e.ref.measure), e.ref.measure = null);
+  n || (n = e.ref.bounds = Il(e), e.element.removeChild(e.ref.measure), e.ref.measure = null);
   const { hopper: o, label: s, list: i, panel: a } = e.ref;
   o && o.updateHopperState();
-  const l = e.query("GET_PANEL_ASPECT_RATIO"), u = e.query("GET_ALLOW_MULTIPLE"), p = e.query("GET_TOTAL_ITEMS"), m = u ? e.query("GET_MAX_FILES") || fl : 1, h = p === m, T = r.find((F) => F.type === "DID_ADD_ITEM");
+  const l = e.query("GET_PANEL_ASPECT_RATIO"), u = e.query("GET_ALLOW_MULTIPLE"), p = e.query("GET_TOTAL_ITEMS"), m = u ? e.query("GET_MAX_FILES") || El : 1, h = p === m, T = r.find((F) => F.type === "DID_ADD_ITEM");
   if (h && T) {
     const F = T.data.interactionMethod;
     s.opacity = 0, u ? s.translateY = -40 : F === Ie.API ? s.translateX = 40 : F === Ie.BROWSE ? s.translateY = 40 : s.translateY = 30;
   } else
     h || (s.opacity = 1, s.translateX = 0, s.translateY = 0);
-  const E = ml(e), I = Tl(e), O = s.rect.element.height, b = !u || h ? 0 : O, D = h ? i.rect.element.marginTop : 0, C = p === 0 ? 0 : i.rect.element.marginBottom, N = b + D + I.visual + C, L = b + D + I.bounds + C;
+  const E = Tl(e), I = _l(e), O = s.rect.element.height, b = !u || h ? 0 : O, D = h ? i.rect.element.marginTop : 0, C = p === 0 ? 0 : i.rect.element.marginBottom, N = b + D + I.visual + C, L = b + D + I.bounds + C;
   if (i.translateY = Math.max(0, b - i.rect.element.marginTop) - E.top, l) {
     const F = e.rect.element.width, A = F * l;
     l !== e.ref.previousAspectRatio && (e.ref.previousAspectRatio = l, e.ref.updateHistory = []);
@@ -2810,10 +2813,10 @@ const Ut = [], Ct = (e, t) => {
     a.scalable = !0, a.height = Math.max(O, N - F), e.height = Math.max(O, L - F);
   }
   e.ref.credits && a.heightCurrent && (e.ref.credits.style.transform = `translateY(${a.heightCurrent}px)`);
-}, ml = (e) => {
+}, Tl = (e) => {
   const t = e.ref.list.childViews[0].childViews[0];
   return t ? { top: t.rect.element.marginTop, bottom: t.rect.element.marginBottom } : { top: 0, bottom: 0 };
-}, Tl = (e) => {
+}, _l = (e) => {
   let t = 0, r = 0;
   const n = e.ref.list, o = n.childViews[0], s = o.childViews.filter((D) => D.rect.element.height), i = e.query("GET_ACTIVE_ITEMS").map((D) => s.find((C) => C.id === D.id)).filter((D) => D);
   if (i.length === 0)
@@ -2823,7 +2826,7 @@ const Ut = [], Ct = (e, t) => {
     const C = D.rect.element.height + p;
     r += C, t += C * D.opacity;
   }) : (r = Math.ceil(O / b) * T, t = r), { visual: t, bounds: r };
-}, _l = (e) => {
+}, Il = (e) => {
   const t = e.ref.measureHeight || null;
   return { cappedHeight: parseInt(e.style.maxHeight, 10) || null, fixedHeight: t === 0 ? null : t };
 }, ur = (e, t) => {
@@ -2831,13 +2834,13 @@ const Ut = [], Ct = (e, t) => {
   let s = e.query("GET_MAX_FILES");
   const i = t.length;
   return !n && i > 1 ? (e.dispatch("DID_THROW_MAX_FILES", { source: t, error: J("warning", 0, "Max files") }), !0) : (s = n ? s : 1, !n && r ? !1 : tt(s) && o + i > s ? (e.dispatch("DID_THROW_MAX_FILES", { source: t, error: J("warning", 0, "Max files") }), !0) : !1);
-}, Il = (e, t, r) => {
+}, gl = (e, t, r) => {
   const n = e.childViews[0];
   return ir(n, t, { left: r.scopeLeft - n.rect.element.left, top: r.scopeTop - (e.rect.outer.top + e.rect.element.marginTop + e.rect.element.scrollTop) });
 }, sn = (e) => {
   const t = e.query("GET_ALLOW_DROP"), r = e.query("GET_DISABLED"), n = t && !r;
   if (n && !e.ref.hopper) {
-    const o = nl(e.element, (s) => {
+    const o = ol(e.element, (s) => {
       const i = e.query("GET_BEFORE_DROP_FILE") || (() => !0);
       return e.query("GET_DROP_VALIDATION") ? s.every((a) => Xe("ALLOW_HOPPER_ITEM", a, { query: e.query }).every((l) => l === !0) && i(a)) : !0;
     }, { filterItems: (s) => {
@@ -2849,20 +2852,20 @@ const Ut = [], Ct = (e, t) => {
       ye("ADD_ITEMS", s, { dispatch: e.dispatch }).then((u) => {
         if (ur(e, u))
           return !1;
-        e.dispatch("ADD_ITEMS", { items: u, index: Il(e.ref.list, l, i), interactionMethod: Ie.DROP });
+        e.dispatch("ADD_ITEMS", { items: u, index: gl(e.ref.list, l, i), interactionMethod: Ie.DROP });
       }), e.dispatch("DID_DROP", { position: i }), e.dispatch("DID_END_DRAG", { position: i });
     }, o.ondragstart = (s) => {
       e.dispatch("DID_START_DRAG", { position: s });
-    }, o.ondrag = to((s) => {
+    }, o.ondrag = ro((s) => {
       e.dispatch("DID_DRAG", { position: s });
     }), o.ondragend = (s) => {
       e.dispatch("DID_END_DRAG", { position: s });
-    }, e.ref.hopper = o, e.ref.drip = e.appendChildView(e.createChildView(va));
+    }, e.ref.hopper = o, e.ref.drip = e.appendChildView(e.createChildView(Oa));
   } else
     !n && e.ref.hopper && (e.ref.hopper.destroy(), e.ref.hopper = null, e.removeChildView(e.ref.drip));
 }, an = (e, t) => {
   const r = e.query("GET_ALLOW_BROWSE"), n = e.query("GET_DISABLED"), o = r && !n;
-  o && !e.ref.browser ? e.ref.browser = e.appendChildView(e.createChildView(ha, { ...t, onload: (s) => {
+  o && !e.ref.browser ? e.ref.browser = e.appendChildView(e.createChildView(ma, { ...t, onload: (s) => {
     ye("ADD_ITEMS", s, { dispatch: e.dispatch }).then((i) => {
       if (ur(e, i))
         return !1;
@@ -2871,14 +2874,14 @@ const Ut = [], Ct = (e, t) => {
   } }), 0) : !o && e.ref.browser && (e.removeChildView(e.ref.browser), e.ref.browser = null);
 }, ln = (e) => {
   const t = e.query("GET_ALLOW_PASTE"), r = e.query("GET_DISABLED"), n = t && !r;
-  n && !e.ref.paster ? (e.ref.paster = sl(), e.ref.paster.onload = (o) => {
+  n && !e.ref.paster ? (e.ref.paster = al(), e.ref.paster.onload = (o) => {
     ye("ADD_ITEMS", o, { dispatch: e.dispatch }).then((s) => {
       if (ur(e, s))
         return !1;
       e.dispatch("ADD_ITEMS", { items: s, index: -1, interactionMethod: Ie.PASTE });
     });
   }) : !n && e.ref.paster && (e.ref.paster.destroy(), e.ref.paster = null);
-}, gl = pe({ DID_SET_ALLOW_BROWSE: ({ root: e, props: t }) => {
+}, yl = pe({ DID_SET_ALLOW_BROWSE: ({ root: e, props: t }) => {
   an(e, t);
 }, DID_SET_ALLOW_DROP: ({ root: e }) => {
   sn(e);
@@ -2886,13 +2889,13 @@ const Ut = [], Ct = (e, t) => {
   ln(e);
 }, DID_SET_DISABLED: ({ root: e, props: t }) => {
   sn(e), ln(e), an(e, t), e.query("GET_DISABLED") ? e.element.dataset.disabled = "disabled" : e.element.removeAttribute("data-disabled");
-} }), yl = oe({ name: "root", read: ({ root: e }) => {
+} }), Sl = oe({ name: "root", read: ({ root: e }) => {
   e.ref.measure && (e.ref.measureHeight = e.ref.measure.offsetHeight);
-}, create: El, write: hl, destroy: ({ root: e }) => {
+}, create: hl, write: ml, destroy: ({ root: e }) => {
   e.ref.paster && e.ref.paster.destroy(), e.ref.hopper && e.ref.hopper.destroy(), e.element.removeEventListener("touchmove", vt), e.element.removeEventListener("gesturestart", vt);
-}, mixins: { styles: ["height"] } }), Sl = (e = {}) => {
+}, mixins: { styles: ["height"] } }), Rl = (e = {}) => {
   let t = null;
-  const r = Rt(), n = ko(Ri(r), [Ui, Oi(r)], [fs, vi(r)]);
+  const r = Rt(), n = qo(bi(r), [Vi, Di(r)], [Es, Oi(r)]);
   n.dispatch("SET_OPTIONS", { options: e });
   const o = () => {
     document.hidden || n.dispatch("KICK");
@@ -2905,13 +2908,13 @@ const Ut = [], Ct = (e, t) => {
     }, 500);
   };
   window.addEventListener("resize", p);
-  const m = yl(n, { id: Jt() });
+  const m = Sl(n, { id: Jt() });
   let h = !1, T = !1;
   const E = { _read: () => {
     i && (u = window.innerWidth, l || (l = u), !a && u !== l && (n.dispatch("DID_START_RESIZE"), a = !0)), T && h && (h = m.element.offsetParent === null), !h && (m._read(), T = m.rect.element.hidden);
   }, _write: (y) => {
     const R = n.processActionQueue().filter((M) => !/^SET_/.test(M.type));
-    h && !R.length || (D(R), h = m._write(y, R, a), Li(n.query("GET_ITEMS")), h && n.processDispatchQueue());
+    h && !R.length || (D(R), h = m._write(y, R, a), wi(n.query("GET_ITEMS")), h && n.processDispatchQueue());
   } }, I = (y) => (R) => {
     const M = { type: y };
     if (!R)
@@ -2980,7 +2983,7 @@ const Ut = [], Ct = (e, t) => {
     typeof R[R.length - 1] == "object" ? M = R.pop() : Array.isArray(y[0]) && (M = y[1]);
     const x = P();
     return R.length ? R.map((V) => Be(V) ? x[V] ? x[V].id : null : V).filter((V) => V).map((V) => w(V, M)) : Promise.all(x.map((V) => w(V, M)));
-  }, W = { ...wt(), ...E, ...bi(n, r), setOptions: C, addFile: F, addFiles: z, getFile: N, processFile: q, prepareFile: L, removeFile: w, moveFile: (y, R) => n.dispatch("MOVE_ITEM", { query: y, index: R }), getFiles: P, processFiles: Z, removeFiles: v, prepareFiles: Q, sort: (y) => n.dispatch("SORT", { compare: y }), browse: () => {
+  }, W = { ...wt(), ...E, ...vi(n, r), setOptions: C, addFile: F, addFiles: z, getFile: N, processFile: q, prepareFile: L, removeFile: w, moveFile: (y, R) => n.dispatch("MOVE_ITEM", { query: y, index: R }), getFiles: P, processFiles: Z, removeFiles: v, prepareFiles: Q, sort: (y) => n.dispatch("SORT", { compare: y }), browse: () => {
     var y = m.element.querySelector("input[type=file]");
     y && y.click();
   }, destroy: () => {
@@ -2991,12 +2994,12 @@ const Ut = [], Ct = (e, t) => {
     t && (Mr(t, m.element), m.element.parentNode.removeChild(m.element), t = null);
   }, isAttachedTo: (y) => m.element === y || t === y, element: { get: () => m.element }, status: { get: () => n.query("GET_STATUS") } };
   return n.dispatch("DID_INIT"), Fe(W);
-}, ro = (e = {}) => {
+}, no = (e = {}) => {
   const t = {};
   return K(Rt(), (r, n) => {
     t[r] = n[0];
-  }), Sl({ ...t, ...e });
-}, Rl = (e) => e.charAt(0).toLowerCase() + e.slice(1), bl = (e) => eo(e.replace(/^data-/, "")), no = (e, t) => {
+  }), Rl({ ...t, ...e });
+}, bl = (e) => e.charAt(0).toLowerCase() + e.slice(1), vl = (e) => to(e.replace(/^data-/, "")), oo = (e, t) => {
   K(t, (r, n) => {
     K(e, (o, s) => {
       const i = new RegExp(r);
@@ -3007,34 +3010,34 @@ const Ut = [], Ct = (e, t) => {
         return;
       }
       const a = n.group;
-      se(n) && !e[a] && (e[a] = {}), e[a][Rl(o.replace(i, ""))] = s;
-    }), n.mapping && no(e[n.group], n.mapping);
+      se(n) && !e[a] && (e[a] = {}), e[a][bl(o.replace(i, ""))] = s;
+    }), n.mapping && oo(e[n.group], n.mapping);
   });
-}, vl = (e, t = {}) => {
+}, Ol = (e, t = {}) => {
   const r = [];
   K(e.attributes, (o) => {
     r.push(e.attributes[o]);
   });
   const n = r.filter((o) => o.name).reduce((o, s) => {
     const i = ne(e, s.name);
-    return o[bl(s.name)] = i === s.name ? !0 : i, o;
+    return o[vl(s.name)] = i === s.name ? !0 : i, o;
   }, {});
-  return no(n, t), n;
-}, Ol = (e, t = {}) => {
+  return oo(n, t), n;
+}, Dl = (e, t = {}) => {
   const r = { "^class$": "className", "^multiple$": "allowMultiple", "^capture$": "captureMethod", "^webkitdirectory$": "allowDirectoriesOnly", "^server": { group: "server", mapping: { "^process": { group: "process" }, "^revert": { group: "revert" }, "^fetch": { group: "fetch" }, "^restore": { group: "restore" }, "^load": { group: "load" } } }, "^type$": !1, "^files$": !1 };
   Xe("SET_ATTRIBUTE_TO_OPTION_MAP", r);
-  const n = { ...t }, o = vl(e.nodeName === "FIELDSET" ? e.querySelector("input[type=file]") : e, r);
+  const n = { ...t }, o = Ol(e.nodeName === "FIELDSET" ? e.querySelector("input[type=file]") : e, r);
   Object.keys(o).forEach((i) => {
     se(o[i]) ? (se(n[i]) || (n[i] = {}), Object.assign(n[i], o[i])) : n[i] = o[i];
   }), n.files = (t.files || []).concat(Array.from(e.querySelectorAll("input:not([type=file])")).map((i) => ({ source: i.value, options: { type: i.dataset.type } })));
-  const s = ro(n);
+  const s = no(n);
   return e.files && Array.from(e.files).forEach((i) => {
     s.addFile(i);
   }), s.replaceElement(e), s;
-}, Dl = (...e) => xo(e[0]) ? Ol(...e) : ro(...e), Al = ["fire", "_read", "_write"], cn = (e) => {
+}, Al = (...e) => ko(e[0]) ? Dl(...e) : no(...e), Ll = ["fire", "_read", "_write"], cn = (e) => {
   const t = {};
-  return bn(e, t, Al), t;
-}, Ll = (e, t) => e.replace(/(?:{([a-zA-Z]+)})/g, (r, n) => t[n]), wl = (e) => {
+  return vn(e, t, Ll), t;
+}, wl = (e, t) => e.replace(/(?:{([a-zA-Z]+)})/g, (r, n) => t[n]), Pl = (e) => {
   const t = new Blob(["(", e.toString(), ")()"], { type: "application/javascript" }), r = URL.createObjectURL(t), n = new Worker(r);
   return { transfer: (o, s) => {
   }, post: (o, s, i) => {
@@ -3045,30 +3048,30 @@ const Ut = [], Ct = (e, t) => {
   }, terminate: () => {
     n.terminate(), URL.revokeObjectURL(r);
   } };
-}, Pl = (e) => new Promise((t, r) => {
+}, Ml = (e) => new Promise((t, r) => {
   const n = new Image();
   n.onload = () => {
     t(n);
   }, n.onerror = (o) => {
     r(o);
   }, n.src = e;
-}), oo = (e, t) => {
+}), io = (e, t) => {
   const r = e.slice(0, e.size, e.type);
   return r.lastModifiedDate = e.lastModifiedDate, r.name = t, r;
-}, Ml = (e) => oo(e, e.name), un = [], Cl = (e) => {
+}, Cl = (e) => io(e, e.name), un = [], Nl = (e) => {
   if (un.includes(e))
     return;
   un.push(e);
-  const t = e({ addFilter: Pi, utils: { Type: g, forin: K, isString: de, isFile: et, toNaturalFileSize: xn, replaceInString: Ll, getExtensionFromFilename: Pt, getFilenameWithoutExtension: Nn, guesstimateMimeType: jn, getFileFromBlob: Je, getFilenameFromURL: dt, createRoute: pe, createWorker: wl, createView: oe, createItemAPI: Ee, loadImage: Pl, copyFile: Ml, renameFile: oo, createBlob: Pn, applyFilterChain: ye, text: ee, getNumericAspectRatioFromString: Dn }, views: { fileActionButton: Fn } });
-  Mi(t.options);
-}, Nl = () => Object.prototype.toString.call(window.operamini) === "[object OperaMini]", Gl = () => "Promise" in window, Fl = () => "slice" in Blob.prototype, xl = () => "URL" in window && "createObjectURL" in window.URL, kl = () => "visibilityState" in document, ql = () => "performance" in window, Bl = () => "supports" in (window.CSS || {}), Ul = () => /MSIE|Trident/.test(window.navigator.userAgent), dn = (() => {
-  const e = _n() && !Nl() && kl() && Gl() && Fl() && xl() && ql() && (Bl() || Ul());
+  const t = e({ addFilter: Mi, utils: { Type: g, forin: K, isString: de, isFile: et, toNaturalFileSize: kn, replaceInString: wl, getExtensionFromFilename: Pt, getFilenameWithoutExtension: Gn, guesstimateMimeType: $n, getFileFromBlob: Je, getFilenameFromURL: dt, createRoute: pe, createWorker: Pl, createView: oe, createItemAPI: Ee, loadImage: Ml, copyFile: Cl, renameFile: io, createBlob: Mn, applyFilterChain: ye, text: ee, getNumericAspectRatioFromString: An }, views: { fileActionButton: xn } });
+  Ci(t.options);
+}, Gl = () => Object.prototype.toString.call(window.operamini) === "[object OperaMini]", Fl = () => "Promise" in window, xl = () => "slice" in Blob.prototype, kl = () => "URL" in window && "createObjectURL" in window.URL, ql = () => "visibilityState" in document, Bl = () => "performance" in window, Ul = () => "supports" in (window.CSS || {}), Vl = () => /MSIE|Trident/.test(window.navigator.userAgent), dn = (() => {
+  const e = In() && !Gl() && ql() && Fl() && xl() && kl() && Bl() && (Ul() || Vl());
   return () => e;
-})(), Ce = { apps: [] }, Vl = "filepond", je = () => {
+})(), Ce = { apps: [] }, Hl = "filepond", je = () => {
 };
 let Zt = {}, pn = {}, yt = je, Vt = je, fn = je, En = je, Ot = je, hn = je, mn = je;
 if (dn()) {
-  ci(() => {
+  ui(() => {
     Ce.apps.forEach((r) => r._read());
   }, (r) => {
     Ce.apps.forEach((n) => n._write(r));
@@ -3080,17 +3083,17 @@ if (dn()) {
   const t = () => K(Rt(), (r, n) => {
     pn[r] = n[1];
   });
-  Zt = { ...An }, pn = {}, t(), yt = (...r) => {
-    const n = Dl(...r);
+  Zt = { ...Ln }, pn = {}, t(), yt = (...r) => {
+    const n = Al(...r);
     return n.on("destroy", Vt), Ce.apps.push(n), cn(n);
   }, Vt = (r) => {
     const n = Ce.apps.findIndex((o) => o.isAttachedTo(r));
     return n >= 0 ? (Ce.apps.splice(n, 1)[0].restoreElement(), !0) : !1;
-  }, fn = (r) => Array.from(r.querySelectorAll(`.${Vl}`)).filter((n) => !Ce.apps.find((o) => o.isAttachedTo(n))).map((n) => yt(n)), En = (r) => {
+  }, fn = (r) => Array.from(r.querySelectorAll(`.${Hl}`)).filter((n) => !Ce.apps.find((o) => o.isAttachedTo(n))).map((n) => yt(n)), En = (r) => {
     const n = Ce.apps.find((o) => o.isAttachedTo(r));
     return n ? cn(n) : null;
   }, Ot = (...r) => {
-    r.forEach(Cl), t();
+    r.forEach(Nl), t();
   }, hn = () => {
     const r = {};
     return K(Rt(), (n, o) => {
@@ -3098,14 +3101,14 @@ if (dn()) {
     }), r;
   }, mn = (r) => (se(r) && (Ce.apps.forEach((n) => {
     n.setOptions(r);
-  }), Ci(r)), hn());
+  }), Ni(r)), hn());
 }
 /*!
 * FilePondPluginFileValidateSize 2.2.8
 * Licensed under MIT, https://opensource.org/licenses/MIT/
 * Please visit https://pqina.nl/filepond/ for details.
 */
-const io = ({ addFilter: e, utils: t }) => {
+const so = ({ addFilter: e, utils: t }) => {
   const { Type: r, replaceInString: n, toNaturalFileSize: o } = t;
   return e("ALLOW_HOPPER_ITEM", (s, { query: i }) => {
     if (!i("GET_ALLOW_FILE_SIZE_VALIDATION"))
@@ -3138,14 +3141,14 @@ const io = ({ addFilter: e, utils: t }) => {
     }
     a(s);
   })), { options: { allowFileSizeValidation: [!0, r.BOOLEAN], maxFileSize: [null, r.INT], minFileSize: [null, r.INT], maxTotalFileSize: [null, r.INT], fileValidateSizeFilter: [null, r.FUNCTION], labelMinFileSizeExceeded: ["File is too small", r.STRING], labelMinFileSize: ["Minimum file size is {filesize}", r.STRING], labelMaxFileSizeExceeded: ["File is too large", r.STRING], labelMaxFileSize: ["Maximum file size is {filesize}", r.STRING], labelMaxTotalFileSizeExceeded: ["Maximum total size exceeded", r.STRING], labelMaxTotalFileSize: ["Maximum total file size is {filesize}", r.STRING] } };
-}, Hl = typeof window < "u" && typeof window.document < "u";
-Hl && document.dispatchEvent(new CustomEvent("FilePond:pluginloaded", { detail: io }));
+}, Yl = typeof window < "u" && typeof window.document < "u";
+Yl && document.dispatchEvent(new CustomEvent("FilePond:pluginloaded", { detail: so }));
 /*!
 * FilePondPluginFileValidateType 1.2.9
 * Licensed under MIT, https://opensource.org/licenses/MIT/
 * Please visit https://pqina.nl/filepond/ for details.
 */
-const so = ({ addFilter: e, utils: t }) => {
+const ao = ({ addFilter: e, utils: t }) => {
   const { Type: r, isString: n, replaceInString: o, guesstimateMimeType: s, getExtensionFromFilename: i, getFilenameFromURL: a } = t, l = (T, E) => {
     const I = (/^[^/]+/.exec(T) || []).pop(), O = E.slice(0, -2);
     return I === O;
@@ -3182,8 +3185,8 @@ const so = ({ addFilter: e, utils: t }) => {
       I(T);
     }).catch(N);
   })), { options: { allowFileTypeValidation: [!0, r.BOOLEAN], acceptedFileTypes: [[], r.ARRAY], labelFileTypeNotAllowed: ["File is of invalid type", r.STRING], fileValidateTypeLabelExpectedTypes: ["Expects {allButLastType} or {lastType}", r.STRING], fileValidateTypeLabelExpectedTypesMap: [{}, r.OBJECT], fileValidateTypeDetectType: [null, r.FUNCTION] } };
-}, Yl = typeof window < "u" && typeof window.document < "u";
-Yl && document.dispatchEvent(new CustomEvent("FilePond:pluginloaded", { detail: so }));
+}, zl = typeof window < "u" && typeof window.document < "u";
+zl && document.dispatchEvent(new CustomEvent("FilePond:pluginloaded", { detail: ao }));
 class We {
   constructor(t) {
     if (t.dataset.refFileUpload)
@@ -3193,8 +3196,8 @@ class We {
     r.onBeforeSubmit = () => this.beforeSubmit(), r.onPayload = (n) => this.onPayload(n), r.onInput = async (n, o) => await this.inputHandler(n, o);
   }
   onload() {
-    Ot(so), Ot(io);
-    const t = { server: { url: "https://formupload.agentur-chapeau.de/", process: { url: "process", headers: this.headers }, revert: { url: "revert", headers: this.headers }, restore: null, load: null, fetch: null }, credits: !1, ...zl, ...window.c_fileupload_options };
+    Ot(ao), Ot(so);
+    const t = { server: { url: "https://formupload.agentur-chapeau.de/", process: { url: "process", headers: this.headers }, revert: { url: "revert", headers: this.headers }, restore: null, load: null, fetch: null }, credits: !1, ...Wl, ...window.c_fileupload_options };
     for (const r of this.inputs)
       this.fileponds[r.name] = yt(r, { ...t, maxFiles: r.dataset.maxFiles || null, maxFileSize: r.dataset.maxFileSize || null, maxTotalFileSize: r.dataset.maxTotalFileSize || null });
   }
@@ -3221,18 +3224,18 @@ class We {
     return { url: i, name: a, size: l };
   }
 }
-We.refs = {}, window.FileUpload = We, document.addEventListener("DOMContentLoaded", () => {
+We.refs = {}, window.FileUpload = We, _n(() => {
   Array.from(document.querySelectorAll("[c-file-upload]")).forEach((e) => new We(e));
 });
-const zl = { labelIdle: 'Dateien hierher ziehen oder <span class="filepond--label-action">auswählen</span>', labelInvalidField: "Feld enthält ungültige Dateien", labelFileWaitingForSize: "Auf Größe warten", labelFileSizeNotAvailable: "Größe nicht verfügbar", labelFileLoading: "Laden", labelFileLoadError: "Fehler beim Laden", labelFileProcessing: "Hochladen", labelFileProcessingComplete: "Hochgeladen", labelFileProcessingAborted: "Hochladen abgebrochen", labelFileProcessingError: "Fehler beim Hochladen", labelFileProcessingRevertError: "Fehler beim Entfernen", labelFileRemoveError: "Fehler beim Löschen", labelTapToCancel: "Tippen zum Abbrechen ", labelTapToRetry: "Tippen zum Wiederholen", labelTapToUndo: "Tippen zum Entfernen", labelButtonRemoveItem: "Entfernen", labelButtonAbortItemLoad: "Abbrechen", labelButtonRetryItemLoad: "Wiederholen", labelButtonAbortItemProcessing: "Abbrechen", labelButtonUndoItemProcessing: "Entfernen", labelButtonRetryItemProcessing: "Wiederholen", labelButtonProcessItem: "Hochladen", labelMaxFileSizeExceeded: "Datei ist zu groß", labelMaxFileSize: "Maximale Dateigröße beträgt {filesize}", labelMaxTotalFileSizeExceeded: "Maximale Gesamtgröße überschritten", labelMaxTotalFileSize: "Maximale Gesamtgröße beträgt {filesize}", labelFileTypeNotAllowed: "Ungültiger Dateityp", fileValidateTypeLabelExpectedTypes: "Gültige Dateitypen: {allButLastType} und {lastType}", fileValidateTypeLabelExpectedTypesMap: { "image/*": "Bilddateien", "image/png": ".png", "image/jpg": ".jpg", "image/jpeg": ".jpeg", "application/pdf": ".pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document": ".docx" } };
+const Wl = { labelIdle: 'Dateien hierher ziehen oder <span class="filepond--label-action">auswählen</span>', labelInvalidField: "Feld enthält ungültige Dateien", labelFileWaitingForSize: "Auf Größe warten", labelFileSizeNotAvailable: "Größe nicht verfügbar", labelFileLoading: "Laden", labelFileLoadError: "Fehler beim Laden", labelFileProcessing: "Hochladen", labelFileProcessingComplete: "Hochgeladen", labelFileProcessingAborted: "Hochladen abgebrochen", labelFileProcessingError: "Fehler beim Hochladen", labelFileProcessingRevertError: "Fehler beim Entfernen", labelFileRemoveError: "Fehler beim Löschen", labelTapToCancel: "Tippen zum Abbrechen ", labelTapToRetry: "Tippen zum Wiederholen", labelTapToUndo: "Tippen zum Entfernen", labelButtonRemoveItem: "Entfernen", labelButtonAbortItemLoad: "Abbrechen", labelButtonRetryItemLoad: "Wiederholen", labelButtonAbortItemProcessing: "Abbrechen", labelButtonUndoItemProcessing: "Entfernen", labelButtonRetryItemProcessing: "Wiederholen", labelButtonProcessItem: "Hochladen", labelMaxFileSizeExceeded: "Datei ist zu groß", labelMaxFileSize: "Maximale Dateigröße beträgt {filesize}", labelMaxTotalFileSizeExceeded: "Maximale Gesamtgröße überschritten", labelMaxTotalFileSize: "Maximale Gesamtgröße beträgt {filesize}", labelFileTypeNotAllowed: "Ungültiger Dateityp", fileValidateTypeLabelExpectedTypes: "Gültige Dateitypen: {allButLastType} und {lastType}", fileValidateTypeLabelExpectedTypesMap: { "image/*": "Bilddateien", "image/png": ".png", "image/jpg": ".jpg", "image/jpeg": ".jpeg", "application/pdf": ".pdf", "application/vnd.openxmlformats-officedocument.wordprocessingml.document": ".docx" } };
 var Ne = window.Webflow || [];
 Ne.push(() => {
-  Wl();
+  Xl();
 });
-function Wl() {
+function Xl() {
   const e = document.querySelector('[c-chapeau-form="main"]'), t = e.querySelector('[c-chapeau-form="nav"]'), r = e.querySelector('[c-chapeau-form="total-steps"]'), n = e.querySelector('[c-chapeau-form="progress"]'), o = e.querySelector('[c-chapeau-form="slider"]'), s = e.querySelector('[c-chapeau-form="slides"]'), i = e.querySelector('[c-chapeau-form="not-qualified-message"]'), a = e.querySelector('[c-chapeau-form="buttons"]'), l = '[c-chapeau-form="form"]', u = '[c-chapeau-form="next"]', p = '[c-chapeau-form="back"]', m = '[c-chapeau-form="current-step"]';
-  Xl(o, s);
-  const h = new Fo.MSF({
+  jl(o, s);
+  const h = new xo.MSF({
     hiddeButtonsOnSubmit: !1,
     // Buttons will be manually hidden
     scrollTopOnStepChange: !1,
@@ -3241,24 +3244,24 @@ function Wl() {
     backSelector: p,
     currentStepSelector: m
   });
-  Ql(h), jl(h, n), Zl(h), $l(h, i, t, a), Kl(h), Jl(h, e);
+  Zl(h), $l(h, n), Kl(h), Ql(h, i, t, a), Jl(h), ec(h, e);
   const T = h.view.steps.length;
   r.textContent = T, window.msf = h, e.removeAttribute("c-cloak"), h.view.setMaskHeight(0);
 }
-function Xl(e, t) {
+function jl(e, t) {
   const r = e.querySelector(":scope > .w-slider-mask"), n = Array.from(t.querySelectorAll(":scope > .w-dyn-items > .w-dyn-item"));
   Array.from(r.querySelectorAll(".w-slide")).forEach((o) => o.remove()), n.forEach((o) => {
     o.classList.add("w-slide"), r.appendChild(o);
   }), t.remove(), Ne.destroy(), Ne.ready(), Ne.require("ix2").init(), Ne.require("slider").redraw(), Ne.require("slider").ready();
 }
-function jl({ view: e, controller: t }, r) {
+function $l({ view: e, controller: t }, r) {
   e.next.addEventListener("click", n), e.back.addEventListener("click", n), n();
   function n() {
     const o = t.currentStep + 1, s = e.steps.length, i = Math.min(o / s * 100, 100);
     r.style.width = `${i}%`;
   }
 }
-function $l({ view: e, controller: t }, r, n, o) {
+function Ql({ view: e, controller: t }, r, n, o) {
   e.form.addEventListener("change", s);
   function s() {
     var T;
@@ -3282,14 +3285,14 @@ function $l({ view: e, controller: t }, r, n, o) {
     e.showElement(n), e.showElement(o);
   }
 }
-function Ql({ view: e }) {
+function Zl({ view: e }) {
   e.enableElement(e.back), e.disableElement = (t) => {
     t && t.classList.add("disabled");
   }, e.enableElement = (t) => {
     t && t.classList.remove("disabled");
   }, e.disableElement(e.back);
 }
-function Zl(e) {
+function Kl(e) {
   e.view;
   const t = e.controller, r = t.checkRequiredInputs.bind(t);
   function n() {
@@ -3302,7 +3305,7 @@ function Zl(e) {
   }
   t.checkRequiredInputs = n.bind(t);
 }
-function Kl(e) {
+function Jl(e) {
   const t = e.view, r = e.controller, n = t.form.closest("[c-async-form]"), o = t.back, s = t.next, i = new Ge(n);
   i.onState = (a) => {
     a === "success" && (t.hideElement(o), t.hideElement(s));
@@ -3310,7 +3313,7 @@ function Kl(e) {
     r.currentStep = Math.min(r.currentStep, t.steps.length - 1);
   };
 }
-function Jl(e, t) {
+function ec(e, t) {
   new We(t);
   const r = e.view, n = e.controller;
   r.form.addEventListener("FilePond:updatefiles", () => {
