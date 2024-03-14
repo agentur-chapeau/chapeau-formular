@@ -42,6 +42,7 @@ function createChapeauFormular() {
 	useProgressBar(msf, $progress);
 	useBrowserValidation(msf);
 	useNotQualified(msf, $notQualifiedMsg, $nav, $buttons);
+	useConversion(msf);
 	useAyncForm(msf);
 	useFileUpload(msf, $main);
 
@@ -110,7 +111,6 @@ function useNotQualified({ view, controller }, notQualifiedMsg, nav, buttons) {
 			'[c-chapeau-form="not-qualified-message"]'
 		);
 		if (notQualified) {
-			view.next.dataset.trackDisabled = true;
 			if (!isNextSlideNotQualifiedMessage) {
 				currentSlide.insertAdjacentHTML("afterend", notQualifiedMsg.outerHTML);
 				currentSlide.nextElementSibling
@@ -118,7 +118,6 @@ function useNotQualified({ view, controller }, notQualifiedMsg, nav, buttons) {
 					.addEventListener("click", () => view.back.click());
 			}
 		} else {
-			view.next.dataset.trackDisabled = false;
 			if (isNextSlideNotQualifiedMessage) {
 				currentSlide.nextSibling.remove();
 			}
@@ -144,7 +143,7 @@ function useNotQualified({ view, controller }, notQualifiedMsg, nav, buttons) {
 
 	view.next.addEventListener("click", () => {
 		const lastSlide = view.steps[controller.currentStep - 1];
-		if (lastSlide.dataset.notQualified === "true") {
+		if (lastSlide?.dataset.notQualified === "true") {
 			hideElements();
 		}
 	});
@@ -247,4 +246,24 @@ function useFileUpload(msf, $main) {
 	view.form.addEventListener("FilePond:updatefiles", () => {
 		setTimeout(() => view.setMaskHeight(controller.currentStep), 100); // 100ms delay to let FilePond-Element update
 	});
+}
+
+function useConversion({ view, controller }) {
+	// Check validity of all inputs on each step
+	// If not valid the conversion event should not fire
+	// It should also not fire if the selection is not qualified
+	view.form.addEventListener("change", checkValidity);
+	view.next.addEventListener("click", checkValidity);
+	view.back.addEventListener("click", checkValidity);
+	checkValidity();
+
+	function checkValidity() {
+		const inputs = view.getInputs(controller.currentStep);
+		const inputsNotValid = inputs.some((input) => !input.checkValidity());
+
+		const currentSlide = view.steps[controller.currentStep];
+		const currentSlideNotQualified = currentSlide.dataset.notQualified == "true";
+
+		view.next.dataset.trackDisabled = inputsNotValid || currentSlideNotQualified;
+	}
 }
