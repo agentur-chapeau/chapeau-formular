@@ -43,7 +43,7 @@ function createChapeauFormular() {
 	useBrowserValidation(msf);
 	useNotQualified(msf, $notQualifiedMsg, $nav, $buttons);
 	useConversion(msf);
-	useAyncForm(msf);
+	useAyncForm(msf, $main);
 	useFileUpload(msf, $main);
 
 	// Set total step count
@@ -209,16 +209,12 @@ function useBrowserValidation(msf) {
 	controller.checkRequiredInputs = newCheckRequiredInputs.bind(controller);
 }
 
-function useAyncForm(msf) {
-	const view = msf.view;
-	const controller = msf.controller;
-
+function useAyncForm({ view, controller }, $main) {
 	// Get elements
-	const $formBlock = view.form.closest("[c-async-form]");
 	const $back = view.back;
 	const $next = view.next;
 
-	const asyncForm = new AsyncForm($formBlock);
+	const asyncForm = new AsyncForm($main);
 	asyncForm.onState = (state) => {
 		// Hide Buttons on success
 		if (state === "success") {
@@ -237,7 +233,7 @@ function useAyncForm(msf) {
 }
 
 function useFileUpload(msf, $main) {
-	const fileupload = new FileUpload($main);
+	new FileUpload($main);
 
 	const view = msf.view;
 	const controller = msf.controller;
