@@ -13,7 +13,7 @@
 	"devDependencies": {
 		"@types/node": "^20.11.24",
 		"rollup-plugin-esbuild": "^6.1.1",
-		"vite": "^5.1.4"
+		"vite": "^5.1.7"
 	},
 	"dependencies": {
 		"advanced-webflow-forms": "github:brotame/advanced-webflow-forms#6fb263d",
