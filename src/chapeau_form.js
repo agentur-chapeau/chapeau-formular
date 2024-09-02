@@ -80,7 +80,7 @@ function moveCmsSlidesToSlider($slider, $slideList) {
   // Reset Webflow Slider
   Webflow.destroy();
   Webflow.ready();
-  Webflow.require("ix2").init();
+  Webflow.require("ix2")?.init();
   Webflow.require("slider").redraw();
   Webflow.require("slider").ready();
 }
