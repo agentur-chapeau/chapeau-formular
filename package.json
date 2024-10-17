@@ -17,6 +17,6 @@
 	},
 	"dependencies": {
 		"advanced-webflow-forms": "github:brotame/advanced-webflow-forms#6fb263d",
-		"chapeaujs": "github:agentur-chapeau/chapeaujs#semver:^1.0.0"
+		"chapeaujs": "github:agentur-chapeau/chapeaujs#semver:^1.1.0"
 	}
 }
